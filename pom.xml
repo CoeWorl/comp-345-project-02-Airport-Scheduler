@@ -14,9 +14,6 @@
 
     <dependencies>
         <!-- Add your project dependencies here -->
-        <groupId>org.springframework.boot</groupId>
-	    <artifactId>spring-boot-starter-test</artifactId>
-	    <scope>test</scope>
     </dependencies>
 
     <build>
