@@ -10,15 +10,10 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jackson-2-version>2.9.4</jackson-2-version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson-2-version}</version>
-        </dependency>
+        <!-- Add your project dependencies here -->
     </dependencies>
 
     <build>
