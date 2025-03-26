@@ -12,8 +12,15 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
     <dependencies>
-        <!-- Add your project dependencies here -->
+
     </dependencies>
 
     <build>
