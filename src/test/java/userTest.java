@@ -1,5 +1,9 @@
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
 import org.junit.Test;
 
 public class userTest {
@@ -117,6 +121,37 @@ public class userTest {
         assertTrue(noah.getBusinesses().isEmpty());
         assertTrue(noah.getShops().isEmpty());
         assertTrue(noah.getRestaurants().isEmpty());
+    }
+
+    @Test
+    void validEmailTest(){
+        // valid email address
+        assertTrue(User.validEmail("a@b.com"));   // Equivalence Class: valid email, Border case: No, valid format
+
+        // empty string
+        assertFalse(User.validEmail(""));         // Equivalence Class: invalid email (empty), Border case: Yes
+
+        // invalid email, starts with invalid character
+        assertFalse(User.validEmail("_a@gmail.com"));  // Equivalence Class: invalid email (starting with underscore), Border case: No
+
+        // invalid email, domain missing after '@'
+        assertFalse(User.validEmail("a@.com"));      // Equivalence Class: invalid email (missing domain), Border case: Yes
+
+        // invalid email, missing '@' symbol
+        assertFalse(User.validEmail("a@gmail"));     // Equivalence Class: invalid email (missing '@' symbol), Border case: No
+
+        // valid email address from a university domain
+        assertTrue(User.validEmail("redson@ithaca.edu"));  // Equivalence Class: valid email, Border case: No, valid format
+
+        // invalid email, missing local part before '@'
+        assertFalse(User.validEmail("@gmail.com"));  // Equivalence Class: invalid email (missing local part), Border case: Yes
+
+        // invalid email, contains space
+        assertFalse(User.validEmail("a b@gmail.com"));  // Equivalence Class: invalid email (contains space), Border case: No
+
+        // invalid email, missing '@'
+        assertFalse(User.validEmail("agmail.com"));  // Equivalence Class: invalid email (missing '@'), Border case: Yes
+        
     }
 
 }
