@@ -39,11 +39,17 @@ public abstract class User {
     /**Checks old password before allowing password update
      * inputs - prev password and new password
      * updates password
+     * @throws IllegalArgumentException if old password is incorrect
     */
     public void updatePassword(String prev, String psswrd){
         throw new RuntimeException("Not yet implemented");
     }
 
+    /**checks if new email is valid and updates if so
+     * input - email
+     * output - none
+     * @throws IllegalArgumentException if email is invalid
+     */
     public void updateEmail(String email){
         throw new RuntimeException("Not yet implemented");
     }
@@ -53,6 +59,10 @@ public abstract class User {
      * output - boolean
      */
     public boolean validEmail(String email){
+        throw new RuntimeException("not yet implemented");
+    }
+
+    public String toString(){
         throw new RuntimeException("not yet implemented");
     }
 

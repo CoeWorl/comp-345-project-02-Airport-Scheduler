@@ -16,6 +16,7 @@ public class Passenger extends User{
      * input - flight number
      * searches for flight in database/json file and adds to hashset
      * output - void
+     * @throws IllegalArgumentException if flight does not exist
      */
     public void addFlight(String flightNum){
         throw new RuntimeException("Not yet implemented");
@@ -25,6 +26,7 @@ public class Passenger extends User{
      * input - flight number
      * searches for flight in hashmap and removes
      * output - void
+     * @throws IllegalArgumentException if flight not in hashmap
      */
     public void removeFlight(String flightNum){
         throw new RuntimeException("Not yet implemented");
@@ -42,6 +44,7 @@ public class Passenger extends User{
      * input - flight number
      * checks if flight exists in user's map
      * output - void
+     * @throws IllegalArgumentException if flight not in hashmap
      */
     public void createSchedule(String flightNum){
         throw new RuntimeException("Not yet implemented");
@@ -51,6 +54,7 @@ public class Passenger extends User{
      * input - flight number
      * checks if flight exists in user's map
      * output - schedule
+     * @throws IllegalArgumentException if flight not in hasmap
     */
     public Schedule getSchedule(String flightNum){
         throw new RuntimeException("Not yet implemented");
@@ -60,6 +64,7 @@ public class Passenger extends User{
      * input - flight number
      * checks if flight exists in user's map
      * output - void
+     * @throws IllegalArgumentException if flight not in hashmap
      */
     public void randomSchedule(String flightNum){
         throw new RuntimeException("not yet implemented");
@@ -69,6 +74,7 @@ public class Passenger extends User{
      * input - flight number and new schedule
      * checks if flight exists in user's map
      * output - void
+     * @throws IllegalArgumentException if flight not in hashmap
      */
     public void updateSchedule(String flightNum, Schedule schedule){
         throw new RuntimeException("not yet implemented");
