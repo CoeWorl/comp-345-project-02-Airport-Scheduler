@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+/*
+* Class from Toby Dragon's TECMap project
+* */
 public class Json {
 
     public static String toJsonString(Object objectToSerialize) throws JsonProcessingException {

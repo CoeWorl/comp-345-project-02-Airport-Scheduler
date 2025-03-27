@@ -3,8 +3,8 @@ package layout;
 public class Gate extends POI{
     private boolean isEntranceToTerminal;
 
-    public Gate(String name, Terminal terminal, boolean isEntranceToTerminal){
-        super(name, terminal);
+    public Gate(String name, boolean isEntranceToTerminal){
+        super(name);
         this.isEntranceToTerminal = isEntranceToTerminal;
     }
 }
