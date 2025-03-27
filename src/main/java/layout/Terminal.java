@@ -28,10 +28,12 @@ public class Terminal {
                     @JsonProperty("uuid") UUID uuid,
                     @JsonProperty("entrances") List<Gate> entrances,
                     @JsonProperty("poi") HashMap<UUID, List<Map<String, Object>>> poi_string) throws IOException {
+        System.err.println("Checkpoint 1");
         this.name = name;
         this.uuid = uuid;
         this.entrances = entrances;
         this.number = number;
+
         this.poi = new HashMap<>();
 
         for (Map.Entry<UUID, List<Map<String, Object>>> entry : poi_string.entrySet()) {
@@ -40,9 +42,13 @@ public class Terminal {
             POI poi;
             // Create POI object (read from file)
             try {
-                poi = Json.fromJsonFile("src/main/resources/POI/Business" + poiUuid + ".json", Business.class);
+                poi = switch (poiUuid.toString().charAt(0)) {
+                    case 'a' -> Json.fromJsonFile(STR."src/main/resources/POI/Gate\{poiUuid}.json", Gate.class);
+                    case 'b' -> Json.fromJsonFile(STR."src/main/resources/POI/Business\{poiUuid}.json", Business.class);
+                    default -> throw new IOException("Invalid POI type");
+                };
             } catch (IOException e) {
-                poi = Json.fromJsonFile("src/main/resources/POI/Gate" + poiUuid + ".json", Gate.class);
+                throw new IOException("File read went wrong inside Terminal constructor");
             }
 
             // Create connection objects
@@ -50,13 +56,13 @@ public class Terminal {
 
             for (Map<String, Object> connectionData : connections) {
                 int weight = (int) connectionData.get("weight");
-                String type = (String) connectionData.get("type");
                 UUID connectionUuid = UUID.fromString((String) connectionData.get("uuid"));
 
-                Connection connection = new Connection(weight, type, connectionUuid);
+                Connection connection = new Connection(weight, connectionUuid);
+                System.out.println(connection);
                 connectionList.add(connection);
             }
-
+            System.out.println(poi);
             this.poi.put(poi, connectionList);
         }
     }

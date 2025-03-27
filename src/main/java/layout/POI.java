@@ -6,15 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 public abstract class POI {
-    private final String name;
-    private final UUID uuid;
-    private final int terminal;
-
-    public POI(String name, int terminal) {
-        this.name = name;
-        this.uuid = UUID.randomUUID();
-        this.terminal = terminal;
-    }
+    final String name;
+    final UUID uuid;
+    final int terminal;
 
     public POI(String name, int terminal, UUID id) {
         this.name = name;
@@ -30,6 +24,10 @@ public abstract class POI {
         this.terminal = terminal;
     }
 
+    @Override
+    public String toString() {
+        return STR."POI: \{this.getClass()}{name='\{name}', UUID=\{uuid}, terminal=\{terminal}}";
+    }
     public String getName() {
         return name;
     }

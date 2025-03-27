@@ -8,44 +8,37 @@
     "beebc26c-96cd-40a6-9055-9b2a164db481": [
       {
         "weight": 5,
-        "type": "Business",
-        "uuid": "4624702e-eb27-4392-817a-2e0cc01c28e1"
+        "uuid": "b624702e-eb27-4392-817a-2e0cc01c28e1"
       },
       {
         "weight": 7,
-        "type": "Business",
-        "uuid": "ea05ecb7-879b-44dc-baab-e476bc30bca0"
+        "uuid": "ba05ecb7-879b-44dc-baab-e476bc30bca0"
       }
     ],
     "4624702e-eb27-4392-817a-2e0cc01c28e1": [
       {
         "weight": 5,
-        "type": "Gate",
-        "uuid": "beebc26c-96cd-40a6-9055-9b2a164db481"
+        "uuid": "aeebc26c-96cd-40a6-9055-9b2a164db481"
       },
       {
         "weight": 5,
-        "type": "Gate",
-        "uuid": "7cace207-152a-4042-85f6-b43234da2417"
+        "uuid": "acace207-152a-4042-85f6-b43234da2417"
       }
     ],
     "ea05ecb7-879b-44dc-baab-e476bc30bca0": [
       {
         "weight": 7,
-        "type": "Gate",
-        "uuid": "beebc26c-96cd-40a6-9055-9b2a164db481"
+        "uuid": "aeebc26c-96cd-40a6-9055-9b2a164db481"
       },
       {
         "weight": 2,
-        "type": "Gate",
-        "uuid": "7cace207-152a-4042-85f6-b43234da2417"
+        "uuid": "acace207-152a-4042-85f6-b43234da2417"
       }
     ],
     "7cace207-152a-4042-85f6-b43234da2417": [
       {
         "weight": 5,
-        "type": "Business",
-        "uuid": "4624702e-eb27-4392-817a-2e0cc01c28e1"
+        "uuid": "b624702e-eb27-4392-817a-2e0cc01c28e1"
       }
     ]
   }
