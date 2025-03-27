@@ -3,13 +3,18 @@ import java.util.HashSet;
 public class Owner extends User{
 
     private HashSet<Business> businesses;
+    private HashSet<Business> restaurants;
+    private HashSet<Business> shops;
 
     public Owner(String name, String username, String password, String email){
         super(name, username, password, email);
+        businesses = new HashSet<>();
+        restaurants = new HashSet<>();
+        shops = new HashSet<>();
     }
 
     public HashSet<Business> getBusinesses(){
-        throw new RuntimeException("not yet implemented");
+        return businesses;
     }
 
     /**adds new business to set
@@ -19,7 +24,16 @@ public class Owner extends User{
      * @throws IllegalArgumentException if business already exists
      */
     public void addBusiness(Business business){
-        throw new RuntimeException("not yet implemented");
+        if(!checkBusiness(business)){
+            businesses.add(business);
+            if(business.getType().equals("restaurant")){
+                restaurants.add(business);
+            }else if(business.getType().equals("shop")){
+                shops.add(business);
+            }
+        }else{
+            throw new IllegalArgumentException("Business already exists");
+        }
     }
 
     /**removes business from set
@@ -29,7 +43,16 @@ public class Owner extends User{
      * @throws IllegalArgumentException if business does not exist
      */
     public void removeBusiness(Business business){
-        throw new RuntimeException("not yet implemented");
+        if(checkBusiness(business)){
+            businesses.remove(business);
+            if(business.getType().equals("restaurant")){
+                restaurants.remove(business);
+            }else if(business.getType().equals("shop")){
+                shops.remove(business);
+            }
+        }else{
+            throw new IllegalArgumentException("Business not in set");
+        }
     }
 
     /**checks if business is in set
@@ -37,7 +60,7 @@ public class Owner extends User{
      * output - boolean
      */
     public boolean checkBusiness(Business business){
-        throw new RuntimeException("not yet implemented");
+        return businesses.contains(business);
     }
 
     /**add activity to promote business
@@ -45,9 +68,18 @@ public class Owner extends User{
      * checks if business exists in set and adds activity if so
      * outputs - none, activity added to business
      * @throws IllegalArgumentException if business does not exist
+     * @throws IllegalArgumentException if business already has activity
      */
     public void addActivity(Business business, String name, String type){
-        throw new RuntimeException("Not yet implemented");
+        if(checkBusiness(business)){
+            if(business.getActivity() == null){
+                business.addActivity(name, type);
+            }else{
+                throw new IllegalArgumentException("Business already has activity");
+            }
+        }else{
+            throw new IllegalArgumentException("Business not in set");
+        }
     }
 
     /**remove activity from business
@@ -58,7 +90,15 @@ public class Owner extends User{
      * @throws IllegalArgumentException if activity is null
      */
     public void removeActivity(Business business){
-        throw new RuntimeException("Not yet implemented");
+        if(checkBusiness(business)){
+            if(business.getActivity() != null){
+                business.removeActivity();
+            }else{
+                throw new IllegalArgumentException("Business has no activity");
+            }
+        }else{
+            throw new IllegalArgumentException("Business not in set");
+        }
     }
 
     /**returns all businesses of type restaurant
@@ -66,7 +106,7 @@ public class Owner extends User{
      * output - set of businesses
      */
     public HashSet<Business> getRestaurants(){
-        throw new RuntimeException("not yet implemented");
+        return restaurants;
     }
 
     /**returns all businesses of type shop
@@ -74,7 +114,7 @@ public class Owner extends User{
      * output - set of businesses
      */
     public HashSet<Business> getShops(){
-        throw new RuntimeException("not yet implemented");
+        return shops;
     }
     
 }
