@@ -6,10 +6,11 @@ public class Passenger extends User{
     
     public Passenger(String name, String username, String password, String email){
         super(name, username, password, email);
+        flightPlans = new HashMap<>();
     }
 
     public HashMap<Flight, Schedule> getFlightPlans(){
-        throw new RuntimeException("not yet implemented");
+        return flightPlans;
     }
 
     /**adds a new flight to hashmap
@@ -29,7 +30,11 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      */
     public void removeFlight(String flightNum){
-        throw new RuntimeException("Not yet implemented");
+        if(checkFlight(flightNum)){
+            flightPlans.remove(getFlight(flightNum));
+        }else{
+            throw new IllegalArgumentException("Flight not in plans")
+        }
     }
 
     /**checks if flight exists in user's hashmap
@@ -40,6 +45,18 @@ public class Passenger extends User{
         throw new RuntimeException("Not yet implemented");
     }
 
+    /**if checkFlight returned true, searches through flights in flightplans and returns flight based on flightnum
+     * input - flight number
+     * output - flight
+     */
+    public Flight getFlight(String flightNum){
+        for(Flight flight : flightPlans.keySet()){
+            if(flight.getFlightNum().equals(flightNum)){
+                return flight;
+            }
+        }
+    }
+
     /**creates schedule for specific flight and adds it to hashmap
      * input - flight number
      * checks if flight exists in user's map
@@ -47,7 +64,12 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      */
     public void createSchedule(String flightNum){
-        throw new RuntimeException("Not yet implemented");
+        if(checkFlight(flightNum)){
+            Schedule schedule = new Schedule();
+            flightPlans.put(getFlight(flightNum), schedule);
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
     }
 
     /**gets schedule for specific flight 
@@ -57,7 +79,11 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hasmap
     */
     public Schedule getSchedule(String flightNum){
-        throw new RuntimeException("Not yet implemented");
+        if(checkFlight(flightNum)){
+            return flightPlans.get(getFlight(flightNum));
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
     }
 
     /**randomly generates schedule for specific flight
@@ -67,7 +93,13 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      */
     public void randomSchedule(String flightNum){
-        throw new RuntimeException("not yet implemented");
+        if(checkFlight(flightNum)){
+            Schedule schedule = new Schedule();
+            schedule.randomSchedule();
+            flightPlans.put(getFlight(flightNum), schedule);
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
     }
 
     /**updates schedule for specific flight
@@ -77,7 +109,11 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      */
     public void updateSchedule(String flightNum, Schedule schedule){
-        throw new RuntimeException("not yet implemented");
+        if(checkFlight(flightNum)){
+            flightPlans.put(getFlight(flightNum), schedule);
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
     }
 
     
