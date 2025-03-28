@@ -1,6 +1,9 @@
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.Instant;
+import layout.Airport;
+import layout.Terminal;
+import layout.Gate;
 
 public class Flight {
     private String flightNumber;
