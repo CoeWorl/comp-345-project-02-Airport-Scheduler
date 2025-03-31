@@ -1,11 +1,11 @@
 {
   "name": "Terminal 1",
   "number": 1,
-  "uuid": "2fc59d7c-849b-446f-adb1-0702682237c3",
+  "uuid": "efc59d7c-849b-446f-adb1-0702682237c3",
   "airport": "JFK",
-  "entrances": ["beebc26c-96cd-40a6-9055-9b2a164db481"],
+  "entrances": ["aeebc26c-96cd-40a6-9055-9b2a164db481"],
   "poi": {
-    "beebc26c-96cd-40a6-9055-9b2a164db481": [
+    "aeebc26c-96cd-40a6-9055-9b2a164db481": [
       {
         "weight": 5,
         "uuid": "b624702e-eb27-4392-817a-2e0cc01c28e1"
@@ -15,7 +15,7 @@
         "uuid": "ba05ecb7-879b-44dc-baab-e476bc30bca0"
       }
     ],
-    "4624702e-eb27-4392-817a-2e0cc01c28e1": [
+    "b624702e-eb27-4392-817a-2e0cc01c28e1": [
       {
         "weight": 5,
         "uuid": "aeebc26c-96cd-40a6-9055-9b2a164db481"
@@ -25,7 +25,7 @@
         "uuid": "acace207-152a-4042-85f6-b43234da2417"
       }
     ],
-    "ea05ecb7-879b-44dc-baab-e476bc30bca0": [
+    "ba05ecb7-879b-44dc-baab-e476bc30bca0": [
       {
         "weight": 7,
         "uuid": "aeebc26c-96cd-40a6-9055-9b2a164db481"
@@ -35,7 +35,7 @@
         "uuid": "acace207-152a-4042-85f6-b43234da2417"
       }
     ],
-    "7cace207-152a-4042-85f6-b43234da2417": [
+    "acace207-152a-4042-85f6-b43234da2417": [
       {
         "weight": 5,
         "uuid": "b624702e-eb27-4392-817a-2e0cc01c28e1"

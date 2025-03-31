@@ -10,61 +10,75 @@ public class Terminal {
     private final String name;
     private final UUID uuid;
     private final List<Gate> entrances;
-    private final Map<POI, List<Connection>> poi;
     private final int number;
-    private final String airport = "JFK";
+    private final Map<UUID, List<Connection>> poi_connections;
+    private final Map<UUID, POI> poi;
+    private final String airport;
 
-    public Terminal(String name, int number, Gate entrance) {
+    public Terminal(String name, int number, Gate entrance, String airport) {
         this.name = name;
         this.uuid = UUID.randomUUID();
         this.entrances = new LinkedList<>();
         this.entrances.add(entrance);
-        this.poi = new HashMap<>();
+        this.poi_connections = new HashMap<>();
         this.number = number;
+        this.airport = airport;
+        this.poi = new HashMap<>();
     }
 
     @JsonCreator
     public Terminal(@JsonProperty("name") String name, @JsonProperty("number") int number,
                     @JsonProperty("uuid") UUID uuid,
-                    @JsonProperty("entrances") List<Gate> entrances,
-                    @JsonProperty("poi") HashMap<UUID, List<Map<String, Object>>> poi_string) throws IOException {
-        System.err.println("Checkpoint 1");
+                    @JsonProperty("entrances") List<String> entranceUuids,
+                    @JsonProperty("poi") HashMap<UUID, List<Map<String, Object>>> poi_string,
+                    @JsonProperty("airport") String airport) throws IOException {
         this.name = name;
         this.uuid = uuid;
-        this.entrances = entrances;
         this.number = number;
-
+        this.airport = airport;
         this.poi = new HashMap<>();
 
+        this.entrances = new ArrayList<>();
+        for (String entranceUuid : entranceUuids) {
+            Gate gate = Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Gate/" + entranceUuid + ".json", Gate.class);
+            this.entrances.add(gate);
+        }
+
+        this.poi_connections = new HashMap<>();
         for (Map.Entry<UUID, List<Map<String, Object>>> entry : poi_string.entrySet()) {
             UUID poiUuid = entry.getKey();
             List<Map<String, Object>> connections = entry.getValue();
             POI poi;
             // Create POI object (read from file)
-            try {
-                poi = switch (poiUuid.toString().charAt(0)) {
-                    case 'a' -> Json.fromJsonFile(STR."src/main/resources/POI/Gate\{poiUuid}.json", Gate.class);
-                    case 'b' -> Json.fromJsonFile(STR."src/main/resources/POI/Business\{poiUuid}.json", Business.class);
-                    default -> throw new IOException("Invalid POI type");
-                };
-            } catch (IOException e) {
-                throw new IOException("File read went wrong inside Terminal constructor");
-            }
-
+            poi = switch (poiUuid.toString().charAt(0)) {
+                case 'a' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Gate/" + poiUuid + ".json", Gate.class);
+                case 'b' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Business/" + poiUuid + ".json", Business.class);
+                default -> null;
+            };
+            if (poi==null) System.err.println("Unknown POI: " + poiUuid);
+            this.poi.put(poiUuid, poi);
             // Create connection objects
             List<Connection> connectionList = new ArrayList<>();
-
             for (Map<String, Object> connectionData : connections) {
                 int weight = (int) connectionData.get("weight");
                 UUID connectionUuid = UUID.fromString((String) connectionData.get("uuid"));
 
                 Connection connection = new Connection(weight, connectionUuid);
-                System.out.println(connection);
                 connectionList.add(connection);
             }
-            System.out.println(poi);
-            this.poi.put(poi, connectionList);
+            this.poi_connections.put(poiUuid, connectionList);
         }
+    }
+
+    public int getDistance(POI start, POI end) {
+        if (poi_connections.containsKey(start)) {
+            for (Connection connection : poi_connections.get(start)) {
+                if (connection.getUuid().equals(end.getUuid())) {
+                    return connection.getWeight();
+                }
+            }
+        }
+        return -1;
     }
 
     public String getName() {
@@ -79,7 +93,16 @@ public class Terminal {
         return entrances;
     }
 
-    public Map<POI, List<Connection>> getPoi() {
-        return new HashMap<>(poi);
+    public POI getPOI(UUID uuid) {
+        for (UUID id : poi_connections.keySet()) {
+            if (id.equals(uuid)) {
+                return this.poi.get(id);
+            }
+        }
+        return null;
+    }
+
+    public Map<UUID, List<Connection>> getPoiMap() {
+        return new HashMap<>(poi_connections);
     }
 }
