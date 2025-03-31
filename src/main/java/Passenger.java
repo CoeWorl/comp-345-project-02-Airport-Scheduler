@@ -1,4 +1,9 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
+
+import layout.POI;
+import layout.Terminal;
 
 public class Passenger extends User{
 
@@ -15,8 +20,9 @@ public class Passenger extends User{
 
     /**adds a new flight to hashmap
      * input - flight number
-     * searches for flight in database/json file and adds to hashset
+     * searches for flight in database/json file and adds to hashmap with empty schedule
      * output - void
+     * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if flight does not exist
      */
     public void addFlight(String flightNum){
@@ -33,7 +39,7 @@ public class Passenger extends User{
         if(checkFlight(flightNum)){
             flightPlans.remove(getFlight(flightNum));
         }else{
-            throw new IllegalArgumentException("Flight not in plans")
+            throw new IllegalArgumentException("Flight not in plans");
         }
     }
 
@@ -42,7 +48,12 @@ public class Passenger extends User{
      * output - boolean
      */
     public boolean checkFlight(String flightNum){
-        throw new RuntimeException("Not yet implemented");
+        for(Flight flight : flightPlans.keySet()){
+            if(flight.getFlightNumber().equals(flightNum)){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**if checkFlight returned true, searches through flights in flightplans and returns flight based on flightnum
@@ -51,7 +62,7 @@ public class Passenger extends User{
      */
     public Flight getFlight(String flightNum){
         for(Flight flight : flightPlans.keySet()){
-            if(flight.getFlightNum().equals(flightNum)){
+            if(flight.getFlightNumber().equals(flightNum)){
                 return flight;
             }
         }
@@ -116,6 +127,70 @@ public class Passenger extends User{
         }
     }
 
-    
+    /**adds poi to schedule for specific flight
+     * input - flight number and poi
+     * checks if flight exists in user's map
+     * output - void, schedule connected to flight updated
+     * @throws IllegalArgumentException if flight not in hashmap
+     * @throws IllegalArgumentException if poi not in terminal
+     */
+    public void addPOItoSchedule(String flightnum, POI poi){
+        if(checkFlight(flightnum)){
+            Schedule schedule = getSchedule(flightnum);
+            schedule.addPOI(poi);
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
+    }
+
+    /**adds random poi of type restaurant to schedule if one exists in terminal
+     * input - flight number
+     * output - void, schedule connected to flight updated
+     * @throws IllegalArgumentException if flight not in hashmap
+     * @throws IllegalArgumentException if no restaurants in terminal
+     */
+    public void addRandomRestaurant(String flightnum){
+        if(checkFlight(flightnum)){
+            Flight flight = getFlight(flightnum);
+            Terminal terminal = flight.getTerminal();
+            ArrayList<POI> restaurants = terminal.getRestaurants();
+            if(restaurants.size() > 0){
+                Random rand = new Random();
+                int index = rand.nextInt(restaurants.size());
+                POI restaurant = restaurants.get(index);
+                Schedule schedule = getSchedule(flightnum);
+                schedule.addPOI(restaurant);
+            }else{
+                throw new IllegalArgumentException("no restaurants in terminal");
+            }
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
+    }
+
+    /**adds random poi of type shop to schedule if one exists in terminal
+     * input - flight number
+     * output - void, schedule connected to flight updated
+     * @throws IllegalArgumentException if flight not in hashmap
+     * @throws IllegalArgumentException if no shops in terminal
+     */
+    public void addRandomShop(String flightnum){
+        if(checkFlight(flightnum)){
+            Flight flight = getFlight(flightnum);
+            Terminal terminal = flight.getTerminal();
+            ArrayList<POI> shops = terminal.getShops();
+            if(shops.size() > 0){
+                Random rand = new Random();
+                int index = rand.nextInt(shops.size());
+                POI shop = shops.get(index);
+                Schedule schedule = getSchedule(flightnum);
+                schedule.addPOI(shop);
+            }else{
+                throw new IllegalArgumentException("no shops in terminal");
+            }
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
+    }
 
 }

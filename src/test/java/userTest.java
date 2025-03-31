@@ -66,24 +66,23 @@ public class userTest {
         assertFalse(rebecca.checkFlight("ab23"));
         HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
         assertTrue(flightPlans.isEmpty());
-        //need flight and schedule classes and flight database/json to test further
-        //add flight
+        rebecca.addFlight("AA1234");
         assertEquals(rebecca.getFlightPlans().size(), 1);
-        //remove flight
+        rebecca.removeFlight("AA1234");
         assertTrue(rebecca.getFlightPlans().isEmpty());
-        //add flight
-        //add flight
+        rebecca.addFlight("AA5678");
         assertEquals(rebecca.getFlightPlans().size(), 2);
-        //create schedule for 1 flight
-        //get schedule for that flight
-        //create random schedule for other flight
-        //get schedule for that flight
-        //create new schedule
-        //update schedule for flight 1 with new schedule
-        //get schedule for flight 1
-        //remove flight
+        rebecca.createSchedule("AA1234");
+        Schedule schedule = rebecca.getSchedule("AA1234");
+        rebecca.randomSchedule("AA5678");
+        Schedule randSchedule = rebecca.getSchedule("AA5678");
+        Schedule newSched = new Schedule();
+        rebecca.updateSchedule("AA1234", newSched);
+        Schedule updatedSched = rebecca.getSchedule("AA1234");
+        assertEquals(newSched, updatedSched);
+        rebecca.removeFlight("AA1234");
         assertEquals(rebecca.getFlightPlans().size(), 1);
-        //remove flight
+        rebecca.removeFlight("AA5678");
         assertTrue(rebecca.getFlightPlans().isEmpty());
     }
 
