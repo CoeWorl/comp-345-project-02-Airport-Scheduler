@@ -1,5 +1,10 @@
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+
+import layout.Airport;
+import layout.Gate;
+import layout.Terminal;
+
 import java.time.Instant;
 
 public class Flight {
