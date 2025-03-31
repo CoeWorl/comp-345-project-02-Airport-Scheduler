@@ -1,5 +1,6 @@
 package layout;
 
+import activity.Activity; 
 
 
 public class Business extends POI{
@@ -10,18 +11,20 @@ public class Business extends POI{
     public Business(String name, Terminal terminal, String type, String hours){
         super(name, terminal);
         this.activity = null;
+        this.type = type;
+        this.hours = hours;
     }
 
     public String getType(){
-        throw new RuntimeException("not yet implemented");
+        return type;
     }
 
     public String getHours(){
-        throw new RuntimeException("not yet implemented");
+        return hours;
     }
 
     public Activity getActivity(){
-        throw new RuntimeException("not yet implemented");
+        return activity;
     }
 
     /**checks if business already has activity and adds if not
@@ -30,7 +33,11 @@ public class Business extends POI{
      * @throws IllegalArgumentException if business already has activity
      */
     public void addActivity(String name, String type){
-        throw new RuntimeException("not yet implemented");
+        if(activity == null){
+            activity = new Activity(name, type, this);
+        }else{
+            throw new IllegalArgumentException("Business already has activity");
+        }
     }
 
     /**removes activity if business has one
@@ -39,7 +46,12 @@ public class Business extends POI{
      * @throws IllegalArgumentException if business does not have activity
      */
     public void removeActivity(){
-        throw new RuntimeException("not yet implemented");
+        if(activity != null){
+            activity.endActivity();
+            activity = null;
+        }else{
+            throw new IllegalArgumentException("Business does not have activity");
+        }
     }
 
     /**checks if business currently has an activity
@@ -47,10 +59,14 @@ public class Business extends POI{
      * output - boolean
      */
     public boolean hasActivity(){
-        throw new RuntimeException("not yet implemented");
+        if(activity != null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void updateHours(String hours){
-        throw new RuntimeException("not yet implemented");
+        this.hours = hours;
     }
 }

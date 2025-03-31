@@ -1,3 +1,4 @@
+package activity;
 import layout.Business;
 
 public class Activity {
@@ -14,15 +15,15 @@ public class Activity {
     }
 
     public String getName(){
-        throw new RuntimeException("not yet implemented");
+        return name;
     }
 
     public String getType(){
-        throw new RuntimeException("not yet implemented");
+        return type;
     }
 
     public Business getLocation(){
-        throw new RuntimeException("not yet implemented");
+        return location;
     }
 
     /**checks if activity is current
@@ -30,7 +31,7 @@ public class Activity {
      * output - boolean
      */
     public boolean isActive(){
-        throw new RuntimeException("not yet implemented");
+        return active;
     }
 
     /**when owner removes activity from business, activity set to inactive
@@ -38,6 +39,6 @@ public class Activity {
      * output - none, active set to false
      */
     public void endActivity(){
-        throw new RuntimeException("not yet implemented");
+        active = false;
     }
 }
