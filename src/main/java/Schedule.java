@@ -14,6 +14,11 @@ public class Schedule {
         this.poi = poi; 
     } 
 
+    /*
+     * inputs a Unix timestamp 
+     * converts timestamp into an instant
+     * prints the time in UTC timezone and is readable
+     */
     private void printTime(long time) {
         // Converting Unix timestamp into an instant
         Instant instant = Instant.ofEpochSecond(time);
@@ -24,10 +29,18 @@ public class Schedule {
         System.out.println(zdt);
     }
 
+    /*
+     *  Prints time in UTC timezone
+     */
     public void getDeptTime() {
         printTime(deptTime);
     }
 
+    /*
+     * inputs the index of the POI desired
+     * returns the POI at index
+     * @throws IndexOutOfBoundsException if index is not in the list
+     */
     public POI getPOI(int index) throws IndexOutOfBoundsException {
         if (poi.size() == 0) {
             return null; // Return null if there are no POIs in the list
@@ -43,14 +56,25 @@ public class Schedule {
         }
     }
 
+    /*
+     * returns the list of POIs
+     */
     public List<POI> getPOIs() {
         return poi;
     }
 
-    public void addPOI(POI newPOI) {
+    /*
+     * inputs a POI
+     * new POI is added to the list as the last element in the list
+     * @throws NullPointerException if POI is null
+     */
+    public void addPOI(POI newPOI) throws NullPointerException{
         // Add a new POI to the list
         if (newPOI != null) {
             poi.add(newPOI);
+        }
+        else {
+            throw new NullPointerException("POI can't be null");
         }
     }
 }

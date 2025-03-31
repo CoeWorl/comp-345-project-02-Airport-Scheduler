@@ -51,7 +51,7 @@ public class Passenger extends User{
      */
     public Flight getFlight(String flightNum){
         for(Flight flight : flightPlans.keySet()){
-            if(flight.getFlightNum().equals(flightNum)){
+            if(flight.getFlightNumber().equals(flightNum)){
                 return flight;
             }
         }
