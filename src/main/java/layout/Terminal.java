@@ -42,6 +42,7 @@ public class Terminal {
         for (String entranceUuid : entranceUuids) {
             Gate gate = Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Gate/" + entranceUuid + ".json", Gate.class);
             this.entrances.add(gate);
+            this.poi.put(gate.getUuid(), gate);
         }
 
         this.poi_connections = new HashMap<>();
@@ -71,13 +72,14 @@ public class Terminal {
     }
 
     public int getDistance(POI start, POI end) {
-        if (poi_connections.containsKey(start)) {
-            for (Connection connection : poi_connections.get(start)) {
+        if (poi_connections.containsKey(start.getUuid())) {
+            for (Connection connection : poi_connections.get(start.getUuid())) {
                 if (connection.getUuid().equals(end.getUuid())) {
                     return connection.getWeight();
                 }
             }
         }
+        System.err.println("ERROR: POI NOT FOUND");
         return -1;
     }
 
@@ -100,6 +102,10 @@ public class Terminal {
             }
         }
         return null;
+    }
+
+    public int getTerminalNumber(){
+        return number;
     }
 
     public Map<UUID, List<Connection>> getPoiMap() {
