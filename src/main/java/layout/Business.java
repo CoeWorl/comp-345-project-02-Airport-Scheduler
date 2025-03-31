@@ -7,7 +7,7 @@ public class Business extends POI{
     private String type;
     private String hours;
 
-    public Business(String name, Terminal terminal, String type){
+    public Business(String name, Terminal terminal, String type, String hours){
         super(name, terminal);
         this.activity = null;
     }

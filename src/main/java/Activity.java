@@ -1,3 +1,5 @@
+import layout.Business;
+
 public class Activity {
     private String name;
     private String type;

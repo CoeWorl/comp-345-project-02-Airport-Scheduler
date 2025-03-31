@@ -1,4 +1,10 @@
 
+import static org.junit.Assert.assertThrows;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,9 +19,6 @@ public class userTest {
         ArrayList<User> users = new ArrayList<>();
         assertTrue(users.isEmpty());
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
-        assertTrue(rebecca.instanceOf(User));
-        assertTrue(rebecca.instanceOf(Passenger));
-        assertFalse(rebecca.instanceOf(Owner));
         users.add(rebecca);
         assertEquals(users.size(), 1);
         assertEquals(rebecca.getName(), "Rebecca");
@@ -33,9 +36,6 @@ public class userTest {
         rebecca.updateName("Becca");
         assertEquals(rebecca.getName(), "Becca");
         Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
-        assertTrue(noah.instanceOf(User));
-        assertTrue(noah.instanceOf(Owner));
-        assertFalse(noah.instanceOf(Passenger));
         users.add(noah);
         assertEquals(users.size(), 2);
         assertEquals(noah.getName(), "Noah");
@@ -43,9 +43,6 @@ public class userTest {
         assertEquals(noah.getEmail(), "no@gmail.com");
         assertTrue(noah.checkCredentials("noed", "789"));
         Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
-        assertTrue(lindsay.instanceOf(User));
-        assertFalse(lindsay.instanceOf(Owner));
-        assertTrue(lindsay.instanceOf(Passenger));
         users.add(lindsay);
         assertEquals(users.size(), 3);
         assertEquals(lindsay.getName(), "Lindsay");
