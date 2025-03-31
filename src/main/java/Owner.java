@@ -1,5 +1,7 @@
 import java.util.HashSet;
 
+import layout.Business;
+
 public class Owner extends User{
 
     private HashSet<Business> businesses;

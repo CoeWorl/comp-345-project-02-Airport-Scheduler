@@ -1,10 +1,19 @@
 
+import static org.junit.Assert.assertThrows;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
 import org.junit.Test;
+
+import layout.Business;
+import layout.Terminal;
 
 public class userTest {
     
@@ -13,9 +22,6 @@ public class userTest {
         ArrayList<User> users = new ArrayList<>();
         assertTrue(users.isEmpty());
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
-        assertTrue(rebecca.instanceOf(User));
-        assertTrue(rebecca.instanceOf(Passenger));
-        assertFalse(rebecca.instanceOf(Owner));
         users.add(rebecca);
         assertEquals(users.size(), 1);
         assertEquals(rebecca.getName(), "Rebecca");
@@ -33,9 +39,6 @@ public class userTest {
         rebecca.updateName("Becca");
         assertEquals(rebecca.getName(), "Becca");
         Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
-        assertTrue(noah.instanceOf(User));
-        assertTrue(noah.instanceOf(Owner));
-        assertFalse(noah.instanceOf(Passenger));
         users.add(noah);
         assertEquals(users.size(), 2);
         assertEquals(noah.getName(), "Noah");
@@ -43,9 +46,6 @@ public class userTest {
         assertEquals(noah.getEmail(), "no@gmail.com");
         assertTrue(noah.checkCredentials("noed", "789"));
         Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
-        assertTrue(lindsay.instanceOf(User));
-        assertFalse(lindsay.instanceOf(Owner));
-        assertTrue(lindsay.instanceOf(Passenger));
         users.add(lindsay);
         assertEquals(users.size(), 3);
         assertEquals(lindsay.getName(), "Lindsay");
@@ -92,32 +92,31 @@ public class userTest {
         Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
         HashSet<Business> businesses = noah.getBusinesses();
         assertTrue(businesses.isEmpty());
-        //need business and activity classes to finish testing
-        //create business - restaurant
-        //throws exception when removing business not in set
-        //check business - false
-        //add business
-        //check business - true
+        Business business = new Business("restaurant", new Terminal("terminal 1"), "restaurant", "9am-3pm");
+        assertThrows(IllegalArgumentException.class, () -> noah.removeBusiness(business));
+        assertFalse(noah.checkBusiness(business));
+        noah.addBusiness(business);
+        assertTrue(noah.checkBusiness(business));
         assertEquals(noah.getBusinesses().size(), 1);
         assertEquals(noah.getRestaurants().size(), 1);
         assertTrue(noah.getShops().isEmpty());
-        //create business - shop
-        //throws error when adding activity to unadded business
-        //add business
+        Business business2 = new Business("shop", new Terminal("terminal 1"), "shop", "9am-6pm");
+        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "sale", "sale"));
+        noah.addBusiness(business2);
         assertEquals(noah.getBusinesses().size(), 2);
         assertEquals(noah.getShops().size(), 1);
-        //throws error when adding business already in set
-        //add activity
-        //see business has activity
-        //throws exception when adding activity to business that already has a activity
-        //remove activity
-        //see business activity is null
-        //throws exception when removing nonexistant activity
-        //remove business 1
+        assertThrows(IllegalArgumentException.class, () -> noah.addBusiness(business));
+        noah.addActivity(business2, "sale", "sale");
+        assertTrue(business2.hasActivity());
+        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "super sale", "sale"));
+        noah.removeActivity(business2);
+        assertFalse(business2.hasActivity());
+        assertThrows(IllegalArgumentException.class, () -> noah.removeActivity(business));
+        noah.removeBusiness(business);
         assertEquals(noah.getBusinesses().size(), 1);
         assertTrue(noah.getRestaurants().isEmpty());
         assertEquals(noah.getShops().size(), 1);
-        //remove business
+        noah.removeBusiness(business2);
         assertTrue(noah.getBusinesses().isEmpty());
         assertTrue(noah.getShops().isEmpty());
         assertTrue(noah.getRestaurants().isEmpty());
