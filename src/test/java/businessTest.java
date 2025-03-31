@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import activity.Activity;
 import layout.Business;
 import layout.Terminal;
 
