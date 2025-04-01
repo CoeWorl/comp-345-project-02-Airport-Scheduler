@@ -84,4 +84,16 @@ public class Schedule {
             throw new NullPointerException("POI can't be null");
         }
     }
+
+    public Airport getAirport(){
+        return airport;
+    }
+
+    public Terminal getTerminal(){
+        return terminal;
+    }
+
+    public long getDepartureTime(){
+        return deptTime;
+    }
 }
