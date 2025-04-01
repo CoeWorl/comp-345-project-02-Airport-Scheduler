@@ -92,7 +92,7 @@ public class UserTest {
         Schedule schedule = rebecca.getSchedule("AA1234");
         assertEquals(schedule.getAirport().getName(), "JFK");
         assertEquals(schedule.getTerminal().getName(), "Terminal 1");
-        rebecca.randomSchedule("AA5678");
+        rebecca.randomSchedule("AA5678", 3);
         Schedule randSchedule = rebecca.getSchedule("AA5678");
         assertEquals(randSchedule.getAirport().getName(), "LAX");
         assertEquals(randSchedule.getTerminal().getName(), "Terminal 2");
