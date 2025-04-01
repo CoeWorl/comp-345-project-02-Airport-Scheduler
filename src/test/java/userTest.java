@@ -12,10 +12,13 @@ import java.util.HashSet;
 
 import org.junit.Test;
 
+import layout.Airport;
 import layout.Business;
+import layout.Gate;
+import layout.POI;
 import layout.Terminal;
 
-public class userTest {
+public class UserTest {
     
     @Test
     public void userConstructorTest() {
@@ -57,33 +60,52 @@ public class userTest {
 
     @Test
     public void passengerTest(){
+        AirportController ac = new AirportController();
+        Terminal terminal = new Terminal("Terminal 1");
+        Airport jfk = new Airport();
+        Airport lax = new Airport();
+        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", terminal, false));
+        Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", terminal, false));
+        ac.addFlight(f1);
+        ac.addFlight(f2);
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
         assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.getSchedule("ab23"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule(rebecca.getFlight("ab23").getDeptTime(), new ArrayList<POI>())));
         assertFalse(rebecca.checkFlight("ab23"));
         HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
         assertTrue(flightPlans.isEmpty());
-        //need flight and schedule classes and flight database/json to test further
-        //add flight
+        rebecca.addFlight("AA1234");
         assertEquals(rebecca.getFlightPlans().size(), 1);
-        //remove flight
+        rebecca.removeFlight("AA1234");
+        assertFalse(rebecca.checkFlight("AA1234"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("AA1234"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("AA1234"));
         assertTrue(rebecca.getFlightPlans().isEmpty());
-        //add flight
-        //add flight
+        rebecca.addFlight("AA5678");
+        rebecca.addFlight("AA1234");
         assertEquals(rebecca.getFlightPlans().size(), 2);
-        //create schedule for 1 flight
-        //get schedule for that flight
-        //create random schedule for other flight
-        //get schedule for that flight
-        //create new schedule
-        //update schedule for flight 1 with new schedule
-        //get schedule for flight 1
-        //remove flight
+        rebecca.createSchedule("AA1234");
+        Schedule schedule = rebecca.getSchedule("AA1234");
+        assertEquals(schedule.getAirport().getName(), "JFK");
+        assertEquals(schedule.getTerminal().getName(), "Terminal 1");
+        rebecca.randomSchedule("AA5678", 3);
+        Schedule randSchedule = rebecca.getSchedule("AA5678");
+        assertEquals(randSchedule.getAirport().getName(), "LAX");
+        assertEquals(randSchedule.getTerminal().getName(), "Terminal 2");
+        Flight flight = rebecca.getFlight("AA1234");
+        Schedule newSched =  new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
+        rebecca.updateSchedule("AA1234", newSched);
+        Schedule updatedSched = rebecca.getSchedule("AA1234");
+        assertEquals(newSched, updatedSched);
+        assertEquals(updatedSched.getAirport().getName(), "JFK");
+        assertEquals(updatedSched.getTerminal().getName(), "Terminal 1");
+        rebecca.removeFlight("AA1234");
         assertEquals(rebecca.getFlightPlans().size(), 1);
-        //remove flight
+        rebecca.removeFlight("AA5678");
         assertTrue(rebecca.getFlightPlans().isEmpty());
     }
 
@@ -123,7 +145,7 @@ public class userTest {
     }
 
     @Test
-    void validEmailTest(){
+    public void validEmailTest(){
         // valid email address
         assertTrue(User.validEmail("a@b.com"));   // Equivalence Class: valid email, Border case: No, valid format
 

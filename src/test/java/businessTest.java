@@ -9,7 +9,7 @@ import activity.Activity;
 import layout.Business;
 import layout.Terminal;
 
-public class businessTest {
+public class BusinessTest {
 
     @Test
     public void businessConstructorTest(){

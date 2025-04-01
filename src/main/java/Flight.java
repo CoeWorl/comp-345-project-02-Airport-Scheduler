@@ -72,4 +72,8 @@ public class Flight {
     public void changeStatus(String status) {
         this.status = status;
     }
+
+    public long getDepartureTime(){
+        return deptTime;
+    }
 }
