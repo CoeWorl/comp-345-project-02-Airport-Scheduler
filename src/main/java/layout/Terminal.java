@@ -64,7 +64,7 @@ public class Terminal {
                 int weight = (int) connectionData.get("weight");
                 UUID connectionUuid = UUID.fromString((String) connectionData.get("uuid"));
 
-                Connection connection = new Connection(weight, connectionUuid);
+                Connection connection = new Connection(weight, connectionUuid, this.airport);
                 connectionList.add(connection);
             }
             this.poi_connections.put(poiUuid, connectionList);
@@ -74,8 +74,8 @@ public class Terminal {
     public int getDistance(POI start, POI end) {
         if (poi_connections.containsKey(start.getUuid())) {
             for (Connection connection : poi_connections.get(start.getUuid())) {
-                if (connection.getUuid().equals(end.getUuid())) {
-                    return connection.getWeight();
+                if (connection.getDest().getUuid().equals(end.getUuid())) {
+                    return connection.weight();
                 }
             }
         }

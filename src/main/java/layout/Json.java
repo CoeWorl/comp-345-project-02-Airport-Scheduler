@@ -14,6 +14,14 @@ import java.util.UUID;
 * */
 public class Json {
 
+    public static POI jsonPOI(UUID poiUuid, String airportCode) throws IOException {
+        return switch (poiUuid.toString().charAt(0)) {
+            case 'a' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Gate/" + poiUuid + ".json", Gate.class);
+            case 'b' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Business/" + poiUuid + ".json", Business.class);
+            default -> null;
+        };
+    }
+
     public static String toJsonString(Object objectToSerialize) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);

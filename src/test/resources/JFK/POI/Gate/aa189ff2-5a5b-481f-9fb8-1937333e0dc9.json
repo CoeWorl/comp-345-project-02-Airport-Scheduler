@@ -1,0 +1,6 @@
+{
+  "uuid" : "aa189ff2-5a5b-481f-9fb8-1937333e0dc9",
+  "name" : "North Entrance",
+  "isEntranceToTerminal": true,
+  "terminal" : 2
+}
