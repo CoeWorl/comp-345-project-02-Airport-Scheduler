@@ -6,6 +6,9 @@ import layout.Gate;
 import layout.Terminal;
 
 import java.time.Instant;
+import layout.Airport;
+import layout.Terminal;
+import layout.Gate;
 
 public class Flight {
     private String flightNumber;
