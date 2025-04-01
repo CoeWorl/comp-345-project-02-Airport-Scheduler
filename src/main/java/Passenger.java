@@ -25,6 +25,7 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if flight does not exist
      */
+    /*
     public void addFlight(String flightNum){
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
@@ -37,7 +38,8 @@ public class Passenger extends User{
                 throw new IllegalArgumentException("Flight does not exist");
             }
         }
-    }
+    }*/
+
 
     /**removes flight from hashmap
      * input - flight number
@@ -168,6 +170,7 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      * @throws IllegalArgumentException if no restaurants in terminal
      */
+    /*
     public void addRandomRestaurant(String flightnum){
         if(checkFlight(flightnum)){
             Flight flight = getFlight(flightnum);
@@ -186,6 +189,7 @@ public class Passenger extends User{
             throw new IllegalArgumentException("Flight not in plans");
         }
     }
+     */
 
     /**adds random poi of type shop to schedule if one exists in terminal
      * input - flight number
@@ -193,6 +197,7 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      * @throws IllegalArgumentException if no shops in terminal
      */
+    /*
     public void addRandomShop(String flightnum){
         if(checkFlight(flightnum)){
             Flight flight = getFlight(flightnum);
@@ -211,5 +216,7 @@ public class Passenger extends User{
             throw new IllegalArgumentException("Flight not in plans");
         }
     }
+
+     */
 
 }

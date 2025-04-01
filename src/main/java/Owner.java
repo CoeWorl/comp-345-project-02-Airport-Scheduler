@@ -26,6 +26,7 @@ public class Owner extends User{
      * output - void
      * @throws IllegalArgumentException if business already exists
      */
+    /*
     public void addBusiness(Business business){
         if(!checkBusiness(business)){
             businesses.add(business);
@@ -38,6 +39,7 @@ public class Owner extends User{
             throw new IllegalArgumentException("Business already exists");
         }
     }
+     */
 
     /**removes business from set
      * input - business
@@ -45,6 +47,7 @@ public class Owner extends User{
      * output - void
      * @throws IllegalArgumentException if business does not exist
      */
+    /*
     public void removeBusiness(Business business){
         if(checkBusiness(business)){
             businesses.remove(business);
@@ -57,6 +60,8 @@ public class Owner extends User{
             throw new IllegalArgumentException("Business not in set");
         }
     }
+
+     */
 
     /**checks if business is in set
      * input - business
@@ -73,6 +78,7 @@ public class Owner extends User{
      * @throws IllegalArgumentException if business does not exist
      * @throws IllegalArgumentException if business already has activity
      */
+    /*
     public void addActivity(Business business, String name, String type){
         if(checkBusiness(business)){
             if(business.getActivity() == null){
@@ -84,6 +90,7 @@ public class Owner extends User{
             throw new IllegalArgumentException("Business not in set");
         }
     }
+     */
 
     /**remove activity from business
      * inputs - none
@@ -92,6 +99,7 @@ public class Owner extends User{
      * @throws IllegalArgumentException if business not in set
      * @throws IllegalArgumentException if activity is null
      */
+    /*
     public void removeActivity(Business business){
         if(checkBusiness(business)){
             if(business.getActivity() != null){
@@ -103,6 +111,7 @@ public class Owner extends User{
             throw new IllegalArgumentException("Business not in set");
         }
     }
+     */
 
     /**returns all businesses of type restaurant
      * input - none

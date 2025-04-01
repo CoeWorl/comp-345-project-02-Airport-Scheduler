@@ -104,6 +104,10 @@ public class Terminal {
         return null;
     }
 
+    public List<POI> getPOIs() {
+        return new ArrayList<>(poi.values());
+    }
+
     public int getTerminalNumber(){
         return number;
     }

@@ -14,10 +14,10 @@ public class ScheduleTest {
     private List<POI> poiList;
     @Test
     public void addPOITest() {
-        Airport airport = new Airport();
-        Terminal terminal = new Terminal("Terminal 1");
+        Airport airport = new Airport("JFK", "John F. Kennedy International Airport");
+        Terminal terminal = new Terminal("A", 1, null, "JFK");
         schedule = new Schedule(1617225600, airport, terminal);
-        POI poi = new Business("Burger Joint", terminal, "Restaurant", "12pm-8pm");
+        POI poi = new Business("Starbucks", 1);
         schedule.addPOI(poi);
         assertEquals(schedule.getPOI(0), poi);
         assertEquals(airport, schedule.getAirport());

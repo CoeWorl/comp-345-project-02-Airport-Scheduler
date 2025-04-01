@@ -14,7 +14,8 @@ public class FlightTest {
 
     @Test
     public void changeStatusTest(){
-        flight = new Flight("AA123", new Airport("JFK"), new Airport("LAX"), 1617225600, 1617232800, "On Time", new Terminal("A"), new Gate("A1"));
+        Gate gate = new Gate("A1", 1, true);
+        flight = new Flight("AA123", new Airport("JFK", "John J. Kennedy"), new Airport("LAX", "Los Angeles Airport"), 1617225600, 1617232800, "On Time", new Terminal("A", 1, gate, "LAX"), gate);
         flight.changeStatus("Delayed");
         assertEquals("Delayed", flight.getStatus());
     }

@@ -98,8 +98,8 @@ public class Schedule {
     }
 
     public void randomSchedule(int numPOIS){
-        ArrayList<POI> possPOIs = terminal.getPOIs();
-        if (possPOIs.size() == 0) {
+        ArrayList<POI> possPOIs = (ArrayList<POI>) terminal.getPOIs();
+        if (possPOIs.isEmpty()) {
             throw new IllegalArgumentException("No POIs in terminal");
         }
         if (numPOIS > possPOIs.size()){

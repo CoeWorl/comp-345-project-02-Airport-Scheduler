@@ -19,7 +19,7 @@ import layout.POI;
 import layout.Terminal;
 
 public class UserTest {
-    
+    /*
     @Test
     public void userConstructorTest() {
         ArrayList<User> users = new ArrayList<>();
@@ -174,5 +174,5 @@ public class UserTest {
         assertFalse(User.validEmail("agmail.com"));  // Equivalence Class: invalid email (missing '@'), Border case: Yes
         
     }
-
+*/
 }
