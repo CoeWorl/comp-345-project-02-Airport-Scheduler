@@ -15,6 +15,7 @@ import org.junit.Test;
 import layout.Airport;
 import layout.Business;
 import layout.Gate;
+import layout.POI;
 import layout.Terminal;
 
 public class userTest {
@@ -63,8 +64,8 @@ public class userTest {
         Terminal terminal = new Terminal("Terminal 1");
         Airport jfk = new Airport("JFK");
         Airport lax = new Airport("LAX");
-        Flight f1 = new Flight("AA1234", jfk, lax, 1, 1, "on-time", terminal, new Gate("A1", terminal, false));
-        Flight f2 = new Flight("AA5678", lax, jfk, 2, 2, "on-time", terminal, new Gate("A2", terminal, false));
+        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", terminal, false));
+        Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", terminal, false));
         ac.addFlight(f1);
         ac.addFlight(f2);
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
@@ -73,7 +74,7 @@ public class userTest {
         assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.getSchedule("ab23"));
-        assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule()));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule(rebecca.getFlight("ab23").getDeptTime(), new ArrayList<POI>())));
         assertFalse(rebecca.checkFlight("ab23"));
         HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
         assertTrue(flightPlans.isEmpty());
@@ -95,7 +96,7 @@ public class userTest {
         Schedule randSchedule = rebecca.getSchedule("AA5678");
         assertEquals(randSchedule.getAirport().getName(), "LAX");
         assertEquals(randSchedule.getTerminal().getName(), "Terminal 2");
-        Schedule newSched = new Schedule();
+        Schedule newSched = new Schedule(rebecca.getFlight("AA1234").getDeptTime(), new ArrayList<POI>());
         rebecca.updateSchedule("AA1234", newSched);
         Schedule updatedSched = rebecca.getSchedule("AA1234");
         assertEquals(newSched, updatedSched);
