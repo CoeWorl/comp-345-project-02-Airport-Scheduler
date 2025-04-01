@@ -62,8 +62,8 @@ public class UserTest {
     public void passengerTest(){
         AirportController ac = new AirportController();
         Terminal terminal = new Terminal("Terminal 1");
-        Airport jfk = new Airport("JFK");
-        Airport lax = new Airport("LAX");
+        Airport jfk = new Airport();
+        Airport lax = new Airport();
         Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", terminal, false));
         Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", terminal, false));
         ac.addFlight(f1);
@@ -96,7 +96,8 @@ public class UserTest {
         Schedule randSchedule = rebecca.getSchedule("AA5678");
         assertEquals(randSchedule.getAirport().getName(), "LAX");
         assertEquals(randSchedule.getTerminal().getName(), "Terminal 2");
-        Schedule newSched = new Schedule(rebecca.getFlight("AA1234").getDeptTime(), new ArrayList<POI>());
+        Flight flight = rebecca.getFlight("AA1234");
+        Schedule newSched =  new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
         rebecca.updateSchedule("AA1234", newSched);
         Schedule updatedSched = rebecca.getSchedule("AA1234");
         assertEquals(newSched, updatedSched);

@@ -32,7 +32,7 @@ public class Passenger extends User{
             HashMap<String, Flight> flights = AirportController.getFlights();
             if(flights.containsKey(flightNum)){
                 Flight flight = flights.get(flightNum);
-                flightPlans.put(flight, new Schedule(flight.getDeptTime(), new ArrayList<POI>()));
+                flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
             }else{
                 throw new IllegalArgumentException("Flight does not exist");
             }
@@ -93,7 +93,8 @@ public class Passenger extends User{
      */
     public void createSchedule(String flightNum){
         if(checkFlight(flightNum)){
-            Schedule schedule = new Schedule(getFlight(flightNum).getDeptTime(), new ArrayList<POI>());
+            Flight flight = getFlight(flightNum);
+            Schedule schedule = new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
             flightPlans.put(getFlight(flightNum), schedule);
         }else{
             throw new IllegalArgumentException("Flight not in plans");
@@ -122,7 +123,8 @@ public class Passenger extends User{
      */
     public void randomSchedule(String flightNum){
         if(checkFlight(flightNum)){
-            Schedule schedule = new Schedule(getFlight(flightNum).getDeptTime(), new ArrayList<POI>());
+            Flight flight = getFlight(flightNum);
+            Schedule schedule = new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
             schedule.randomSchedule();
             flightPlans.put(getFlight(flightNum), schedule);
         }else{
