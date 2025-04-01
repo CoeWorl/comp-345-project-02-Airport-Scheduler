@@ -32,7 +32,7 @@ public class Passenger extends User{
             HashMap<String, Flight> flights = AirportController.getFlights();
             if(flights.containsKey(flightNum)){
                 Flight flight = flights.get(flightNum);
-                flightPlans.put(flight, new Schedule());
+                flightPlans.put(flight, new Schedule(flight.getDeptTime(), new ArrayList<POI>()));
             }else{
                 throw new IllegalArgumentException("Flight does not exist");
             }
@@ -69,12 +69,19 @@ public class Passenger extends User{
     /**if checkFlight returned true, searches through flights in flightplans and returns flight based on flightnum
      * input - flight number
      * output - flight
+     * @throws IllegalArgumentException if flight not in hashmap
      */
     public Flight getFlight(String flightNum){
-        for(Flight flight : flightPlans.keySet()){
-            if(flight.getFlightNumber().equals(flightNum)){
-                return flight;
+        Flight flight = null;
+        for(Flight f : flightPlans.keySet()){
+            if(f.getFlightNumber().equals(flightNum)){
+                flight = f;
             }
+        }
+        if(flight == null){
+            throw new IllegalArgumentException("flight not in plans");
+        }else{
+            return flight;
         }
     }
 
@@ -86,7 +93,7 @@ public class Passenger extends User{
      */
     public void createSchedule(String flightNum){
         if(checkFlight(flightNum)){
-            Schedule schedule = new Schedule();
+            Schedule schedule = new Schedule(getFlight(flightNum).getDeptTime(), new ArrayList<POI>());
             flightPlans.put(getFlight(flightNum), schedule);
         }else{
             throw new IllegalArgumentException("Flight not in plans");
@@ -115,7 +122,7 @@ public class Passenger extends User{
      */
     public void randomSchedule(String flightNum){
         if(checkFlight(flightNum)){
-            Schedule schedule = new Schedule();
+            Schedule schedule = new Schedule(getFlight(flightNum).getDeptTime(), new ArrayList<POI>());
             schedule.randomSchedule();
             flightPlans.put(getFlight(flightNum), schedule);
         }else{
