@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import layout.POI;
 import layout.Terminal;
+import layout.Airport;
 import layout.Business;
 
 public class ScheduleTest {
@@ -13,8 +14,10 @@ public class ScheduleTest {
     private List<POI> poiList;
     @Test
     public void addPOITest() {
-        schedule = new Schedule(1617225600, poiList);
-        POI poi = new Business("Burger Joint", new Terminal("A", null));
+        Airport airport = new Airport();
+        Terminal terminal = new Terminal("Terminal 1");
+        schedule = new Schedule(1617225600, airport, terminal);
+        POI poi = new Business("Burger Joint", terminal, "Restaurant", "12pm-8pm");
         schedule.addPOI(poi);
     }
 }

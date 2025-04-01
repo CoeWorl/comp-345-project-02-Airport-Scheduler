@@ -1,17 +1,24 @@
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import layout.Airport;
 import layout.POI;
+import layout.Terminal;
 
 public class Schedule {
     private long deptTime; // Unix timestamp
     private List<POI> poi; // List of Points of Interest (POI) associated with schedule
+    private Airport airport;
+    private Terminal terminal;
     // Constructor
-    public Schedule(long deptTime, List<POI> poi) {
+    public Schedule(long deptTime, Airport airport, Terminal terminal) {
         this.deptTime = deptTime; 
-        this.poi = poi; 
+        this.poi = new ArrayList<POI>();
+        this.airport = airport;
+        this.terminal = terminal;
     } 
 
     /*
