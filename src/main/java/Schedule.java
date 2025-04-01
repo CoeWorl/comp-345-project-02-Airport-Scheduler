@@ -96,4 +96,20 @@ public class Schedule {
     public long getDepartureTime(){
         return deptTime;
     }
+
+    public void randomSchedule(int numPOIS){
+        ArrayList<POI> possPOIs = terminal.getPOIs();
+        if (possPOIs.size() == 0) {
+            throw new IllegalArgumentException("No POIs in terminal");
+        }
+        if (numPOIS > possPOIs.size()){
+            numPOIS = possPOIs.size();
+        }
+        for (int i = 0; i < numPOIS; i++){
+            int index = (int) (Math.random() * possPOIs.size());
+            POI poi = possPOIs.get(index);
+            addPOI(poi);
+            possPOIs.remove(index);
+        }
+    }
 }

@@ -121,11 +121,11 @@ public class Passenger extends User{
      * output - void
      * @throws IllegalArgumentException if flight not in hashmap
      */
-    public void randomSchedule(String flightNum){
+    public void randomSchedule(String flightNum, int numPOIs){
         if(checkFlight(flightNum)){
             Flight flight = getFlight(flightNum);
             Schedule schedule = new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
-            schedule.randomSchedule();
+            schedule.randomSchedule(numPOIs);
             flightPlans.put(getFlight(flightNum), schedule);
         }else{
             throw new IllegalArgumentException("Flight not in plans");
