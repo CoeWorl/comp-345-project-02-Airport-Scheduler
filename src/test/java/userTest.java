@@ -18,7 +18,7 @@ import layout.Gate;
 import layout.POI;
 import layout.Terminal;
 
-public class userTest {
+public class UserTest {
     
     @Test
     public void userConstructorTest() {
@@ -144,7 +144,7 @@ public class userTest {
     }
 
     @Test
-    void validEmailTest(){
+    public void validEmailTest(){
         // valid email address
         assertTrue(User.validEmail("a@b.com"));   // Equivalence Class: valid email, Border case: No, valid format
 
