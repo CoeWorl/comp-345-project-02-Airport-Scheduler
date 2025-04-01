@@ -26,7 +26,17 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight does not exist
      */
     public void addFlight(String flightNum){
-        throw new RuntimeException("Not yet implemented");
+        if(checkFlight(flightNum)){
+            throw new IllegalArgumentException("Flight already in plans");
+        }else{
+            HashMap<String, Flight> flights = AirportController.getFlights();
+            if(flights.containsKey(flightNum)){
+                Flight flight = flights.get(flightNum);
+                flightPlans.put(flight, new Schedule());
+            }else{
+                throw new IllegalArgumentException("Flight does not exist");
+            }
+        }
     }
 
     /**removes flight from hashmap

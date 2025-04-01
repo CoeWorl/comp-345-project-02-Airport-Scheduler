@@ -12,7 +12,9 @@ import java.util.HashSet;
 
 import org.junit.Test;
 
+import layout.Airport;
 import layout.Business;
+import layout.Gate;
 import layout.Terminal;
 
 public class userTest {
@@ -57,29 +59,48 @@ public class userTest {
 
     @Test
     public void passengerTest(){
+        AirportController ac = new AirportController();
+        Terminal terminal = new Terminal("Terminal 1");
+        Airport jfk = new Airport("JFK");
+        Airport lax = new Airport("LAX");
+        Flight f1 = new Flight("AA1234", jfk, lax, 1, 1, "on-time", terminal, new Gate("A1", terminal, false));
+        Flight f2 = new Flight("AA5678", lax, jfk, 2, 2, "on-time", terminal, new Gate("A2", terminal, false));
+        ac.addFlight(f1);
+        ac.addFlight(f2);
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
         assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.getSchedule("ab23"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule()));
         assertFalse(rebecca.checkFlight("ab23"));
         HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
         assertTrue(flightPlans.isEmpty());
         rebecca.addFlight("AA1234");
         assertEquals(rebecca.getFlightPlans().size(), 1);
         rebecca.removeFlight("AA1234");
+        assertFalse(rebecca.checkFlight("AA1234"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("AA1234"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("AA1234"));
         assertTrue(rebecca.getFlightPlans().isEmpty());
         rebecca.addFlight("AA5678");
+        rebecca.addFlight("AA1234");
         assertEquals(rebecca.getFlightPlans().size(), 2);
         rebecca.createSchedule("AA1234");
         Schedule schedule = rebecca.getSchedule("AA1234");
+        assertEquals(schedule.getAirport().getName(), "JFK");
+        assertEquals(schedule.getTerminal().getName(), "Terminal 1");
         rebecca.randomSchedule("AA5678");
         Schedule randSchedule = rebecca.getSchedule("AA5678");
+        assertEquals(randSchedule.getAirport().getName(), "LAX");
+        assertEquals(randSchedule.getTerminal().getName(), "Terminal 2");
         Schedule newSched = new Schedule();
         rebecca.updateSchedule("AA1234", newSched);
         Schedule updatedSched = rebecca.getSchedule("AA1234");
         assertEquals(newSched, updatedSched);
+        assertEquals(updatedSched.getAirport().getName(), "JFK");
+        assertEquals(updatedSched.getTerminal().getName(), "Terminal 1");
         rebecca.removeFlight("AA1234");
         assertEquals(rebecca.getFlightPlans().size(), 1);
         rebecca.removeFlight("AA5678");
