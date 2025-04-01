@@ -24,7 +24,7 @@ public class TerminalTest {
 
         Map<UUID, List<Connection>> poiMap = terminal1.getPoiMap();
         for (UUID id : poiMap.keySet()) {
-            System.err.print(STR."\{id}\t");
+            System.err.print(id + "\t");
             System.err.println(poiMap.get(id));
         }
         System.out.println(terminal1.getEntrances());

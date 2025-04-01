@@ -9,5 +9,12 @@
         <module name="Airport Scheduler" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="22" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="--enable-preview" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Airport Scheduler" options="-parameters --enable-preview" />
+    </option>
   </component>
 </project>
