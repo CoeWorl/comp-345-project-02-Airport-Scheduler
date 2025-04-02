@@ -8,9 +8,7 @@ import java.util.UUID;
 public class Business extends POI{
 
     public Business(String name, int terminal){
-        String str_uuid = UUID.randomUUID().toString();
-        UUID uuid = UUID.fromString('b' + str_uuid.substring(1));
-        super(name, terminal, uuid);
+        super(name, terminal, UUID.fromString('b' + UUID.randomUUID().toString().substring(1)));
     }
 
     @JsonCreator
