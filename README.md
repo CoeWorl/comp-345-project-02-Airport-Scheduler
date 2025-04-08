@@ -18,5 +18,5 @@ Sprint 1 Retrospective: https://docs.google.com/document/d/18f1633H4sgrfKbc6Qqkz
 
 UML Diagrams: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
 
-Sprint Goal: Create a recommendation system that works with the frontend to allow passengers to add shops/restaurants to their schedule in the time before the flight.
+Sprint Goal: Create a recommendation system that works with the frontend to allow passengers to add activities to their schedule in the time before the flight.
 
