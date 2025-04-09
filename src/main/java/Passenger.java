@@ -20,7 +20,7 @@ public class Passenger extends User{
 
     /**adds a new flight to hashmap
      * input - flight number
-     * searches for flight in database/json file and adds to hashmap with empty schedule
+     * searches for flight in airport controller and adds to hashmap with empty schedule
      * output - void
      * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if flight does not exist
@@ -39,6 +39,22 @@ public class Passenger extends User{
             }
         }
     }*/
+
+    /**adds new flight to hashmap
+     * input - flight number, src, dest, departure time, arrival time, status, terminal, gate
+     * searches for flight in airport controller and adds to hashmap with empty schedule
+     * or creates new flight and adds to hashmap with empty schedule
+     * output - void
+     * @throws IllegalArgumentException if flight already in plans
+     */
+    public void addFlightManual(String flightNum, Airport src, Airport dest, long deptTime, long arrTime, String status, Terminal terminal, Gate gate){
+        if(checkFlight(flightNum)){
+            throw new IllegalArgumentException("Flight already in plans");
+        }else{
+            Flight flight = new Flight(flightNum, src, dest, deptTime, arrTime, status, terminal, gate);
+            flightPlans.put(flight, new Schedule(deptTime, src, terminal));
+        }
+    }
 
 
     /**removes flight from hashmap
