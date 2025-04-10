@@ -1,4 +1,46 @@
+import java.util.ArrayList;
+
 public abstract class User {
+    public enum Overall_Preferences {
+        FOOD,
+        BEVERAGES,
+        SHOPPING,
+        RECREATION
+    }
+    public enum Food_Preferences {
+        FAST_FOOD,
+        VEGAN,
+        KOSHER,
+        HALAL,
+        SIT_DOWN,
+        SNACKS,
+        DESSERTS
+    }
+
+    public enum Beverage_Preferences {
+        ALCOHOL,
+        COFFEE,
+        TEA,
+        SODA,
+        JUICE
+    }
+
+    public enum Shopping_Preferences {
+        CLOTHING,
+        ELECTRONICS,
+        BOOKS,
+        TOYS,
+        SOUVENIRS
+    }
+    public enum Recreation_Preferences {
+        GAMES,
+        MOVIES,
+        MUSIC,
+        ART,
+        SPORTS
+    }
+
+    private ArrayList<Overall_Preferences> overall_preferences;
     private String name;
     private String username;
     private String password;
@@ -13,6 +55,7 @@ public abstract class User {
         }else{
             throw new IllegalArgumentException("Invalid email");
         }
+        overall_preferences = new ArrayList<>();
     }
 
     public String getName(){
@@ -38,7 +81,10 @@ public abstract class User {
             return false;
         }
     }
-    
+
+    public void setOverall_preferences(ArrayList<Overall_Preferences> overall_preferences) {
+        this.overall_preferences = overall_preferences;
+    }
 
     public void updateName(String name){
         this.name = name;
