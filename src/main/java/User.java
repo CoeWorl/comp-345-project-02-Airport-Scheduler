@@ -111,6 +111,29 @@ public abstract class User {
                               ArrayList<Beverage_Preferences> beverage_preferences,
                               ArrayList<Shopping_Preferences> shopping_preferences,
                               ArrayList<Recreation_Preferences> recreation_preferences){
+        if (overall_preferences.size()!=Overall_Preferences.values().length){
+            throw new IllegalArgumentException("Overall preferences have to be of appropriate size");
+        }
+        if (overall_preferences.getFirst() == Overall_Preferences.FOOD){
+            if (food_preferences.size() != Food_Preferences.values().length){
+                throw new IllegalArgumentException("Food preferences have to be of appropriate size");
+            }
+        }
+        if (overall_preferences.getFirst() == Overall_Preferences.BEVERAGES){
+            if (beverage_preferences.size() != Beverage_Preferences.values().length){
+                throw new IllegalArgumentException("Beverage preferences have to be of appropriate size");
+            }
+        }
+        if (overall_preferences.getFirst() == Overall_Preferences.SHOPPING){
+            if (shopping_preferences.size() != Shopping_Preferences.values().length){
+                throw new IllegalArgumentException("Shopping preferences have to be of appropriate size");
+            }
+        }
+        if (overall_preferences.getFirst() == Overall_Preferences.RECREATION){
+            if (recreation_preferences.size() != Recreation_Preferences.values().length){
+                throw new IllegalArgumentException("Recreation preferences have to be of appropriate size");
+            }
+        }
         this.overall_preferences = overall_preferences;
         this.food_preferences = food_preferences;
         this.beverage_preferences = beverage_preferences;

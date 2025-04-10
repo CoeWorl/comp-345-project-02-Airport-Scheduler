@@ -55,6 +55,25 @@ public class UserTest {
         assertThrows(IllegalArgumentException.class, () -> lindsay.updateEmail("lindsay"));
     }
 
+    @Test
+    public void userPreferencesTest(){
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+        ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
+        overall_preferences.add(User.Overall_Preferences.BEVERAGES);
+        overall_preferences.add(User.Overall_Preferences.FOOD);
+        overall_preferences.add(User.Overall_Preferences.RECREATION);
+        overall_preferences.add(User.Overall_Preferences.SHOPPING);
+        ArrayList<User.Beverage_Preferences> beverage_preferences = new ArrayList<>();
+        beverage_preferences.add(User.Beverage_Preferences.TEA);
+        beverage_preferences.add(User.Beverage_Preferences.COFFEE);
+        beverage_preferences.add(User.Beverage_Preferences.SODA);
+        beverage_preferences.add(User.Beverage_Preferences.JUICE);
+        beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
+        rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
+
+
+    }
+
 //    @Test
 //    public void passengerTest(){
 //        AirportController ac = new AirportController();
