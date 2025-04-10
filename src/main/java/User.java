@@ -41,6 +41,10 @@ public abstract class User {
     }
 
     private ArrayList<Overall_Preferences> overall_preferences;
+    private ArrayList<Food_Preferences> food_preferences;
+    private ArrayList<Beverage_Preferences> beverage_preferences;
+    private ArrayList<Shopping_Preferences> shopping_preferences;
+    private ArrayList<Recreation_Preferences> recreation_preferences;
     private String name;
     private String username;
     private String password;
@@ -56,6 +60,26 @@ public abstract class User {
             throw new IllegalArgumentException("Invalid email");
         }
         overall_preferences = new ArrayList<>();
+        food_preferences = new ArrayList<>();
+        beverage_preferences = new ArrayList<>();
+        shopping_preferences = new ArrayList<>();
+        recreation_preferences = new ArrayList<>();
+    }
+
+    public ArrayList<Overall_Preferences> getOverall_preferences(){
+        return overall_preferences;
+    }
+    public ArrayList<Food_Preferences> getFood_preferences(){
+        return food_preferences;
+    }
+    public  ArrayList<Beverage_Preferences> getBeverage_preferences(){
+        return beverage_preferences;
+    }
+    public ArrayList<Shopping_Preferences> getShopping_preferences(){
+        return shopping_preferences;
+    }
+    public ArrayList<Recreation_Preferences> getRecreation_preferences(){
+        return recreation_preferences;
     }
 
     public String getName(){
@@ -82,8 +106,16 @@ public abstract class User {
         }
     }
 
-    public void setOverall_preferences(ArrayList<Overall_Preferences> overall_preferences) {
+    public void setPreferences(ArrayList<Overall_Preferences> overall_preferences,
+                              ArrayList<Food_Preferences> food_preferences,
+                              ArrayList<Beverage_Preferences> beverage_preferences,
+                              ArrayList<Shopping_Preferences> shopping_preferences,
+                              ArrayList<Recreation_Preferences> recreation_preferences){
         this.overall_preferences = overall_preferences;
+        this.food_preferences = food_preferences;
+        this.beverage_preferences = beverage_preferences;
+        this.shopping_preferences = shopping_preferences;
+        this.recreation_preferences = recreation_preferences;
     }
 
     public void updateName(String name){
