@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 public abstract class User {
@@ -49,6 +52,35 @@ public abstract class User {
     private String username;
     private String password;
     private String email;
+
+    @JsonCreator
+    /**Constructor for User
+     * input - name, username, password, email
+     * output - none
+     */
+    public User(@JsonProperty String name,
+                @JsonProperty String username,
+                @JsonProperty String password,
+                @JsonProperty String email,
+                @JsonProperty ArrayList<Overall_Preferences> overall_preferences,
+                @JsonProperty ArrayList<Food_Preferences> food_preferences,
+                @JsonProperty ArrayList<Beverage_Preferences> beverage_preferences,
+                @JsonProperty ArrayList<Shopping_Preferences> shopping_preferences,
+                @JsonProperty ArrayList<Recreation_Preferences> recreation_preferences){
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        if(validEmail(email)){
+            this.email = email;
+        }else{
+            throw new IllegalArgumentException("Invalid email");
+        }
+        this.overall_preferences = overall_preferences;
+        this.food_preferences = food_preferences;
+        this.beverage_preferences = beverage_preferences;
+        this.shopping_preferences = shopping_preferences;
+        this.recreation_preferences = recreation_preferences;
+    }
 
     public User(String name, String username, String password, String email){
         this.name = name;

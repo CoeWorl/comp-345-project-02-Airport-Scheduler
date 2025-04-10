@@ -5,18 +5,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import layout.*;
 import org.junit.Test;
-
-import layout.Airport;
-import layout.Business;
-import layout.Gate;
-import layout.POI;
-import layout.Terminal;
 
 public class UserTest {
     @Test
@@ -110,6 +107,40 @@ public class UserTest {
         assertThrows(IllegalArgumentException.class, () ->
                 rebecca.setPreferences(validOverallPreferences, invalidFoodPreferences, null, null, null)
         );
+    }
+
+    @Test
+    public void testUserSerialization() throws IOException {
+        // Step 1: Create a User object
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+        ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
+        overall_preferences.add(User.Overall_Preferences.BEVERAGES);
+        overall_preferences.add(User.Overall_Preferences.FOOD);
+        overall_preferences.add(User.Overall_Preferences.RECREATION);
+        overall_preferences.add(User.Overall_Preferences.SHOPPING);
+        ArrayList<User.Beverage_Preferences> beverage_preferences = new ArrayList<>();
+        beverage_preferences.add(User.Beverage_Preferences.TEA);
+        beverage_preferences.add(User.Beverage_Preferences.COFFEE);
+        beverage_preferences.add(User.Beverage_Preferences.SODA);
+        beverage_preferences.add(User.Beverage_Preferences.JUICE);
+        beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
+
+        rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
+        // Step 2: Serialize the User object to a JSON file
+        String filePath = "src/test/resources/rebecca.json";
+        Json.toJsonFile(filePath, rebecca);
+
+        // Step 3: Deserialize the JSON file back into a User object
+        Passenger deserializedRebecca = Json.fromJsonFile(filePath, Passenger.class);
+
+        // Step 4: Verify that the original and deserialized objects are equivalent
+        assertEquals(rebecca.getName(), deserializedRebecca.getName());
+        assertEquals(rebecca.getUsername(), deserializedRebecca.getUsername());
+        assertEquals(rebecca.getEmail(), deserializedRebecca.getEmail());
+        assertEquals(rebecca.checkCredentials("rje158", "123"), deserializedRebecca.checkCredentials("rje158", "123"));
+
+        // Clean up: Delete the test JSON file
+        new File(filePath).delete();
     }
 
 //    @Test

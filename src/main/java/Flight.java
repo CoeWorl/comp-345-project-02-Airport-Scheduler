@@ -1,6 +1,8 @@
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import layout.Airport;
 import layout.Gate;
 import layout.Terminal;
@@ -20,7 +22,15 @@ public class Flight {
     private Terminal terminal;
     private Gate gate;
 
-    public Flight(String flightNumber, Airport src, Airport dest, long deptTime, long arrTime, String status, Terminal terminal, Gate gate) {
+    @JsonCreator
+    public Flight(@JsonProperty String flightNumber,
+                  @JsonProperty Airport src,
+                  @JsonProperty Airport dest,
+                  @JsonProperty long deptTime,
+                  @JsonProperty long arrTime,
+                  @JsonProperty String status,
+                  @JsonProperty Terminal terminal,
+                  @JsonProperty Gate gate) {
         this.flightNumber = flightNumber;
         this.src = src;
         this.dest = dest;
