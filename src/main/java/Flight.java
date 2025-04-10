@@ -13,14 +13,14 @@ import layout.Terminal;
 import layout.Gate;
 
 public class Flight {
-    private String flightNumber;
-    private Airport src;
-    private Airport dest;
-    private long deptTime; // Unix timestamp
-    private long arrTime; // Unix timestamp
+    private final String flightNumber;
+    private final Airport src;
+    private final Airport dest;
+    private final long deptTime; // Unix timestamp
+    private final long arrTime; // Unix timestamp
     private String status;
-    private Terminal terminal;
-    private Gate gate;
+    private final Terminal terminal;
+    private final Gate gate;
 
     @JsonCreator
     public Flight(@JsonProperty String flightNumber,

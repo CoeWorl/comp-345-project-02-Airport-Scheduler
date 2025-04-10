@@ -9,10 +9,10 @@ import layout.POI;
 import layout.Terminal;
 
 public class Schedule {
-    private long deptTime; // Unix timestamp
-    private List<POI> poi; // List of Points of Interest (POI) associated with schedule
-    private Airport airport;
-    private Terminal terminal;
+    private final long deptTime; // Unix timestamp
+    private final List<POI> poi; // List of Points of Interest (POI) associated with schedule
+    private final Airport airport;
+    private final Terminal terminal;
     // Constructor
     public Schedule(long deptTime, Airport airport, Terminal terminal) {
         this.deptTime = deptTime; 

@@ -111,7 +111,6 @@ public class UserTest {
 
     @Test
     public void testUserSerialization() throws IOException {
-        // Step 1: Create a User object
         Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
         overall_preferences.add(User.Overall_Preferences.BEVERAGES);
@@ -126,21 +125,15 @@ public class UserTest {
         beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
 
         rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
-        // Step 2: Serialize the User object to a JSON file
         String filePath = "src/test/resources/rebecca.json";
         Json.toJsonFile(filePath, rebecca);
 
-        // Step 3: Deserialize the JSON file back into a User object
         Passenger deserializedRebecca = Json.fromJsonFile(filePath, Passenger.class);
 
-        // Step 4: Verify that the original and deserialized objects are equivalent
         assertEquals(rebecca.getName(), deserializedRebecca.getName());
         assertEquals(rebecca.getUsername(), deserializedRebecca.getUsername());
         assertEquals(rebecca.getEmail(), deserializedRebecca.getEmail());
         assertEquals(rebecca.checkCredentials("rje158", "123"), deserializedRebecca.checkCredentials("rje158", "123"));
-
-        // Clean up: Delete the test JSON file
-        new File(filePath).delete();
     }
 
 //    @Test
