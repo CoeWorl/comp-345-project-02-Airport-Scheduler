@@ -69,9 +69,47 @@ public class UserTest {
         beverage_preferences.add(User.Beverage_Preferences.SODA);
         beverage_preferences.add(User.Beverage_Preferences.JUICE);
         beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
+
         rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
+        assertEquals(4, rebecca.getOverall_preferences().size());
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.BEVERAGES));
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.FOOD));
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.RECREATION));
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.SHOPPING));
 
+        assertEquals(5, rebecca.getBeverage_preferences().size());
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.TEA));
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.COFFEE));
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.SODA));
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.JUICE));
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.ALCOHOL));
+    }
 
+    @Test
+    public void userSetPreferencesInvalidTest() {
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+
+        // Invalid overall preferences size
+        ArrayList<User.Overall_Preferences> invalidOverallPreferences = new ArrayList<>();
+        invalidOverallPreferences.add(User.Overall_Preferences.FOOD);
+
+        assertThrows(IllegalArgumentException.class, () ->
+                rebecca.setPreferences(invalidOverallPreferences, null, null, null, null)
+        );
+
+        // Invalid food preferences size
+        ArrayList<User.Overall_Preferences> validOverallPreferences = new ArrayList<>();
+        validOverallPreferences.add(User.Overall_Preferences.FOOD);
+        validOverallPreferences.add(User.Overall_Preferences.BEVERAGES);
+        validOverallPreferences.add(User.Overall_Preferences.RECREATION);
+        validOverallPreferences.add(User.Overall_Preferences.SHOPPING);
+
+        ArrayList<User.Food_Preferences> invalidFoodPreferences = new ArrayList<>();
+        invalidFoodPreferences.add(User.Food_Preferences.FAST_FOOD);
+
+        assertThrows(IllegalArgumentException.class, () ->
+                rebecca.setPreferences(validOverallPreferences, invalidFoodPreferences, null, null, null)
+        );
     }
 
 //    @Test
