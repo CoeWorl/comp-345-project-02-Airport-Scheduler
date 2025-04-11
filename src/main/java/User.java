@@ -254,6 +254,10 @@ public abstract class User {
         return true;
     }
 
+    public String getPassword(){
+        return password;
+    }
+
     public String toString(){
         return "Name: " + name + "\nUsername: " + username + "\nEmail: " + email;
     }

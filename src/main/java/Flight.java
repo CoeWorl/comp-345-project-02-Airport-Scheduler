@@ -1,16 +1,11 @@
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import layout.Airport;
 import layout.Gate;
 import layout.Terminal;
 
-import java.time.Instant;
-import layout.Airport;
-import layout.Terminal;
-import layout.Gate;
+import java.util.Objects;
 
 public class Flight {
     private final String flightNumber;
@@ -23,14 +18,14 @@ public class Flight {
     private final Gate gate;
 
     @JsonCreator
-    public Flight(@JsonProperty String flightNumber,
-                  @JsonProperty Airport src,
-                  @JsonProperty Airport dest,
-                  @JsonProperty long deptTime,
-                  @JsonProperty long arrTime,
-                  @JsonProperty String status,
-                  @JsonProperty Terminal terminal,
-                  @JsonProperty Gate gate) {
+    public Flight(@JsonProperty("flightNumber") String flightNumber,
+                  @JsonProperty("src") Airport src,
+                  @JsonProperty("dest") Airport dest,
+                  @JsonProperty("deptTime") long deptTime,
+                  @JsonProperty("arrTime") long arrTime,
+                  @JsonProperty("status") String status,
+                  @JsonProperty("terminal") Terminal terminal,
+                  @JsonProperty("gate") Gate gate) {
         this.flightNumber = flightNumber;
         this.src = src;
         this.dest = dest;
@@ -41,24 +36,6 @@ public class Flight {
         this.gate = gate;
     }
 
-    private void printTime(long time) {
-        // Converting Unix timestamp into an instant
-        Instant instant = Instant.ofEpochSecond(time);
-        // Setting timezone we want to use
-        ZoneId zoneId = ZoneId.of( "UTC");
-        // Creating ZonedDateTime from instant and timezone and printing it
-        ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, zoneId);
-        System.out.println(zdt);
-    }
-
-    public void getDeptTime() {
-        printTime(deptTime);
-    }
-
-    public void getArrTime() {
-        printTime(arrTime);
-    }
-
     public String getFlightNumber() {
         return flightNumber;
     }
@@ -66,24 +43,66 @@ public class Flight {
     public Airport getSrc() {
         return src;
     }
+
     public Airport getDest() {
         return dest;
     }
+
+    public long getDeptTime() {
+        return deptTime;
+    }
+
+    public long getArrTime() {
+        return arrTime;
+    }
+
     public String getStatus() {
         return status;
     }
+
     public Terminal getTerminal() {
         return terminal;
     }
+
     public Gate getGate() {
         return gate;
     }
 
-    public void changeStatus(String status) {
-        this.status = status;
+    @JsonValue
+    public String toJsonKey() {
+        // Serialize the Flight object as its flightNumber when used as a key
+        return flightNumber;
     }
 
-    public long getDepartureTime(){
+    @JsonCreator
+    public static Flight fromJsonKey(String flightNumber) {
+        // Deserialize the Flight object from its flightNumber
+        return new Flight(flightNumber, null, null, 0, 0, null, null, null);
+    }
+
+    @Override
+    public String toString() {
+        return flightNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+        return Objects.equals(flightNumber, flight.flightNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(flightNumber);
+    }
+
+    public long getDepartureTime() {
         return deptTime;
+    }
+
+    public void changeStatus(String status) {
+        this.status = status;
     }
 }

@@ -2,21 +2,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import layout.POI;
 import layout.Terminal;
 
 public class Passenger extends User{
 
-    private HashMap<Flight, Schedule> flightPlans;
+    //private HashMap<Flight, Schedule> flightPlans;
     
     public Passenger(String name, String username, String password, String email){
         super(name, username, password, email);
-        flightPlans = new HashMap<>();
+        //flightPlans = new HashMap<>();
     }
 
-    public HashMap<Flight, Schedule> getFlightPlans(){
-        return flightPlans;
+    @JsonCreator
+    public Passenger(
+            @JsonProperty("name") String name,
+            @JsonProperty("username") String username,
+            @JsonProperty("password") String password,
+            @JsonProperty("email") String email,
+            @JsonProperty("overall_preferences") ArrayList<Overall_Preferences> overallPreferences,
+            @JsonProperty("food_preferences") ArrayList<Food_Preferences> foodPreferences,
+            @JsonProperty("beverage_preferences") ArrayList<Beverage_Preferences> beveragePreferences,
+            @JsonProperty("shopping_preferences") ArrayList<Shopping_Preferences> shoppingPreferences,
+            @JsonProperty("recreation_preferences") ArrayList<Recreation_Preferences> recreationPreferences
+    ) {
+        super(name, username, password, email, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
     }
+
+//    public HashMap<Flight, Schedule> getFlightPlans(){
+//        return flightPlans;
+//    }
 
     /**adds a new flight to hashmap
      * input - flight number
@@ -47,45 +64,45 @@ public class Passenger extends User{
      * output - void
      * @throws IllegalArgumentException if flight not in hashmap
      */
-    public void removeFlight(String flightNum){
-        if(checkFlight(flightNum)){
-            flightPlans.remove(getFlight(flightNum));
-        }else{
-            throw new IllegalArgumentException("Flight not in plans");
-        }
-    }
+//    public void removeFlight(String flightNum){
+//        if(checkFlight(flightNum)){
+//            flightPlans.remove(getFlight(flightNum));
+//        }else{
+//            throw new IllegalArgumentException("Flight not in plans");
+//        }
+//    }
 
     /**checks if flight exists in user's hashmap
      * input - flight number
      * output - boolean
      */
-    public boolean checkFlight(String flightNum){
-        for(Flight flight : flightPlans.keySet()){
-            if(flight.getFlightNumber().equals(flightNum)){
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean checkFlight(String flightNum){
+//        for(Flight flight : flightPlans.keySet()){
+//            if(flight.getFlightNumber().equals(flightNum)){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     /**if checkFlight returned true, searches through flights in flightplans and returns flight based on flightnum
      * input - flight number
      * output - flight
      * @throws IllegalArgumentException if flight not in hashmap
      */
-    public Flight getFlight(String flightNum){
-        Flight flight = null;
-        for(Flight f : flightPlans.keySet()){
-            if(f.getFlightNumber().equals(flightNum)){
-                flight = f;
-            }
-        }
-        if(flight == null){
-            throw new IllegalArgumentException("flight not in plans");
-        }else{
-            return flight;
-        }
-    }
+//    public Flight getFlight(String flightNum){
+//        Flight flight = null;
+//        for(Flight f : flightPlans.keySet()){
+//            if(f.getFlightNumber().equals(flightNum)){
+//                flight = f;
+//            }
+//        }
+//        if(flight == null){
+//            throw new IllegalArgumentException("flight not in plans");
+//        }else{
+//            return flight;
+//        }
+//    }
 
     /**creates schedule for specific flight and adds it to hashmap
      * input - flight number
@@ -93,15 +110,15 @@ public class Passenger extends User{
      * output - void
      * @throws IllegalArgumentException if flight not in hashmap
      */
-    public void createSchedule(String flightNum){
-        if(checkFlight(flightNum)){
-            Flight flight = getFlight(flightNum);
-            Schedule schedule = new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
-            flightPlans.put(getFlight(flightNum), schedule);
-        }else{
-            throw new IllegalArgumentException("Flight not in plans");
-        }
-    }
+//    public void createSchedule(String flightNum){
+//        if(checkFlight(flightNum)){
+//            Flight flight = getFlight(flightNum);
+//            Schedule schedule = new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
+//            flightPlans.put(getFlight(flightNum), schedule);
+//        }else{
+//            throw new IllegalArgumentException("Flight not in plans");
+//        }
+//    }
 
     /**gets schedule for specific flight 
      * input - flight number
@@ -109,13 +126,13 @@ public class Passenger extends User{
      * output - schedule
      * @throws IllegalArgumentException if flight not in hasmap
     */
-    public Schedule getSchedule(String flightNum){
-        if(checkFlight(flightNum)){
-            return flightPlans.get(getFlight(flightNum));
-        }else{
-            throw new IllegalArgumentException("Flight not in plans");
-        }
-    }
+//    public Schedule getSchedule(String flightNum){
+//        if(checkFlight(flightNum)){
+//            return flightPlans.get(getFlight(flightNum));
+//        }else{
+//            throw new IllegalArgumentException("Flight not in plans");
+//        }
+//    }
 
     /**randomly generates schedule for specific flight
      * input - flight number
@@ -123,16 +140,16 @@ public class Passenger extends User{
      * output - void
      * @throws IllegalArgumentException if flight not in hashmap
      */
-    public void randomSchedule(String flightNum, int numPOIs){
-        if(checkFlight(flightNum)){
-            Flight flight = getFlight(flightNum);
-            Schedule schedule = new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
-            schedule.randomSchedule(numPOIs);
-            flightPlans.put(getFlight(flightNum), schedule);
-        }else{
-            throw new IllegalArgumentException("Flight not in plans");
-        }
-    }
+//    public void randomSchedule(String flightNum, int numPOIs){
+//        if(checkFlight(flightNum)){
+//            Flight flight = getFlight(flightNum);
+//            Schedule schedule = new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
+//            schedule.randomSchedule(numPOIs);
+//            flightPlans.put(getFlight(flightNum), schedule);
+//        }else{
+//            throw new IllegalArgumentException("Flight not in plans");
+//        }
+//    }
 
     /**updates schedule for specific flight
      * input - flight number and new schedule
@@ -140,13 +157,13 @@ public class Passenger extends User{
      * output - void
      * @throws IllegalArgumentException if flight not in hashmap
      */
-    public void updateSchedule(String flightNum, Schedule schedule){
-        if(checkFlight(flightNum)){
-            flightPlans.put(getFlight(flightNum), schedule);
-        }else{
-            throw new IllegalArgumentException("Flight not in plans");
-        }
-    }
+//    public void updateSchedule(String flightNum, Schedule schedule){
+//        if(checkFlight(flightNum)){
+//            flightPlans.put(getFlight(flightNum), schedule);
+//        }else{
+//            throw new IllegalArgumentException("Flight not in plans");
+//        }
+//    }
 
     /**adds poi to schedule for specific flight
      * input - flight number and poi
@@ -155,14 +172,14 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      * @throws IllegalArgumentException if poi not in terminal
      */
-    public void addPOItoSchedule(String flightnum, POI poi){
-        if(checkFlight(flightnum)){
-            Schedule schedule = getSchedule(flightnum);
-            schedule.addPOI(poi);
-        }else{
-            throw new IllegalArgumentException("Flight not in plans");
-        }
-    }
+//    public void addPOItoSchedule(String flightnum, POI poi){
+//        if(checkFlight(flightnum)){
+//            Schedule schedule = getSchedule(flightnum);
+//            schedule.addPOI(poi);
+//        }else{
+//            throw new IllegalArgumentException("Flight not in plans");
+//        }
+//    }
 
     /**adds random poi of type restaurant to schedule if one exists in terminal
      * input - flight number
