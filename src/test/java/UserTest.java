@@ -112,6 +112,9 @@ public class UserTest {
     @Test
     public void testUserSerialization() throws IOException {
         Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+        AirportController airportController = new AirportController();
+        airportController.addFlight(new Flight("AA1234", new Airport("JFK", "New York Airport"), new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK"), new Gate("A1", 1, false)));
+        rebecca.addFlight(airportController, "AA1234");
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
         overall_preferences.add(User.Overall_Preferences.BEVERAGES);
         overall_preferences.add(User.Overall_Preferences.FOOD);

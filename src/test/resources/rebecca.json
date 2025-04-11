@@ -8,5 +8,32 @@
   "beverage_preferences" : [ "TEA", "COFFEE", "SODA", "JUICE", "ALCOHOL" ],
   "shopping_preferences" : null,
   "recreation_preferences" : null,
-  "flightPlans" : { }
+  "flightPlans" : {
+    "AA1234" : {
+      "airport" : {
+        "code" : "JFK",
+        "name" : "New York Airport",
+        "uuid" : "e0423f2c-bf2b-4c97-b916-14b1d81315cd",
+        "terminals" : { },
+        "entranceConnections" : { }
+      },
+      "terminal" : {
+        "name" : "Terminal 1",
+        "uuid" : "237a05a9-6309-4f3d-b9a2-da51af0f1c6a",
+        "entrances" : [ {
+          "name" : "A1",
+          "terminal" : 1,
+          "uuid" : "a41e0a36-25a4-48cd-a149-b4f2c9bc85b3",
+          "entranceToTerminal" : false
+        } ],
+        "shops" : [ ],
+        "restaurants" : [ ],
+        "terminalNumber" : 1,
+        "poiMap" : { },
+        "pois" : [ ]
+      },
+      "departureTime" : 1743528600,
+      "pois" : [ ]
+    }
+  }
 }
