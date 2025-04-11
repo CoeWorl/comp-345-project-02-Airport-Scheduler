@@ -46,13 +46,28 @@ public class Passenger extends User{
      * or creates new flight and adds to hashmap with empty schedule
      * output - void
      * @throws IllegalArgumentException if flight already in plans
+     * @throws IllegalArgumentException if src or dest airport not in system
      */
-    public void addFlightManual(String flightNum, Airport src, Airport dest, long deptTime, long arrTime, String status, Terminal terminal, Gate gate){
+    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, String terminal, String gate){
+        AirportController controller = AirportController.getInstance();
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
+        }else if(controller.getFlights().containsKey(flightNum)){
+            Flight flight = controller.getFlights().get(flightNum);
+            flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
         }else{
-            Flight flight = new Flight(flightNum, src, dest, deptTime, arrTime, status, terminal, gate);
-            flightPlans.put(flight, new Schedule(deptTime, src, terminal));
+            if(controller.getAirports().containsKey(srcCode) && controller.getAirports().containsKey(destCode)){
+                Airport src = controller.getAirports().get(srcCode);
+                Airport dest = controller.getAirports().get(destCode);
+                Terminal term = src.getTerminals().get(terminal);
+                Gate gate = term.getGates().get(gate);
+                Long deptTimeLong = Long.parseLong(deptTime);
+                Long arrTimeLong = Long.parseLong(arrTime);
+                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate);
+                flightPlans.put(flight, new Schedule(deptTimeLong, src, term));
+            }else{
+                throw new IllegalArgumentException("Airport does not exiist");
+            }
         }
     }
 
