@@ -115,4 +115,24 @@ public class Terminal {
     public Map<UUID, List<Connection>> getPoiMap() {
         return new HashMap<>(poi_connections);
     }
+
+    public ArrayList<POI> getShops() {
+        ArrayList<POI> shops = new ArrayList<>();
+        for (POI p : poi.values()) {
+            if (p instanceof Business) {
+                shops.add(p);
+            }
+        }
+        return shops;
+    }
+
+    public ArrayList<POI> getRestaurants() {
+        ArrayList<POI> restaurants = new ArrayList<>();
+        for (POI p : poi.values()) {
+            if (p instanceof Business) {
+                restaurants.add(p);
+            }
+        }
+        return restaurants;
+    }
 }

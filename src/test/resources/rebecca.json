@@ -7,5 +7,6 @@
   "food_preferences" : null,
   "beverage_preferences" : [ "TEA", "COFFEE", "SODA", "JUICE", "ALCOHOL" ],
   "shopping_preferences" : null,
-  "recreation_preferences" : null
+  "recreation_preferences" : null,
+  "flightPlans" : { }
 }
