@@ -19,9 +19,10 @@ import layout.POI;
 import layout.Terminal;
 
 public class UserTest {
-    /*
+    
     @Test
     public void userConstructorTest() {
+        AirportController ac = new AirportController();
         ArrayList<User> users = new ArrayList<>();
         assertTrue(users.isEmpty());
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
@@ -31,6 +32,7 @@ public class UserTest {
         assertEquals(rebecca.getUsername(), "redson");
         assertEquals(rebecca.getEmail(), "redson@ithaca.edu");
         assertTrue(rebecca.checkCredentials("rje158", "123"));
+        assertTrue(ac.getUsers().contains(rebecca));
         rebecca.updatePassword("123", "456");
         assertTrue(rebecca.checkCredentials("rje158", "456"));
         assertFalse(rebecca.checkCredentials("rje158", "123"));
@@ -47,6 +49,7 @@ public class UserTest {
         assertEquals(noah.getName(), "Noah");
         assertEquals(noah.getUsername(), "noed");
         assertEquals(noah.getEmail(), "no@gmail.com");
+        assertTrue(ac.getUsers().contains(noah));
         assertTrue(noah.checkCredentials("noed", "789"));
         Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
         users.add(lindsay);
@@ -54,6 +57,7 @@ public class UserTest {
         assertEquals(lindsay.getName(), "Lindsay");
         assertEquals(lindsay.getUsername(), "linds");
         assertEquals(lindsay.getEmail(), "linds@gmail.com");
+        assertTrue(ac.getUsers().contains(lindsay));
         assertTrue(lindsay.checkCredentials("linds", "900"));
         assertThrows(IllegalArgumentException.class, () -> lindsay.updateEmail("lindsay"));
     }
@@ -62,12 +66,12 @@ public class UserTest {
     public void passengerTest(){
         AirportController ac = new AirportController();
         Terminal terminal = new Terminal("Terminal 1");
-        Airport jfk = new Airport();
-        Airport lax = new Airport();
+        Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
+        Airport lax = new Airport("LAX", "Los Angeles International Airport");
         Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", terminal, false));
         Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", terminal, false));
-        ac.addFlight(f1);
-        ac.addFlight(f2);
+        assertEquals(ac.getAirports().size(), 2);
+        assertEquals(ac.getFlights().size(), 2);
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
         assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23"));
@@ -174,5 +178,19 @@ public class UserTest {
         assertFalse(User.validEmail("agmail.com"));  // Equivalence Class: invalid email (missing '@'), Border case: Yes
         
     }
-*/
+
+
+    @Test
+    public void addFlightManualTest(){
+        AirportController ac = new AirportController();
+        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com");
+        Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
+        Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1");
+        assertEquals(rebecca.getFlightPlans().size(), 1);
+        assertEquals(ac.getFlights().size(), 1);
+        assertEquals(ac.getAirports().size(), 2);
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1"));//flight already added
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA4567", "ELM", "ORL", "8:00", "10:30", "Terminal 1", "Gate A2"));//airports not in system
+    }
 }
