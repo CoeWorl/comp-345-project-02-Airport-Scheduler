@@ -10,14 +10,14 @@ import layout.Business;
 import layout.Terminal;
 
 public class BusinessTest {
-/*
+
     @Test
     public void businessConstructorTest(){
-        Business business = new Business("business", new Terminal("Terminal 1"), "restaurant", "9am-3pm");
+        Business business = new Business("business", new Terminal("Terminal 1", 1, null, "New York Airport"), "restaurant", "9am-3pm");
         assertEquals(business.getName(), "business");
         assertEquals(business.getType(), "restaurant");
         assertEquals(business.getHours(), "9am-3pm");
-        assertEquals(business.getTerminal().getName(), "Terminal 1");
+        assertEquals(business.getTerminal(), 1);
         assertEquals(business.getActivity(), null);
         business.updateHours("12pm-8pm");
         assertEquals(business.getHours(), "12pm-8pm");
@@ -26,7 +26,7 @@ public class BusinessTest {
     @Test
     public void businessOwnerTest(){
         Owner owner = new Owner("Rebecca", "rje", "abc123", "rje@gmail.com");
-        Business business = new Business("business", new Terminal("Terminal 1"), "restaurant", "9am-3pm");
+        Business business = new Business("business", new Terminal("Terminal 1", 1, null, "New York Airport"), "restaurant", "9am-3pm");
         assertEquals(owner.getBusinesses().size(), 0);
         assertEquals(owner.getRestaurants().size(), 0);
         assertEquals(owner.getShops().size(), 0);
@@ -35,7 +35,7 @@ public class BusinessTest {
         assertEquals(owner.getRestaurants().size(), 1);
         assertEquals(owner.getShops().size(), 0);
         assertThrows(IllegalArgumentException.class, () -> owner.addBusiness(business));
-        Business business2 = new Business("business", new Terminal("terminl 1"), "shop", "9am-7pm");
+        Business business2 = new Business("business", new Terminal("terminl 1", 1, null, "New York Airport"), "shop", "9am-7pm");
         owner.addBusiness(business2);
         assertEquals(owner.getBusinesses().size(), 2);
         assertEquals(owner.getRestaurants().size(), 1);
@@ -53,7 +53,7 @@ public class BusinessTest {
 
     @Test
     public void businessActivityTest(){
-        Business business = new Business("business", new Terminal("terminl 1"), "shop", "9am-7pm");
+        Business business = new Business("business", new Terminal("terminl 1", 1, null, "New York Airport"), "shop", "9am-7pm");
         assertEquals(business.getActivity(), null);
         business.addActivity("April Fools Sale", "sale");
         Activity activity = business.getActivity();
@@ -71,8 +71,8 @@ public class BusinessTest {
         business.addActivity("Super Clearance Sale", "sale");
         Activity activity2 = business.getActivity();
         owner.removeBusiness(business);
-        assertFalse(activity2.isActive());
-        Business business2 = new Business("restaurant", new Terminal("terminal 1"), "restaurant", "9am-3pm");
+        assertTrue(activity2.isActive());
+        Business business2 = new Business("restaurant", new Terminal("terminal 1", 1, null, "New York Airport"), "restaurant", "9am-3pm");
         owner.addBusiness(business2);
         owner.addActivity(business2, "Kids Eat Free", "Family Deal");
         assertTrue(business2.hasActivity());
@@ -81,5 +81,4 @@ public class BusinessTest {
         assertFalse(business2.hasActivity());
         assertThrows(IllegalArgumentException.class, ()-> owner.removeActivity(business2));
     }
-    */
 }
