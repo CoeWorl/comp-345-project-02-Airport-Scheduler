@@ -9,9 +9,7 @@ public class Gate extends POI{
     private final boolean isEntranceToTerminal;
 
     public Gate(String name, int terminal, boolean isEntranceToTerminal) {
-        String str_uuid = UUID.randomUUID().toString();
-        UUID uuid = UUID.fromString('a' + str_uuid.substring(1));
-        super(name, terminal, uuid);
+        super(name, terminal, UUID.fromString('a' + UUID.randomUUID().toString().substring(1)));
         this.isEntranceToTerminal = isEntranceToTerminal;
     }
 

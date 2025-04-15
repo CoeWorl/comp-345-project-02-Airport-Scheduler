@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import layout.POI;
 import layout.Terminal;
 
@@ -14,23 +16,37 @@ public class Passenger extends User{
         flightPlans = new HashMap<>();
     }
 
+    @JsonCreator
+    public Passenger(
+            @JsonProperty("name") String name,
+            @JsonProperty("username") String username,
+            @JsonProperty("password") String password,
+            @JsonProperty("email") String email,
+            @JsonProperty("overall_preferences") ArrayList<Overall_Preferences> overallPreferences,
+            @JsonProperty("food_preferences") ArrayList<Food_Preferences> foodPreferences,
+            @JsonProperty("beverage_preferences") ArrayList<Beverage_Preferences> beveragePreferences,
+            @JsonProperty("shopping_preferences") ArrayList<Shopping_Preferences> shoppingPreferences,
+            @JsonProperty("recreation_preferences") ArrayList<Recreation_Preferences> recreationPreferences
+    ) {
+        super(name, username, password, email, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
+    }
+
     public HashMap<Flight, Schedule> getFlightPlans(){
         return flightPlans;
     }
 
     /**adds a new flight to hashmap
      * input - flight number
-     * searches for flight in database/json file and adds to hashmap with empty schedule
+     * searches for flight in airport controller and adds to hashmap with empty schedule
      * output - void
      * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if flight does not exist
      */
-    /*
-    public void addFlight(String flightNum){
+    public void addFlight(AirportController controller, String flightNum){
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
         }else{
-            HashMap<String, Flight> flights = AirportController.getFlights();
+            HashMap<String, Flight> flights = controller.getFlights();
             if(flights.containsKey(flightNum)){
                 Flight flight = flights.get(flightNum);
                 flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
@@ -38,7 +54,38 @@ public class Passenger extends User{
                 throw new IllegalArgumentException("Flight does not exist");
             }
         }
-    }*/
+    }
+
+    /**adds new flight to hashmap
+     * input - flight number, src, dest, departure time, arrival time, status, terminal, gate
+     * searches for flight in airport controller and adds to hashmap with empty schedule
+     * or creates new flight and adds to hashmap with empty schedule
+     * output - void
+     * @throws IllegalArgumentException if flight already in plans
+     * @throws IllegalArgumentException if src or dest airport not in system
+     */
+    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, String terminal, String gate){
+        AirportController controller = AirportController.getInstance();
+        if(checkFlight(flightNum)){
+            throw new IllegalArgumentException("Flight already in plans");
+        }else if(controller.getFlights().containsKey(flightNum)){
+            Flight flight = controller.getFlights().get(flightNum);
+            flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
+        }else{
+            if(controller.getAirports().containsKey(srcCode) && controller.getAirports().containsKey(destCode)){
+                Airport src = controller.getAirports().get(srcCode);
+                Airport dest = controller.getAirports().get(destCode);
+                Terminal term = src.getTerminals().get(terminal);
+                Gate gate = term.getGates().get(gate);
+                Long deptTimeLong = Long.parseLong(deptTime);
+                Long arrTimeLong = Long.parseLong(arrTime);
+                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate);
+                flightPlans.put(flight, new Schedule(deptTimeLong, src, term));
+            }else{
+                throw new IllegalArgumentException("Airport does not exiist");
+            }
+        }
+    }
 
 
     /**removes flight from hashmap
@@ -170,7 +217,6 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      * @throws IllegalArgumentException if no restaurants in terminal
      */
-    /*
     public void addRandomRestaurant(String flightnum){
         if(checkFlight(flightnum)){
             Flight flight = getFlight(flightnum);
@@ -189,7 +235,6 @@ public class Passenger extends User{
             throw new IllegalArgumentException("Flight not in plans");
         }
     }
-     */
 
     /**adds random poi of type shop to schedule if one exists in terminal
      * input - flight number
@@ -197,7 +242,6 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight not in hashmap
      * @throws IllegalArgumentException if no shops in terminal
      */
-    /*
     public void addRandomShop(String flightnum){
         if(checkFlight(flightnum)){
             Flight flight = getFlight(flightnum);
@@ -216,7 +260,4 @@ public class Passenger extends User{
             throw new IllegalArgumentException("Flight not in plans");
         }
     }
-
-     */
-
 }

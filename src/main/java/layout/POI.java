@@ -26,7 +26,7 @@ public abstract class POI {
 
     @Override
     public String toString() {
-        return STR."POI: \{this.getClass()}{name='\{name}', UUID=\{uuid}, terminal=\{terminal}}";
+        return String.format("POI: %s{name='%s', UUID=%s, terminal=%d}", this.getClass(), name, uuid, terminal);
     }
     public String getName() {
         return name;
