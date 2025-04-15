@@ -16,8 +16,10 @@ import layout.*;
 import org.junit.Test;
 
 public class UserTest {
+
     @Test
     public void userConstructorTest() {
+        AirportController ac = new AirportController();
         ArrayList<User> users = new ArrayList<>();
         Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         users.add(rebecca);
@@ -25,6 +27,7 @@ public class UserTest {
         assertEquals("Rebecca", rebecca.getName());
         assertEquals("redson@ithaca.edu", rebecca.getEmail());
         assertTrue(rebecca.checkCredentials("rje158", "123"));
+        assertTrue(ac.getUsers().contains(rebecca));
         rebecca.updatePassword("123", "456");
         assertTrue(rebecca.checkCredentials("rje158", "456"));
         assertFalse(rebecca.checkCredentials("rje158", "123"));
@@ -37,6 +40,19 @@ public class UserTest {
         assertEquals("Becca", rebecca.getName());
         Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
         users.add(noah);
+        assertEquals(users.size(), 2);
+        assertEquals(noah.getName(), "Noah");
+        assertEquals(noah.getUsername(), "noed");
+        assertEquals(noah.getEmail(), "no@gmail.com");
+        assertTrue(ac.getUsers().contains(noah));
+        assertTrue(noah.checkCredentials("noed", "789"));
+        Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
+        users.add(lindsay);
+        assertEquals(users.size(), 3);
+        assertEquals(lindsay.getName(), "Lindsay");
+        assertEquals(lindsay.getUsername(), "linds");
+        assertEquals(lindsay.getEmail(), "linds@gmail.com");
+        assertTrue(ac.getUsers().contains(lindsay));
         assertEquals(2, users.size());
         assertEquals("Noah", noah.getName());
         assertEquals("noed", noah.getUsername());
@@ -53,6 +69,56 @@ public class UserTest {
     }
 
     @Test
+    public void passengerTest(){
+        AirportController ac = new AirportController();
+        Terminal terminal = new Terminal("Terminal 1");
+        Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
+        Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", terminal, false));
+        Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", terminal, false));
+        assertEquals(ac.getAirports().size(), 2);
+        assertEquals(ac.getFlights().size(), 2);
+        Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.getSchedule("ab23"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule(rebecca.getFlight("ab23").getDeptTime(), new ArrayList<POI>())));
+        assertFalse(rebecca.checkFlight("ab23"));
+        HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
+        assertTrue(flightPlans.isEmpty());
+        rebecca.addFlight("AA1234");
+        assertEquals(rebecca.getFlightPlans().size(), 1);
+        rebecca.removeFlight("AA1234");
+        assertFalse(rebecca.checkFlight("AA1234"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("AA1234"));
+        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("AA1234"));
+        assertTrue(rebecca.getFlightPlans().isEmpty());
+        rebecca.addFlight("AA5678");
+        rebecca.addFlight("AA1234");
+        assertEquals(rebecca.getFlightPlans().size(), 2);
+        rebecca.createSchedule("AA1234");
+        Schedule schedule = rebecca.getSchedule("AA1234");
+        assertEquals(schedule.getAirport().getName(), "JFK");
+        assertEquals(schedule.getTerminal().getName(), "Terminal 1");
+        rebecca.randomSchedule("AA5678", 3);
+        Schedule randSchedule = rebecca.getSchedule("AA5678");
+        assertEquals(randSchedule.getAirport().getName(), "LAX");
+        assertEquals(randSchedule.getTerminal().getName(), "Terminal 2");
+        Flight flight = rebecca.getFlight("AA1234");
+        Schedule newSched =  new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
+        rebecca.updateSchedule("AA1234", newSched);
+        Schedule updatedSched = rebecca.getSchedule("AA1234");
+        assertEquals(newSched, updatedSched);
+        assertEquals(updatedSched.getAirport().getName(), "JFK");
+        assertEquals(updatedSched.getTerminal().getName(), "Terminal 1");
+        rebecca.removeFlight("AA1234");
+        assertEquals(rebecca.getFlightPlans().size(), 1);
+        rebecca.removeFlight("AA5678");
+        assertTrue(rebecca.getFlightPlans().isEmpty());
+    }
+  
     public void userPreferencesTest(){
         Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
@@ -256,4 +322,18 @@ public class UserTest {
         
     }
 
+
+    @Test
+    public void addFlightManualTest(){
+        AirportController ac = new AirportController();
+        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com");
+        Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
+        Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1");
+        assertEquals(rebecca.getFlightPlans().size(), 1);
+        assertEquals(ac.getFlights().size(), 1);
+        assertEquals(ac.getAirports().size(), 2);
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1"));//flight already added
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA4567", "ELM", "ORL", "8:00", "10:30", "Terminal 1", "Gate A2"));//airports not in system
+    }
 }

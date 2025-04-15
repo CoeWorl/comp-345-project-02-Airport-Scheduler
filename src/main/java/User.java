@@ -88,6 +88,7 @@ public abstract class User {
         this.password = password;
         if(validEmail(email)){
             this.email = email;
+            AirportController.getInstance().getUsers().add(this);
         }else{
             throw new IllegalArgumentException("Invalid email");
         }

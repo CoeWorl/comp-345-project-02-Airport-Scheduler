@@ -37,7 +37,7 @@ public class Passenger extends User{
 
     /**adds a new flight to hashmap
      * input - flight number
-     * searches for flight in database/json file and adds to hashmap with empty schedule
+     * searches for flight in airport controller and adds to hashmap with empty schedule
      * output - void
      * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if flight does not exist
@@ -52,6 +52,37 @@ public class Passenger extends User{
                 flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
             }else{
                 throw new IllegalArgumentException("Flight does not exist");
+            }
+        }
+    }
+
+    /**adds new flight to hashmap
+     * input - flight number, src, dest, departure time, arrival time, status, terminal, gate
+     * searches for flight in airport controller and adds to hashmap with empty schedule
+     * or creates new flight and adds to hashmap with empty schedule
+     * output - void
+     * @throws IllegalArgumentException if flight already in plans
+     * @throws IllegalArgumentException if src or dest airport not in system
+     */
+    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, String terminal, String gate){
+        AirportController controller = AirportController.getInstance();
+        if(checkFlight(flightNum)){
+            throw new IllegalArgumentException("Flight already in plans");
+        }else if(controller.getFlights().containsKey(flightNum)){
+            Flight flight = controller.getFlights().get(flightNum);
+            flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
+        }else{
+            if(controller.getAirports().containsKey(srcCode) && controller.getAirports().containsKey(destCode)){
+                Airport src = controller.getAirports().get(srcCode);
+                Airport dest = controller.getAirports().get(destCode);
+                Terminal term = src.getTerminals().get(terminal);
+                Gate gate = term.getGates().get(gate);
+                Long deptTimeLong = Long.parseLong(deptTime);
+                Long arrTimeLong = Long.parseLong(arrTime);
+                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate);
+                flightPlans.put(flight, new Schedule(deptTimeLong, src, term));
+            }else{
+                throw new IllegalArgumentException("Airport does not exiist");
             }
         }
     }

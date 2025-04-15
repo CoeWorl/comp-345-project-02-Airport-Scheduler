@@ -19,4 +19,18 @@ public class FlightTest {
         flight.changeStatus("Delayed");
         assertEquals("Delayed", flight.getStatus());
     }
+
+    @Test
+    public void flightFromJsonTest(){
+        AirportConroller ac = new AirportController();
+        Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
+        Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        assertEquals(AirportContoller.getIntance().getAirports().size(), 2);
+        FlightJson flightJson = new FlightJson("/src/test/resources/flight.json");
+        flightJson.createFlights();
+        assertEquals(AirportController.getInstance().getFlights().size(), 3);
+        Flight flight = AirportController.getInstance().getFlights().get("AA1234");
+        assertEquals(flight.getSrc(), jfk);
+        assertEquals(flight.getDest(), lax);
+    }
 }
