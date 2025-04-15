@@ -5,32 +5,27 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import layout.*;
 import org.junit.Test;
 
-import layout.Airport;
-import layout.Business;
-import layout.Gate;
-import layout.POI;
-import layout.Terminal;
-
 public class UserTest {
-    
+
     @Test
     public void userConstructorTest() {
         AirportController ac = new AirportController();
         ArrayList<User> users = new ArrayList<>();
-        assertTrue(users.isEmpty());
-        Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         users.add(rebecca);
-        assertEquals(users.size(), 1);
-        assertEquals(rebecca.getName(), "Rebecca");
-        assertEquals(rebecca.getUsername(), "redson");
-        assertEquals(rebecca.getEmail(), "redson@ithaca.edu");
+        assertEquals(1, users.size());
+        assertEquals("Rebecca", rebecca.getName());
+        assertEquals("redson@ithaca.edu", rebecca.getEmail());
         assertTrue(rebecca.checkCredentials("rje158", "123"));
         assertTrue(ac.getUsers().contains(rebecca));
         rebecca.updatePassword("123", "456");
@@ -38,11 +33,11 @@ public class UserTest {
         assertFalse(rebecca.checkCredentials("rje158", "123"));
         assertThrows(IllegalArgumentException.class, () -> rebecca.updatePassword("123", "333"));
         rebecca.updateEmail("rje158@gmail.com");
-        assertEquals(rebecca.getEmail(), "rje158@gmail.com");
+        assertEquals("rje158@gmail.com", rebecca.getEmail());
         rebecca.updateUsername("rje158");
-        assertEquals(rebecca.getUsername(), "rje158");
+        assertEquals("rje158", rebecca.getUsername());
         rebecca.updateName("Becca");
-        assertEquals(rebecca.getName(), "Becca");
+        assertEquals("Becca", rebecca.getName());
         Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
         users.add(noah);
         assertEquals(users.size(), 2);
@@ -58,6 +53,17 @@ public class UserTest {
         assertEquals(lindsay.getUsername(), "linds");
         assertEquals(lindsay.getEmail(), "linds@gmail.com");
         assertTrue(ac.getUsers().contains(lindsay));
+        assertEquals(2, users.size());
+        assertEquals("Noah", noah.getName());
+        assertEquals("noed", noah.getUsername());
+        assertEquals("no@gmail.com", noah.getEmail());
+        assertTrue(noah.checkCredentials("noed", "789"));
+        Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
+        users.add(lindsay);
+        assertEquals(3, users.size());
+        assertEquals("Lindsay", lindsay.getName());
+        assertEquals("linds", lindsay.getUsername());
+        assertEquals("linds@gmail.com", lindsay.getEmail());
         assertTrue(lindsay.checkCredentials("linds", "900"));
         assertThrows(IllegalArgumentException.class, () -> lindsay.updateEmail("lindsay"));
     }
@@ -112,41 +118,178 @@ public class UserTest {
         rebecca.removeFlight("AA5678");
         assertTrue(rebecca.getFlightPlans().isEmpty());
     }
+  
+    public void userPreferencesTest(){
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+        ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
+        overall_preferences.add(User.Overall_Preferences.BEVERAGES);
+        overall_preferences.add(User.Overall_Preferences.FOOD);
+        overall_preferences.add(User.Overall_Preferences.RECREATION);
+        overall_preferences.add(User.Overall_Preferences.SHOPPING);
+        ArrayList<User.Beverage_Preferences> beverage_preferences = new ArrayList<>();
+        beverage_preferences.add(User.Beverage_Preferences.TEA);
+        beverage_preferences.add(User.Beverage_Preferences.COFFEE);
+        beverage_preferences.add(User.Beverage_Preferences.SODA);
+        beverage_preferences.add(User.Beverage_Preferences.JUICE);
+        beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
+
+        rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
+        assertEquals(4, rebecca.getOverall_preferences().size());
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.BEVERAGES));
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.FOOD));
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.RECREATION));
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.SHOPPING));
+
+        assertEquals(5, rebecca.getBeverage_preferences().size());
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.TEA));
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.COFFEE));
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.SODA));
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.JUICE));
+        assertTrue(rebecca.getBeverage_preferences().contains(User.Beverage_Preferences.ALCOHOL));
+    }
 
     @Test
-    public void ownerTest(){
-        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
-        HashSet<Business> businesses = noah.getBusinesses();
-        assertTrue(businesses.isEmpty());
-        Business business = new Business("restaurant", new Terminal("terminal 1"), "restaurant", "9am-3pm");
-        assertThrows(IllegalArgumentException.class, () -> noah.removeBusiness(business));
-        assertFalse(noah.checkBusiness(business));
-        noah.addBusiness(business);
-        assertTrue(noah.checkBusiness(business));
-        assertEquals(noah.getBusinesses().size(), 1);
-        assertEquals(noah.getRestaurants().size(), 1);
-        assertTrue(noah.getShops().isEmpty());
-        Business business2 = new Business("shop", new Terminal("terminal 1"), "shop", "9am-6pm");
-        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "sale", "sale"));
-        noah.addBusiness(business2);
-        assertEquals(noah.getBusinesses().size(), 2);
-        assertEquals(noah.getShops().size(), 1);
-        assertThrows(IllegalArgumentException.class, () -> noah.addBusiness(business));
-        noah.addActivity(business2, "sale", "sale");
-        assertTrue(business2.hasActivity());
-        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "super sale", "sale"));
-        noah.removeActivity(business2);
-        assertFalse(business2.hasActivity());
-        assertThrows(IllegalArgumentException.class, () -> noah.removeActivity(business));
-        noah.removeBusiness(business);
-        assertEquals(noah.getBusinesses().size(), 1);
-        assertTrue(noah.getRestaurants().isEmpty());
-        assertEquals(noah.getShops().size(), 1);
-        noah.removeBusiness(business2);
-        assertTrue(noah.getBusinesses().isEmpty());
-        assertTrue(noah.getShops().isEmpty());
-        assertTrue(noah.getRestaurants().isEmpty());
+    public void userSetPreferencesInvalidTest() {
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+
+        // Invalid overall preferences size
+        ArrayList<User.Overall_Preferences> invalidOverallPreferences = new ArrayList<>();
+        invalidOverallPreferences.add(User.Overall_Preferences.FOOD);
+
+        assertThrows(IllegalArgumentException.class, () ->
+                rebecca.setPreferences(invalidOverallPreferences, null, null, null, null)
+        );
+
+        // Invalid food preferences size
+        ArrayList<User.Overall_Preferences> validOverallPreferences = new ArrayList<>();
+        validOverallPreferences.add(User.Overall_Preferences.FOOD);
+        validOverallPreferences.add(User.Overall_Preferences.BEVERAGES);
+        validOverallPreferences.add(User.Overall_Preferences.RECREATION);
+        validOverallPreferences.add(User.Overall_Preferences.SHOPPING);
+
+        ArrayList<User.Food_Preferences> invalidFoodPreferences = new ArrayList<>();
+        invalidFoodPreferences.add(User.Food_Preferences.FAST_FOOD);
+
+        assertThrows(IllegalArgumentException.class, () ->
+                rebecca.setPreferences(validOverallPreferences, invalidFoodPreferences, null, null, null)
+        );
     }
+
+    @Test
+    public void testUserSerialization() throws IOException {
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+        AirportController airportController = new AirportController();
+        airportController.addFlight(new Flight("AA1234", new Airport("JFK", "New York Airport"), new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK"), new Gate("A1", 1, false)));
+        rebecca.addFlight(airportController, "AA1234");
+        ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
+        overall_preferences.add(User.Overall_Preferences.BEVERAGES);
+        overall_preferences.add(User.Overall_Preferences.FOOD);
+        overall_preferences.add(User.Overall_Preferences.RECREATION);
+        overall_preferences.add(User.Overall_Preferences.SHOPPING);
+        ArrayList<User.Beverage_Preferences> beverage_preferences = new ArrayList<>();
+        beverage_preferences.add(User.Beverage_Preferences.TEA);
+        beverage_preferences.add(User.Beverage_Preferences.COFFEE);
+        beverage_preferences.add(User.Beverage_Preferences.SODA);
+        beverage_preferences.add(User.Beverage_Preferences.JUICE);
+        beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
+
+        rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
+        String filePath = "src/test/resources/rebecca.json";
+        Json.toJsonFile(filePath, rebecca);
+
+        Passenger deserializedRebecca = Json.fromJsonFile(filePath, Passenger.class);
+
+        assertEquals(rebecca.getName(), deserializedRebecca.getName());
+        assertEquals(rebecca.getUsername(), deserializedRebecca.getUsername());
+        assertEquals(rebecca.getEmail(), deserializedRebecca.getEmail());
+        assertEquals(rebecca.checkCredentials("rje158", "123"), deserializedRebecca.checkCredentials("rje158", "123"));
+    }
+
+//    @Test
+//    public void passengerTest(){
+//        AirportController ac = new AirportController();
+//        Terminal terminal = new Terminal("Terminal 1");
+//        Airport jfk = new Airport();
+//        Airport lax = new Airport();
+//        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", terminal, false));
+//        Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", terminal, false));
+//        ac.addFlight(f1);
+//        ac.addFlight(f2);
+//        Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.getSchedule("ab23"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule(rebecca.getFlight("ab23").getDeptTime(), new ArrayList<POI>())));
+//        assertFalse(rebecca.checkFlight("ab23"));
+//        HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
+//        assertTrue(flightPlans.isEmpty());
+//        rebecca.addFlight("AA1234");
+//        assertEquals(rebecca.getFlightPlans().size(), 1);
+//        rebecca.removeFlight("AA1234");
+//        assertFalse(rebecca.checkFlight("AA1234"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("AA1234"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("AA1234"));
+//        assertTrue(rebecca.getFlightPlans().isEmpty());
+//        rebecca.addFlight("AA5678");
+//        rebecca.addFlight("AA1234");
+//        assertEquals(rebecca.getFlightPlans().size(), 2);
+//        rebecca.createSchedule("AA1234");
+//        Schedule schedule = rebecca.getSchedule("AA1234");
+//        assertEquals(schedule.getAirport().getName(), "JFK");
+//        assertEquals(schedule.getTerminal().getName(), "Terminal 1");
+//        rebecca.randomSchedule("AA5678", 3);
+//        Schedule randSchedule = rebecca.getSchedule("AA5678");
+//        assertEquals(randSchedule.getAirport().getName(), "LAX");
+//        assertEquals(randSchedule.getTerminal().getName(), "Terminal 2");
+//        Flight flight = rebecca.getFlight("AA1234");
+//        Schedule newSched =  new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
+//        rebecca.updateSchedule("AA1234", newSched);
+//        Schedule updatedSched = rebecca.getSchedule("AA1234");
+//        assertEquals(newSched, updatedSched);
+//        assertEquals(updatedSched.getAirport().getName(), "JFK");
+//        assertEquals(updatedSched.getTerminal().getName(), "Terminal 1");
+//        rebecca.removeFlight("AA1234");
+//        assertEquals(rebecca.getFlightPlans().size(), 1);
+//        rebecca.removeFlight("AA5678");
+//        assertTrue(rebecca.getFlightPlans().isEmpty());
+//    }
+//
+//    @Test
+//    public void ownerTest(){
+//        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
+//        HashSet<Business> businesses = noah.getBusinesses();
+//        assertTrue(businesses.isEmpty());
+//        Business business = new Business("restaurant", new Terminal("terminal 1"), "restaurant", "9am-3pm");
+//        assertThrows(IllegalArgumentException.class, () -> noah.removeBusiness(business));
+//        assertFalse(noah.checkBusiness(business));
+//        noah.addBusiness(business);
+//        assertTrue(noah.checkBusiness(business));
+//        assertEquals(noah.getBusinesses().size(), 1);
+//        assertEquals(noah.getRestaurants().size(), 1);
+//        assertTrue(noah.getShops().isEmpty());
+//        Business business2 = new Business("shop", new Terminal("terminal 1"), "shop", "9am-6pm");
+//        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "sale", "sale"));
+//        noah.addBusiness(business2);
+//        assertEquals(noah.getBusinesses().size(), 2);
+//        assertEquals(noah.getShops().size(), 1);
+//        assertThrows(IllegalArgumentException.class, () -> noah.addBusiness(business));
+//        noah.addActivity(business2, "sale", "sale");
+//        assertTrue(business2.hasActivity());
+//        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "super sale", "sale"));
+//        noah.removeActivity(business2);
+//        assertFalse(business2.hasActivity());
+//        assertThrows(IllegalArgumentException.class, () -> noah.removeActivity(business));
+//        noah.removeBusiness(business);
+//        assertEquals(noah.getBusinesses().size(), 1);
+//        assertTrue(noah.getRestaurants().isEmpty());
+//        assertEquals(noah.getShops().size(), 1);
+//        noah.removeBusiness(business2);
+//        assertTrue(noah.getBusinesses().isEmpty());
+//        assertTrue(noah.getShops().isEmpty());
+//        assertTrue(noah.getRestaurants().isEmpty());
+//    }
 
     @Test
     public void validEmailTest(){

@@ -4,22 +4,27 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import layout.Airport;
 import layout.POI;
 import layout.Terminal;
 
 public class Schedule {
-    private long deptTime; // Unix timestamp
-    private List<POI> poi; // List of Points of Interest (POI) associated with schedule
-    private Airport airport;
-    private Terminal terminal;
+    private final long deptTime; // Unix timestamp
+    private final List<POI> poi; // List of Points of Interest (POI) associated with schedule
+    private final Airport airport;
+    private final Terminal terminal;
     // Constructor
-    public Schedule(long deptTime, Airport airport, Terminal terminal) {
+    @JsonCreator
+    public Schedule(@JsonProperty long deptTime,
+                    @JsonProperty Airport airport,
+                    @JsonProperty Terminal terminal) {
         this.deptTime = deptTime; 
         this.poi = new ArrayList<POI>();
         this.airport = airport;
         this.terminal = terminal;
-    } 
+    }
 
     /*
      * inputs a Unix timestamp 
