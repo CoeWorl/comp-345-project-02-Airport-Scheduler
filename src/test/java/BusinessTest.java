@@ -3,11 +3,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
+import layout.Json;
 import org.junit.Test;
 
 import activity.Activity;
 import layout.Business;
 import layout.Terminal;
+
+import java.io.IOException;
 
 public class BusinessTest {
 
@@ -80,5 +83,19 @@ public class BusinessTest {
         owner.removeActivity(business2);
         assertFalse(business2.hasActivity());
         assertThrows(IllegalArgumentException.class, ()-> owner.removeActivity(business2));
+    }
+
+    @Test
+    public void businessJSONTest() throws IOException {
+        Business business = new Business("business", new Terminal("Terminal 1", 1, null, "New York Airport"), "restaurant", "9am-3pm");
+        assertEquals(business.getType(), "restaurant");
+        Json.toJsonFile(STR."src/test/resources/JFK/POI/Business/\{business.getUuid()}.json", business);
+        Business loadedBusiness = Json.fromJsonFile("src/test/resources/JFK/POI/Business/" + business.getUuid() + ".json", Business.class);
+        assertEquals(loadedBusiness.getName(), business.getName());
+        assertEquals(loadedBusiness.getType(), business.getType());
+        assertEquals(loadedBusiness.getHours(), business.getHours());
+        assertEquals(loadedBusiness.getTerminal(), business.getTerminal());
+        assertEquals(loadedBusiness.getUuid(), business.getUuid());
+        assertEquals(loadedBusiness.getActivity(), business.getActivity());
     }
 }

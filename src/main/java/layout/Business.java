@@ -23,7 +23,7 @@ public class Business extends POI{
     }
 
     public Business(String name, Terminal terminal, String type, String hours){
-        super(name, terminal.getTerminalNumber(), UUID.randomUUID());
+        super(name, terminal.getTerminalNumber(), UUID.fromString('b' + UUID.randomUUID().toString().substring(1)));
         this.activity = null;
         this.type = type;
         this.hours = hours;
