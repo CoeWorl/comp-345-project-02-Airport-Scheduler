@@ -18,6 +18,8 @@ public class Json {
         return switch (poiUuid.toString().charAt(0)) {
             case 'a' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Gate/" + poiUuid + ".json", Gate.class);
             case 'b' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Business/" + poiUuid + ".json", Business.class);
+            case 'c' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
+            case 'e' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
             default -> null;
         };
     }

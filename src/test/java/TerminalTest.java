@@ -28,6 +28,5 @@ public class TerminalTest {
             System.err.println(poiMap.get(id));
         }
         System.out.println(terminal1.getEntrances());
-
     }
 }

@@ -33,12 +33,22 @@
       {
         "weight": 2,
         "uuid": "acace207-152a-4042-85f6-b43234da2417"
+      },
+      {
+        "weight": 1,
+        "uuid": "cdd47120-b971-41bd-8baa-b7c861377d11"
       }
     ],
     "acace207-152a-4042-85f6-b43234da2417": [
       {
         "weight": 5,
         "uuid": "b624702e-eb27-4392-817a-2e0cc01c28e1"
+      }
+    ],
+    "cdd47120-b971-41bd-8baa-b7c861377d11": [
+      {
+        "weight": 1,
+        "uuid": "ba05ecb7-879b-44dc-baab-e476bc30bca0"
       }
     ]
   }
