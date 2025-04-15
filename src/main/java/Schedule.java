@@ -117,4 +117,30 @@ public class Schedule {
             possPOIs.remove(index);
         }
     }
+
+    /*Returns how much time is remaining before flight
+     * input - none
+     * output - string, hours and minutes until departure
+    */
+    public String timeUntilDeparture(){
+        long currentTime = System.currentTimeMillis() / 1000L; // Convert to seconds
+        long secondsRemaining = deptTime - currentTime;
+        if(secondsRemaining <= 0){
+            return "Flight has already departed";
+        }
+        long totalMinutes = secondsRemaining / 60;
+        long hours = totalMinutes / 60;
+        long minutes = totalMinutes % 60
+        return hours + " hours and " + minutes + " minutes until departure";
+    }
+
+    /*prints when to arrive at airport based on dept time
+     * input - none
+     * General rule is to arrive 3 hours before flight
+     * output - void
+     */
+    public void timeToArriveAtAirport(){
+        long time = deptTime - 10800;
+        printTime(time);
+    }
 }
