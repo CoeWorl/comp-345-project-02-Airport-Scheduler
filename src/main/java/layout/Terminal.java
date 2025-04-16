@@ -97,10 +97,20 @@ public class Terminal {
         return entrances;
     }
 
+    /**
+     * Updated to search both the poi map and connections for the given UUID.
+     */
     public POI getPOI(UUID uuid) {
-        for (UUID id : poi_connections.keySet()) {
-            if (id.equals(uuid)) {
-                return this.poi.get(id);
+        // Check if the poi map contains the key.
+        if (this.poi.containsKey(uuid)) {
+            return this.poi.get(uuid);
+        }
+        // Otherwise, search through each connection's destination.
+        for (List<Connection> connectionList : poi_connections.values()) {
+            for (Connection connection : connectionList) {
+                if (connection.getDest().getUuid().equals(uuid)) {
+                    return connection.getDest();
+                }
             }
         }
         return null;
