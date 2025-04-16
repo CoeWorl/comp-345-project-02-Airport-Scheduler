@@ -1,4 +1,5 @@
 
+
 import static org.junit.Assert.assertThrows;
 
 import static org.junit.Assert.assertEquals;
@@ -337,3 +338,4 @@ public class UserTest {
         assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA4567", "ELM", "ORL", "8:00", "10:30", "Terminal 1", "Gate A2"));//airports not in system
     }
 }
+

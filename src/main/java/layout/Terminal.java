@@ -54,6 +54,8 @@ public class Terminal {
             poi = switch (poiUuid.toString().charAt(0)) {
                 case 'a' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Gate/" + poiUuid + ".json", Gate.class);
                 case 'b' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Business/" + poiUuid + ".json", Business.class);
+                case 'c' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
+                case 'e' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
                 default -> null;
             };
             if (poi==null) System.err.println("Unknown POI: " + poiUuid);
