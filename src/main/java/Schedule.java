@@ -130,7 +130,7 @@ public class Schedule {
         }
         long totalMinutes = secondsRemaining / 60;
         long hours = totalMinutes / 60;
-        long minutes = totalMinutes % 60
+        long minutes = totalMinutes % 60;
         return hours + " hours and " + minutes + " minutes until departure";
     }
 
