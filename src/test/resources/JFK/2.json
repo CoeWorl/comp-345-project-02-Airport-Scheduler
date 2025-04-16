@@ -1,0 +1,18 @@
+{
+  "name": "Terminal 2",
+  "number": 2,
+  "uuid": "d1a8a2ec-13bf-44de-bd69-b3b67b7e84be",
+  "airport": "JFK",
+  "entrances": [
+    "aa189ff2-5a5b-481f-9fb8-1937333e0dc9"
+  ],
+  "poi": {
+    "aa189ff2-5a5b-481f-9fb8-1937333e0dc9": [
+      {
+        "weight": 3,
+        "uuid": "c0f03a77-b23d-45f2-984c-e63665af29f8",
+        "terminal": 2
+      }
+    ]
+  }
+}

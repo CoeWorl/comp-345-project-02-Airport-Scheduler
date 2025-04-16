@@ -85,6 +85,15 @@ public class Airport {
         return -1;
     }
 
+    public LinkedList<POI> findInterTerminalPath(POI start, POI end) {
+        // Implement the logic to find the inter-terminal path
+        // This is a placeholder implementation
+        LinkedList<POI> path = new LinkedList<>();
+        path.add(start);
+        path.add(end);
+        return path;
+    }
+
     public String getCode() {
         return code;
     }

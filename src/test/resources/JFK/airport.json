@@ -3,12 +3,19 @@
   "name" : "John F. Kennedy International Airport",
   "city" : "New York",
   "country" : "United States",
-  "terminals": [1],
+  "terminals": [1, 2],
   "entranceConnections": {
     "aeebc26c-96cd-40a6-9055-9b2a164db481": [
       {
         "weight": 15,
         "uuid": "aa189ff2-5a5b-481f-9fb8-1937333e0dc9",
+        "terminal": 2
+      }
+    ],
+    "aa189ff2-5a5b-481f-9fb8-1937333e0dc9": [
+      {
+        "weight": 15,
+        "uuid": "aeebc26c-96cd-40a6-9055-9b2a164db481",
         "terminal": 1
       }
     ]
