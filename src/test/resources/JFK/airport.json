@@ -8,7 +8,8 @@
     "aeebc26c-96cd-40a6-9055-9b2a164db481": [
       {
         "weight": 15,
-        "uuid": "aa189ff2-5a5b-481f-9fb8-1937333e0dc9"
+        "uuid": "aa189ff2-5a5b-481f-9fb8-1937333e0dc9",
+        "terminal": 1
       }
     ]
   }
