@@ -1,0 +1,268 @@
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
+//test
+public abstract class User {
+    public enum Overall_Preferences {
+        FOOD,
+        BEVERAGES,
+        SHOPPING,
+        RECREATION
+    }
+    public enum Food_Preferences {
+        FAST_FOOD,
+        VEGAN,
+        KOSHER,
+        HALAL,
+        SIT_DOWN,
+        SNACKS,
+        DESSERTS
+    }
+
+    public enum Beverage_Preferences {
+        ALCOHOL,
+        COFFEE,
+        TEA,
+        SODA,
+        JUICE
+    }
+
+    public enum Shopping_Preferences {
+        CLOTHING,
+        ELECTRONICS,
+        BOOKS,
+        TOYS,
+        SOUVENIRS
+    }
+    public enum Recreation_Preferences {
+        GAMES,
+        MOVIES,
+        MUSIC,
+        ART,
+        SPORTS
+    }
+
+    private ArrayList<Overall_Preferences> overall_preferences;
+    private ArrayList<Food_Preferences> food_preferences;
+    private ArrayList<Beverage_Preferences> beverage_preferences;
+    private ArrayList<Shopping_Preferences> shopping_preferences;
+    private ArrayList<Recreation_Preferences> recreation_preferences;
+    private String name;
+    private String username;
+    private String password;
+    private String email;
+
+    @JsonCreator
+    /**Constructor for User
+     * input - name, username, password, email
+     * output - none
+     */
+    public User(@JsonProperty String name,
+                @JsonProperty String username,
+                @JsonProperty String password,
+                @JsonProperty String email,
+                @JsonProperty ArrayList<Overall_Preferences> overall_preferences,
+                @JsonProperty ArrayList<Food_Preferences> food_preferences,
+                @JsonProperty ArrayList<Beverage_Preferences> beverage_preferences,
+                @JsonProperty ArrayList<Shopping_Preferences> shopping_preferences,
+                @JsonProperty ArrayList<Recreation_Preferences> recreation_preferences){
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        if(validEmail(email)){
+            this.email = email;
+        }else{
+            throw new IllegalArgumentException("Invalid email");
+        }
+        this.overall_preferences = overall_preferences;
+        this.food_preferences = food_preferences;
+        this.beverage_preferences = beverage_preferences;
+        this.shopping_preferences = shopping_preferences;
+        this.recreation_preferences = recreation_preferences;
+    }
+
+    public User(String name, String username, String password, String email){
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        if(validEmail(email)){
+            this.email = email;
+            AirportController.getInstance().getUsers().add(this);
+        }else{
+            throw new IllegalArgumentException("Invalid email");
+        }
+        overall_preferences = new ArrayList<>();
+        food_preferences = new ArrayList<>();
+        beverage_preferences = new ArrayList<>();
+        shopping_preferences = new ArrayList<>();
+        recreation_preferences = new ArrayList<>();
+    }
+
+    public ArrayList<Overall_Preferences> getOverall_preferences(){
+        return overall_preferences;
+    }
+    public ArrayList<Food_Preferences> getFood_preferences(){
+        return food_preferences;
+    }
+    public  ArrayList<Beverage_Preferences> getBeverage_preferences(){
+        return beverage_preferences;
+    }
+    public ArrayList<Shopping_Preferences> getShopping_preferences(){
+        return shopping_preferences;
+    }
+    public ArrayList<Recreation_Preferences> getRecreation_preferences(){
+        return recreation_preferences;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    /**Ensures correct account credentials to login
+     * input - username and password
+     * output - boolean
+     */
+    public boolean checkCredentials(String username, String password){
+        if(this.username.equals(username) && this.password.equals(password)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void setPreferences(ArrayList<Overall_Preferences> overall_preferences,
+                              ArrayList<Food_Preferences> food_preferences,
+                              ArrayList<Beverage_Preferences> beverage_preferences,
+                              ArrayList<Shopping_Preferences> shopping_preferences,
+                              ArrayList<Recreation_Preferences> recreation_preferences){
+        if (overall_preferences.size()!=Overall_Preferences.values().length){
+            throw new IllegalArgumentException("Overall preferences have to be of appropriate size");
+        }
+        if (overall_preferences.getFirst() == Overall_Preferences.FOOD){
+            if (food_preferences.size() != Food_Preferences.values().length){
+                throw new IllegalArgumentException("Food preferences have to be of appropriate size");
+            }
+        }
+        if (overall_preferences.getFirst() == Overall_Preferences.BEVERAGES){
+            if (beverage_preferences.size() != Beverage_Preferences.values().length){
+                throw new IllegalArgumentException("Beverage preferences have to be of appropriate size");
+            }
+        }
+        if (overall_preferences.getFirst() == Overall_Preferences.SHOPPING){
+            if (shopping_preferences.size() != Shopping_Preferences.values().length){
+                throw new IllegalArgumentException("Shopping preferences have to be of appropriate size");
+            }
+        }
+        if (overall_preferences.getFirst() == Overall_Preferences.RECREATION){
+            if (recreation_preferences.size() != Recreation_Preferences.values().length){
+                throw new IllegalArgumentException("Recreation preferences have to be of appropriate size");
+            }
+        }
+        this.overall_preferences = overall_preferences;
+        this.food_preferences = food_preferences;
+        this.beverage_preferences = beverage_preferences;
+        this.shopping_preferences = shopping_preferences;
+        this.recreation_preferences = recreation_preferences;
+    }
+
+    public void updateName(String name){
+        this.name = name;
+    }
+
+    public void updateUsername(String username){
+        this.username = username;
+    }
+
+    /**Checks old password before allowing password update
+     * inputs - prev password and new password
+     * updates password
+     * @throws IllegalArgumentException if old password is incorrect
+    */
+    public void updatePassword(String prev, String psswrd){
+        boolean check = checkCredentials(username, prev);
+        if(check){
+            password = psswrd;
+        }else{
+            throw new IllegalArgumentException("Incorrect password");
+        }
+    }
+
+    /**checks if new email is valid and updates if so
+     * input - email
+     * output - none
+     * @throws IllegalArgumentException if email is invalid
+     */
+    public void updateEmail(String email){
+        if(validEmail(email)){
+            this.email = email;
+        }else{
+            throw new IllegalArgumentException("Invalid email");
+        }
+    }
+
+    /**checks if email is valid before it can be set for account
+     * input - email
+     * output - boolean
+     */
+    public static boolean validEmail(String email){
+        if (email == null || email.trim().isEmpty()) {
+            return false;
+        }
+
+        int atPosition = email.indexOf('@');
+        int dotPosition = email.lastIndexOf('.');
+
+        // Checks if '@' exists and is not the first or last character
+        if (atPosition <= 0 || atPosition >= email.length() - 1) {
+            return false;
+        }
+
+        // Checks if '.' exists after '@' and is not the last character
+        if (dotPosition < atPosition || dotPosition >= email.length() - 1) {
+            return false;
+        }
+
+        // checks part that starts with a valid character
+        char firstChar = email.charAt(0);
+        if (!Character.isLetterOrDigit(firstChar)) {
+            return false;
+        }
+
+        // checks no spaces exist in the email
+        if (email.contains(" ")) {
+            return false;
+        }
+
+        // checks "@" is followed by a valid domain
+        if (email.charAt(atPosition + 1) == '.' || dotPosition == atPosition + 1) {
+            return false;
+        }
+
+        // checks no consecutive dots exist
+        if (email.contains("..")) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public String toString(){
+        return "Name: " + name + "\nUsername: " + username + "\nEmail: " + email;
+    }
+
+}
+

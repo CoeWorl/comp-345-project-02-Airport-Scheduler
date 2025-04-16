@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.IOException;
 import java.util.*;
-
+//test
 public class Terminal {
     private final String name;
     private final UUID uuid;
