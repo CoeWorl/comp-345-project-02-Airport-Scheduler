@@ -137,4 +137,56 @@ public class Terminal {
         }
         return restaurants;
     }
+
+    public LinkedList<POI> findShortestRoute(POI start, POI end) {
+        Map<POI, Integer> distances = new HashMap<>();
+        // Priority queue to store POIs with their current shortest distance
+        PriorityQueue<POI> queue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
+        Map<POI, POI> predecessors = new HashMap<>();
+        Set<POI> visited = new HashSet<>();
+
+
+        for (POI poi : poi.values()) {
+            distances.put(poi, Integer.MAX_VALUE);
+        }
+        distances.put(start, 0);
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+            POI current = queue.poll();
+            if (visited.contains(current)) continue;
+            visited.add(current);
+
+            // Stop if we reach the destination
+            if (current.equals(end)) break;
+
+            // Update distances to neighbors
+            List<Connection> connections = poi_connections.get(current.getUuid());
+            if (connections != null) {
+                for (Connection connection : connections) {
+                    POI neighbor = connection.getDest();
+                    if (visited.contains(neighbor)) continue;
+
+                    int newDist = distances.get(current) + connection.getWeight();
+                    if (newDist < distances.get(neighbor)) {
+                        distances.put(neighbor, newDist);
+                        predecessors.put(neighbor, current);
+                        queue.add(neighbor);
+                    }
+                }
+            }
+        }
+
+        LinkedList<POI> path = new LinkedList<>();
+        for (POI at = end; at != null; at = predecessors.get(at)) {
+            path.addFirst(at);
+        }
+
+        // If the start is not in the path, no path exists
+        if (!path.isEmpty() && !path.getFirst().equals(start)) {
+            return null;
+        }
+
+        return path;
+    }
 }
