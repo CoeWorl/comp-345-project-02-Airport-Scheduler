@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import layout.Airport;
-
+//creates one instance of AirportController to manage all flights, airports, and users
 public class AirportController {
 
     private Static AirportController instance;

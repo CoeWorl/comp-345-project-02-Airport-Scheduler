@@ -6,7 +6,7 @@ import layout.Gate;
 import layout.Terminal;
 
 import java.util.Objects;
-
+//test
 public class Flight {
     private final String flightNumber;
     private final Airport src;

@@ -1,6 +1,6 @@
 package activity;
 import layout.Business;
-
+//test
 public class Activity {
     private String name;
     private String type;

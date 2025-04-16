@@ -8,7 +8,7 @@ import layout.Gate;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
-
+//test
 public class FlightTest {
     private Flight flight;
 

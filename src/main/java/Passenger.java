@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import layout.POI;
 import layout.Terminal;
-
+//test
 public class Passenger extends User{
 
     private HashMap<Flight, Schedule> flightPlans;
