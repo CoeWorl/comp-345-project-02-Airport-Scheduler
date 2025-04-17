@@ -1,18 +1,19 @@
+package users;
 
 import java.util.HashMap;
 import java.util.HashSet;
 
 import layout.Airport;
-//creates one instance of AirportController to manage all flights, airports, and users
+//creates one instance of users.AirportController to manage all flights, airports, and users
 public class AirportController {
 
-    private Static AirportController instance;
+    private static AirportController instance;
 
     private HashMap<String, Flight> flights;
     private HashMap<String, Airport> airports;
     private HashSet<User> users;
 
-    private AirportController(){
+    public AirportController(){
         flights = new HashMap<>();
         airports = new HashMap<>();
         users = new HashSet<>();
@@ -44,7 +45,7 @@ public class AirportController {
     */
     public void addFlight(Flight flight){
         if(flights.containsKey(flight.getFlightNumber())){
-            throw new IllegalArgumentException("Flight already exists");
+            throw new IllegalArgumentException("activity.Flight already exists");
         }else{
             flights.put(flight.getFlightNumber(), flight);
         }
@@ -70,7 +71,7 @@ public class AirportController {
      */
     public void addUser(User user){
         if(users.contains(user)){
-            throw new IllegalArgumentException("User already exists");
+            throw new IllegalArgumentException("activity.User already exists");
         }else{
             users.add(user);
         }

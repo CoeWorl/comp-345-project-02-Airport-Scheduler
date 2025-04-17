@@ -1,4 +1,4 @@
-package activity;
+package users;
 import layout.Business;
 //test
 public class Activity {

@@ -1,3 +1,4 @@
+package users;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -5,10 +6,9 @@ import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import layout.POI;
-import layout.Terminal;
+import layout.*;
 //test
-public class Passenger extends User{
+public class Passenger extends User {
 
     private HashMap<Flight, Schedule> flightPlans;
     
@@ -23,11 +23,11 @@ public class Passenger extends User{
             @JsonProperty("username") String username,
             @JsonProperty("password") String password,
             @JsonProperty("email") String email,
-            @JsonProperty("overall_preferences") ArrayList<Overall_Preferences> overallPreferences,
-            @JsonProperty("food_preferences") ArrayList<Food_Preferences> foodPreferences,
-            @JsonProperty("beverage_preferences") ArrayList<Beverage_Preferences> beveragePreferences,
-            @JsonProperty("shopping_preferences") ArrayList<Shopping_Preferences> shoppingPreferences,
-            @JsonProperty("recreation_preferences") ArrayList<Recreation_Preferences> recreationPreferences
+            @JsonProperty("overall_preferences") ArrayList<User.Overall_Preferences> overallPreferences,
+            @JsonProperty("food_preferences") ArrayList<User.Food_Preferences> foodPreferences,
+            @JsonProperty("beverage_preferences") ArrayList<User.Beverage_Preferences> beveragePreferences,
+            @JsonProperty("shopping_preferences") ArrayList<User.Shopping_Preferences> shoppingPreferences,
+            @JsonProperty("recreation_preferences") ArrayList<User.Recreation_Preferences> recreationPreferences
     ) {
         super(name, username, password, email, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
     }
@@ -45,14 +45,14 @@ public class Passenger extends User{
      */
     public void addFlight(AirportController controller, String flightNum){
         if(checkFlight(flightNum)){
-            throw new IllegalArgumentException("Flight already in plans");
+            throw new IllegalArgumentException("activity.Flight already in plans");
         }else{
             HashMap<String, Flight> flights = controller.getFlights();
             if(flights.containsKey(flightNum)){
                 Flight flight = flights.get(flightNum);
                 flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
             }else{
-                throw new IllegalArgumentException("Flight does not exist");
+                throw new IllegalArgumentException("activity.Flight does not exist");
             }
         }
     }
@@ -65,28 +65,28 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if src or dest airport not in system
      */
-    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, String terminal, String gate){
-        AirportController controller = AirportController.getInstance();
-        if(checkFlight(flightNum)){
-            throw new IllegalArgumentException("Flight already in plans");
-        }else if(controller.getFlights().containsKey(flightNum)){
-            Flight flight = controller.getFlights().get(flightNum);
-            flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
-        }else{
-            if(controller.getAirports().containsKey(srcCode) && controller.getAirports().containsKey(destCode)){
-                Airport src = controller.getAirports().get(srcCode);
-                Airport dest = controller.getAirports().get(destCode);
-                Terminal term = src.getTerminals().get(terminal);
-                Gate gate = term.getGates().get(gate);
-                Long deptTimeLong = Long.parseLong(deptTime);
-                Long arrTimeLong = Long.parseLong(arrTime);
-                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate);
-                flightPlans.put(flight, new Schedule(deptTimeLong, src, term));
-            }else{
-                throw new IllegalArgumentException("Airport does not exiist");
-            }
-        }
-    }
+//    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, String terminal, String gate){
+//        AirportController controller = AirportController.getInstance();
+//        if(checkFlight(flightNum)){
+//            throw new IllegalArgumentException("activity.Flight already in plans");
+//        }else if(controller.getFlights().containsKey(flightNum)){
+//            Flight flight = controller.getFlights().get(flightNum);
+//            flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
+//        }else{
+//            if(controller.getAirports().containsKey(srcCode) && controller.getAirports().containsKey(destCode)){
+//                Airport src = controller.getAirports().get(srcCode);
+//                Airport dest = controller.getAirports().get(destCode);
+//                Terminal term = src.getTerminals().get(terminal);
+//                Gate gate = term.getGates().get(gate);
+//                Long deptTimeLong = Long.parseLong(deptTime);
+//                Long arrTimeLong = Long.parseLong(arrTime);
+//                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate);
+//                flightPlans.put(flight, new Schedule(deptTimeLong, src, term));
+//            }else{
+//                throw new IllegalArgumentException("Airport does not exiist");
+//            }
+//        }
+//    }
 
 
     /**removes flight from hashmap
@@ -99,7 +99,7 @@ public class Passenger extends User{
         if(checkFlight(flightNum)){
             flightPlans.remove(getFlight(flightNum));
         }else{
-            throw new IllegalArgumentException("Flight not in plans");
+            throw new IllegalArgumentException("activity.Flight not in plans");
         }
     }
 
@@ -147,7 +147,7 @@ public class Passenger extends User{
             Schedule schedule = new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
             flightPlans.put(getFlight(flightNum), schedule);
         }else{
-            throw new IllegalArgumentException("Flight not in plans");
+            throw new IllegalArgumentException("activity.Flight not in plans");
         }
     }
 
@@ -161,7 +161,7 @@ public class Passenger extends User{
         if(checkFlight(flightNum)){
             return flightPlans.get(getFlight(flightNum));
         }else{
-            throw new IllegalArgumentException("Flight not in plans");
+            throw new IllegalArgumentException("activity.Flight not in plans");
         }
     }
 
@@ -178,7 +178,7 @@ public class Passenger extends User{
             schedule.randomSchedule(numPOIs);
             flightPlans.put(getFlight(flightNum), schedule);
         }else{
-            throw new IllegalArgumentException("Flight not in plans");
+            throw new IllegalArgumentException("activity.Flight not in plans");
         }
     }
 
@@ -192,7 +192,7 @@ public class Passenger extends User{
         if(checkFlight(flightNum)){
             flightPlans.put(getFlight(flightNum), schedule);
         }else{
-            throw new IllegalArgumentException("Flight not in plans");
+            throw new IllegalArgumentException("activity.Flight not in plans");
         }
     }
 
@@ -208,7 +208,7 @@ public class Passenger extends User{
             Schedule schedule = getSchedule(flightnum);
             schedule.addPOI(poi);
         }else{
-            throw new IllegalArgumentException("Flight not in plans");
+            throw new IllegalArgumentException("activity.Flight not in plans");
         }
     }
 
@@ -233,7 +233,7 @@ public class Passenger extends User{
                 throw new IllegalArgumentException("no restaurants in terminal");
             }
         }else{
-            throw new IllegalArgumentException("Flight not in plans");
+            throw new IllegalArgumentException("activity.Flight not in plans");
         }
     }
 
@@ -258,7 +258,7 @@ public class Passenger extends User{
                 throw new IllegalArgumentException("no shops in terminal");
             }
         }else{
-            throw new IllegalArgumentException("Flight not in plans");
+            throw new IllegalArgumentException("activity.Flight not in plans");
         }
     }
 }
