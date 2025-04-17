@@ -1,11 +1,11 @@
 import org.junit.Test;
 import users.OllamaClient;
+import users.Passenger;
+import users.User;
 
 public class LLMTest {
     @Test
     public void testLLM() {
-        // Test the LLM functionality here
-        // This is a placeholder for the actual test implementation
-        System.out.println("LLM test executed successfully.");
+//        User oscar = new Passenger();
     }
 }

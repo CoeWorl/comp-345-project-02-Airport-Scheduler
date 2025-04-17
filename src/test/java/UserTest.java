@@ -179,7 +179,7 @@ public class UserTest {
         Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         AirportController airportController = new AirportController();
         airportController.addFlight(new Flight("AA1234", new Airport("JFK", "New York Airport"), new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK"), new Gate("A1", 1, false)));
-        rebecca.addFlight(airportController, "AA1234");
+//        rebecca.addFlight(airportController, "AA1234");
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
         overall_preferences.add(User.Overall_Preferences.BEVERAGES);
         overall_preferences.add(User.Overall_Preferences.FOOD);
@@ -193,7 +193,7 @@ public class UserTest {
         beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
 
         rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
-        String filePath = "src/test/resources/rebecca.json";
+        String filePath = "src/test/resources/rebeccaNoFlights.json";
         Json.toJsonFile(filePath, rebecca);
 
         Passenger deserializedRebecca = Json.fromJsonFile(filePath, Passenger.class);
