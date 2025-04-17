@@ -4,7 +4,7 @@
   "password" : "123",
   "email" : "redson@ithaca.edu",
   "overall_preferences" : [ "BEVERAGES", "FOOD", "RECREATION", "SHOPPING" ],
-  "food_preferences" : null,
+  "food_preferences" : [ "DESSERTS" ],
   "beverage_preferences" : [ "TEA", "COFFEE", "SODA", "JUICE", "ALCOHOL" ],
   "shopping_preferences" : null,
   "recreation_preferences" : null

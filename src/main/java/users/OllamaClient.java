@@ -7,7 +7,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
 public class OllamaClient {
-    public static List<Activity> plannerRequest(List passenger) throws IOException, InterruptedException {
+    public static List<Activity> plannerRequest(User user) throws IOException, InterruptedException {
         String systemPrompt = "For the following topic and difficulty (on a scale of 1 to 5), " +
                 "generate an original coding problem, language agnostic." +
                 "For example: example input: 'arrays 3'" +

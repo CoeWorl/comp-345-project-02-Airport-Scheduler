@@ -192,7 +192,10 @@ public class UserTest {
         beverage_preferences.add(User.Beverage_Preferences.JUICE);
         beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
 
-        rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
+        ArrayList<User.Food_Preferences> food_preferences = new ArrayList<>();
+        food_preferences.add(User.Food_Preferences.DESSERTS);
+
+        rebecca.setPreferences(overall_preferences, food_preferences, beverage_preferences, null, null);
         String filePath = "src/test/resources/rebeccaNoFlights.json";
         Json.toJsonFile(filePath, rebecca);
 
