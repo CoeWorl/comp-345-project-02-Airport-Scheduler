@@ -118,21 +118,33 @@ public class Terminal {
         return new HashMap<>(poi_connections);
     }
 
+    /*returns all shops in terminal
+     * inout - none
+     * output - list of all shops in terminal
+     */
     public ArrayList<POI> getShops() {
         ArrayList<POI> shops = new ArrayList<>();
         for (POI p : poi.values()) {
             if (p instanceof Business) {
-                shops.add(p);
+                if(p.getType().lowerCase().equals("shop")|| p.getType().lowerCase().equals("store")){
+                    shope.add(p);
+                }
             }
         }
         return shops;
     }
 
+    /*returns all restaurants in terminal
+     * input - none
+     * output - list of all restaurants in terminal
+     */
     public ArrayList<POI> getRestaurants() {
         ArrayList<POI> restaurants = new ArrayList<>();
         for (POI p : poi.values()) {
             if (p instanceof Business) {
-                restaurants.add(p);
+                if(p.getType().lowerCase().equals("restaurant")){
+                    restaurants.add(p);
+                }
             }
         }
         return restaurants;

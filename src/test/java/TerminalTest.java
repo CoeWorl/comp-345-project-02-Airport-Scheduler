@@ -29,4 +29,16 @@ public class TerminalTest {
         }
         System.out.println(terminal1.getEntrances());
     }
+
+    @Test
+    public void terminalPOITest(){
+        Gate entrance = new Gate("North Entrance", 1, true);
+        Terminal terminal = new Terminal("Terminal 1", 1, entrance, "JFK");
+        POI poi1 = new Business("Starbucks", terminal, "restaurant", "9am-5pm");
+        POI poi2 = new Business("McDonald's", terminal, "restaurant", "9am-9pm");
+        POI poi3 = new Business("Bookstore", terminal, "shop", "9am-7pm");
+        assertEquals(terminal.getPOIs().size(), 4);
+        assertEquals(terminal.getShops().size(), 1);
+        assertEquals(terminal.getRestaurants().size(), 2);
+    }
 }

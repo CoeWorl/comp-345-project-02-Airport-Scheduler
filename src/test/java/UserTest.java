@@ -119,7 +119,33 @@ public class UserTest {
         rebecca.removeFlight("AA5678");
         assertTrue(rebecca.getFlightPlans().isEmpty());
     }
-  
+
+    @Test
+    public void updateScheduleTest(){
+        AirportController ac = new AirportController();
+        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com");
+        Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
+        Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        FlightJson flightJson = new FlightJson("src/test/resources/testFlights.json");
+        flightJson.createFlights();
+        rebecca.addFlight("AA1234");
+        Terminal term = rebecca.getFlight("AA1234").getTerminal();
+        Business bus1 = new Business("Starbucks", term.getTerminalNumber(), "restaurant", "9am-5pm");
+        Business bus2 = new Business("Bookstore", term.getTerminalNumber(), "shop", "9am-8pm");
+        Business bus3 = new Business("McDonald's", term.getTerminalNumber(), "restaurant", "9am-9pm");
+        Business bus4 = new Business("Newstand",term.getTerminalNumber(), "shop", "9am-7pm");
+        assertEquals(rebecca.getFlightPlans().size(), 1);
+        rebecca.addRandomRestaurant("AA1234");
+        assertEquals(rebecca.getSchedule("AA1234").getRestaurants().size(), 1);
+        rebecca.addRandomShop("AA1234");
+        assertEquals(rebecca.getSchedule("AA1234").getShops().size(), 1);
+        assertTrue(rebecca.getSchedule("AA1234").getRestaurants().contains(bus1) | rebecca.getSchedule("AA1234").getRestaurants().contains(bus2));
+        assertTrue(rebecca.getSchedule("AA1234").getShops().contains(bus3) | rebecca.getSchedule("AA1234").getShops().contains(bus4));
+        rebecca.addRandomPOI("AA1234");
+        assertEquals(rebecca.getSchedule("AA1234").getPOIs().size(), 3);
+    }
+
+    @Test
     public void userPreferencesTest(){
         Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
