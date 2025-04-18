@@ -261,5 +261,104 @@ public class Passenger extends User{
             throw new IllegalArgumentException("Flight not in plans");
         }
     }
+
+    /**returns random restaurant name
+     * input - flight number
+     * checks if flight exists in user's map
+     * output - string
+     * @throws IllegalArgumentException if flight not in hashmap
+     * @throws IllegalArgumentException if no restaurants in terminal
+     */
+    public String randomRestaurantRecommendation(String flightNum){
+        if(checkFlight(flightnum)){
+            Flight flight = getFlight(flightnum);
+            Terminal terminal = flight.getTerminal();
+            ArrayList<POI> restaurants = terminal.getRestaurants();
+            if(restaurants.size() > 0){
+                Random rand = new Random();
+                int index = rand.nextInt(restaurants.size());
+                POI restaurant = restaurants.get(index);
+                return "Recommended Restaurant: " + restaurant.getName();
+            }else{
+                throw new IllegalArgumentException("no restaurants in terminal");
+            }
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
+    }
+
+    /**returns random shop name
+     * input - flight number
+     * checks if flight exists in user's map
+     * output - string
+     * @throws IllegalArgumentException if flight not in hashmap
+     * @throws IllegalArgumentException if no shops in terminal
+     */
+    public String randomShopRecommendation(String flightNum){
+        if(checkFlight(flightnum)){
+            Flight flight = getFlight(flightnum);
+            Terminal terminal = flight.getTerminal();
+            ArrayList<POI> shops = terminal.getShops();
+            if(shops.size() > 0){
+                Random rand = new Random();
+                int index = rand.nextInt(shops.size());
+                POI shop = shops.get(index);
+                return "Recommended Shop: " + shop.getName();
+            }else{
+                throw new IllegalArgumentException("no restaurants in terminal");
+            }
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
+    }
+
+    /**adds specific restaurant to schedule
+     * input - flight number and restaurant name
+     * output - void
+     * @throws IllegalArgumentException if flight not in hashmap
+     * @throws IllegalArgumentException if restaurant not in terminal
+     */
+    public void addRestaurantToSchedule(String flightNum, String restaurantName){
+        if(checkFlight(flightNum)){
+            Flight flight = getFlight(flightNum);
+            Terminal terminal = flight.getTerminal();
+            ArrayList<POI> restaurants = terminal.getRestaurants();
+            for(POI restaurant : restaurants){
+                if(restaurant.getName().equals(restaurantName)){
+                    Schedule schedule = getSchedule(flightNum);
+                    schedule.addPOI(restaurant);
+                    return;
+                }
+            }
+            throw new IllegalArgumentException("Restaurant not in terminal");
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
+    }
+
+    /**adds specific shop to schedule
+     * input - flight number and shop name
+     * output - void
+     * @throws IllegalArgumentException if flight not in hashmap
+     * @throws IllegalArgumentException if shop not in terminal
+     */
+    public void addShopToSchedule(String flightNum, String shopName){
+        if(checkFlight(flightNum)){
+            Flight flight = getFlight(flightNum);
+            Terminal terminal = flight.getTerminal();
+            ArrayList<POI> shops = terminal.getShops();
+            for(POI shop : shops){
+                if(shop.getName().equals(shopName)){
+                    Schedule schedule = getSchedule(flightNum);
+                    schedule.addPOI(shop);
+                    return;
+                }
+            }
+            throw new IllegalArgumentException("Shop not in terminal");
+        }else{
+            throw new IllegalArgumentException("Flight not in plans");
+        }
+    }
+
 }
 
