@@ -20,7 +20,8 @@ public class OllamaClient {
         String systemPrompt = "For the following preferences of a User and available activities at airport, give an appropriate ranked recommendation " +
                 "Provide a list of activities with the following format: " +
                 "activity name, activity type, activity location ; activity2 name, activity2 type, activity2 location ; activity3 name, activity3 type, activity3 location ; " +
-                "I will give you Json files for the user, the terminal with its weighted graph of Businesses and the list of activities at the airport.";
+                "I will give you Json files for the user, the terminal with its weighted graph of Businesses and the list of activities at the airport."+
+                "Add nothing else to the response";
 
         // Construct the content by concatenating the prompt and JSON strings
         String content = systemPrompt + " " + Json.toJsonString(user) + " " +
