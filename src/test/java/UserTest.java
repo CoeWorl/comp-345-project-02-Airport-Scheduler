@@ -143,6 +143,24 @@ public class UserTest {
         assertTrue(rebecca.getSchedule("AA1234").getShops().contains(bus3) | rebecca.getSchedule("AA1234").getShops().contains(bus4));
         rebecca.addRandomPOI("AA1234");
         assertEquals(rebecca.getSchedule("AA1234").getPOIs().size(), 3);
+        Passenger noah = new Passenger("Noah", "noed", "123", "noed@gmail.com");
+        noah.addFlight("AA1234");
+        String restaurantRec = noah.randomRestaurantRecommendation("AA1234");
+        String restRecName = restaurantRec.split[": "][1];
+        assertTrue(term.getRestaurants().contains(restaurantRec));
+        noah.addRestaurantToSchedule("AA1234", restRecName);
+        assertTrue(noah.getSchedule("AA1234").getRestaurants().contains(restaurantRec));
+        String shopRec = noah.randomShopRecommendation("AA1234");
+        String shopRecName = shopRec.split[": "][1];
+        assertTrue(term.getShops().contains(shopRec));
+        noah.addShopToSchedule("AA1234", shopRecName);
+        assertTrue(noah.getSchedule("AA1234").getShops().contains(shopRec));
+        assertThrows(IllegalArgumentException.class, () -> noah.randomRestaurantRecommendation("AA5678")); //flight not in plans
+        assertThrows(IllegalArgumentException.class, () -> noah.randomShopRecommendation("AA5678"));
+        assertThrows(IllegalArgumentException.class, () -> noah.addRestaurantToSchedule("AA5678", restRecName));
+        assertThrows(IllegalArgumentException.class, () -> noah.addShopToSchedule("AA5678", shopRecName));
+        assertThrows(IllegalArgumentException.class, () -> noah.addRestaurantToSchedule("AA1234", "Dunkin'")); //restaurant not in terminal
+        assertThrows(IllegalrgumentException.class, () -> noah.addShopToSchedule("AA1234", "General Store")); //shop not in terminal
     }
 
     @Test
