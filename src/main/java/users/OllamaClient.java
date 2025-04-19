@@ -21,7 +21,7 @@ public class OllamaClient {
                 "Provide a list of activities with the following format: " +
                 "activity name, activity type, activity location ; activity2 name, activity2 type, activity2 location ; activity3 name, activity3 type, activity3 location ; " +
                 "I will give you Json files for the user, the terminal with its weighted graph of Businesses and the list of activities at the airport."+
-                "Add nothing else to the response";
+                "Please add nothing else to the response, neither before or after the list of activities. ";
 
         // Construct the content by concatenating the prompt and JSON strings
         String content = systemPrompt + " " + Json.toJsonString(user) + " " +
