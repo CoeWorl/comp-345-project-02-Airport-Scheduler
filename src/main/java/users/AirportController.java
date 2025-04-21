@@ -1,8 +1,10 @@
+package users;
 
 import java.util.HashMap;
 import java.util.HashSet;
 
 import layout.Airport;
+
 //creates one instance of AirportController to manage all flights, airports, and users
 public class AirportController {
 
@@ -12,7 +14,7 @@ public class AirportController {
     private HashMap<String, Airport> airports;
     private HashSet<User> users;
 
-    AirportController(){
+    public AirportController(){
         flights = new HashMap<>();
         airports = new HashMap<>();
         users = new HashSet<>();

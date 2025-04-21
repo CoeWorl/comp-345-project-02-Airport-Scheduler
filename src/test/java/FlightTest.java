@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import layout.Airport;
 import layout.Terminal;
 import layout.Gate;
+import users.Flight;
 
 import java.io.IOException;
 

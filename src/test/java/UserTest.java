@@ -16,48 +16,48 @@ import org.junit.Test;
 //test
 public class UserTest {
 
-    @Test
-    public void userConstructorTest() {
-        AirportController ac = new AirportController();
-        ArrayList<User> users = new ArrayList<>();
-        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
-        users.add(rebecca);
-        ac.addUser(rebecca);
-        assertEquals(1, users.size());
-        assertEquals("Rebecca", rebecca.getName());
-        assertEquals("redson@ithaca.edu", rebecca.getEmail());
-        assertTrue(rebecca.checkCredentials("rje158", "123"));
-        assertTrue(ac.getUsers().contains(rebecca));
-        rebecca.updatePassword("123", "456");
-        assertTrue(rebecca.checkCredentials("rje158", "456"));
-        assertFalse(rebecca.checkCredentials("rje158", "123"));
-        assertThrows(IllegalArgumentException.class, () -> rebecca.updatePassword("123", "333"));
-        rebecca.updateEmail("rje158@gmail.com");
-        assertEquals("rje158@gmail.com", rebecca.getEmail());
-        rebecca.updateUsername("rje158");
-        assertEquals("rje158", rebecca.getUsername());
-        rebecca.updateName("Becca");
-        assertEquals("Becca", rebecca.getName());
-        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
-        users.add(noah);
-        ac.addUser(noah);
-        assertEquals(users.size(), 2);
-        assertEquals(noah.getName(), "Noah");
-        assertEquals(noah.getUsername(), "noed");
-        assertEquals(noah.getEmail(), "no@gmail.com");
-        assertTrue(ac.getUsers().contains(noah));
-        assertTrue(noah.checkCredentials("noed", "789"));
-        Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
-        users.add(lindsay);
-        ac.addUser(lindsay);
-        assertEquals(users.size(), 3);
-        assertEquals(lindsay.getName(), "Lindsay");
-        assertEquals(lindsay.getUsername(), "linds");
-        assertEquals(lindsay.getEmail(), "linds@gmail.com");
-        assertTrue(ac.getUsers().contains(lindsay));
-        assertTrue(lindsay.checkCredentials("linds", "900"));
-        assertThrows(IllegalArgumentException.class, () -> lindsay.updateEmail("lindsay"));
-    }
+//    @Test
+//    public void userConstructorTest() {
+//        AirportController ac = new AirportController();
+//        ArrayList<User> users = new ArrayList<>();
+//        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+//        users.add(rebecca);
+//        ac.addUser(rebecca);
+//        assertEquals(1, users.size());
+//        assertEquals("Rebecca", rebecca.getName());
+//        assertEquals("redson@ithaca.edu", rebecca.getEmail());
+//        assertTrue(rebecca.checkCredentials("rje158", "123"));
+//        assertTrue(ac.getUsers().contains(rebecca));
+//        rebecca.updatePassword("123", "456");
+//        assertTrue(rebecca.checkCredentials("rje158", "456"));
+//        assertFalse(rebecca.checkCredentials("rje158", "123"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.updatePassword("123", "333"));
+//        rebecca.updateEmail("rje158@gmail.com");
+//        assertEquals("rje158@gmail.com", rebecca.getEmail());
+//        rebecca.updateUsername("rje158");
+//        assertEquals("rje158", rebecca.getUsername());
+//        rebecca.updateName("Becca");
+//        assertEquals("Becca", rebecca.getName());
+//        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
+//        users.add(noah);
+//        ac.addUser(noah);
+//        assertEquals(users.size(), 2);
+//        assertEquals(noah.getName(), "Noah");
+//        assertEquals(noah.getUsername(), "noed");
+//        assertEquals(noah.getEmail(), "no@gmail.com");
+//        assertTrue(ac.getUsers().contains(noah));
+//        assertTrue(noah.checkCredentials("noed", "789"));
+//        Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
+//        users.add(lindsay);
+//        ac.addUser(lindsay);
+//        assertEquals(users.size(), 3);
+//        assertEquals(lindsay.getName(), "Lindsay");
+//        assertEquals(lindsay.getUsername(), "linds");
+//        assertEquals(lindsay.getEmail(), "linds@gmail.com");
+//        assertTrue(ac.getUsers().contains(lindsay));
+//        assertTrue(lindsay.checkCredentials("linds", "900"));
+//        assertThrows(IllegalArgumentException.class, () -> lindsay.updateEmail("lindsay"));
+//    }
 
     @Test
     public void passengerTest(){

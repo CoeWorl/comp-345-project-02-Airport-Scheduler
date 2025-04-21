@@ -9,11 +9,15 @@ import layout.Airport;
 import layout.Gate;
 import layout.POI;
 import layout.Terminal;
+import users.AirportController;
+import users.Flight;
+import users.*;
+
 //test
 public class Passenger extends User{
 
     private HashMap<Flight, Schedule> flightPlans;
-    
+
     public Passenger(String name, String username, String password, String email){
         super(name, username, password, email);
         flightPlans = new HashMap<>();
@@ -153,7 +157,7 @@ public class Passenger extends User{
         }
     }
 
-    /**gets schedule for specific flight 
+    /**gets schedule for specific flight
      * input - flight number
      * checks if flight exists in user's map
      * output - schedule
