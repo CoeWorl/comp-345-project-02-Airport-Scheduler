@@ -164,8 +164,8 @@ public class Terminal {
         return gates;
     }
 
-    
-    public void addPOI(POI new){
-        poi.put(new.getUuid(), new);
+
+    public void addPOI(POI newPOI){
+        poi.put(newPOI.getUuid(), newPOI);
     }
 }
