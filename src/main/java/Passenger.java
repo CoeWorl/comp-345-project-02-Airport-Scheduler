@@ -79,7 +79,7 @@ public class Passenger extends User{
                 Airport src = controller.getAirports().get(srcCode);
                 Airport dest = controller.getAirports().get(destCode);
                 Terminal term = src.getTerminals().get(terminal);
-                Gate gate1 = term.getGates().get(gate);
+                Gate gate1 = (Gate) term.getGates().get(gate);
                 Long deptTimeLong = Long.parseLong(deptTime);
                 Long arrTimeLong = Long.parseLong(arrTime);
                 Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate1);
