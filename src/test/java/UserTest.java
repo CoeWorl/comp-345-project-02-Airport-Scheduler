@@ -54,28 +54,16 @@ public class UserTest {
         assertEquals(lindsay.getUsername(), "linds");
         assertEquals(lindsay.getEmail(), "linds@gmail.com");
         assertTrue(ac.getUsers().contains(lindsay));
-        assertEquals(2, users.size());
-        assertEquals("Noah", noah.getName());
-        assertEquals("noed", noah.getUsername());
-        assertEquals("no@gmail.com", noah.getEmail());
-        assertTrue(noah.checkCredentials("noed", "789"));
-        lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
-        users.add(lindsay);
-        assertEquals(3, users.size());
-        assertEquals("Lindsay", lindsay.getName());
-        assertEquals("linds", lindsay.getUsername());
-        assertEquals("linds@gmail.com", lindsay.getEmail());
         assertTrue(lindsay.checkCredentials("linds", "900"));
-        Passenger finalLindsay = lindsay;
-        assertThrows(IllegalArgumentException.class, () -> finalLindsay.updateEmail("lindsay"));
+        assertThrows(IllegalArgumentException.class, () -> lindsay.updateEmail("lindsay"));
     }
 
     @Test
     public void passengerTest(){
         AirportController ac = new AirportController();
-        Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
         Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
         Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
         Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
         Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", 1, false));
         assertEquals(ac.getAirports().size(), 2);
@@ -161,7 +149,7 @@ public class UserTest {
 //        assertThrows(IllegalArgumentException.class, () -> noah.addRestaurantToSchedule("AA5678", restRecName));
 //        assertThrows(IllegalArgumentException.class, () -> noah.addShopToSchedule("AA5678", shopRecName));
 //        assertThrows(IllegalArgumentException.class, () -> noah.addRestaurantToSchedule("AA1234", "Dunkin'")); //restaurant not in terminal
-//        assertThrows(IllegalrgumentException.class, () -> noah.addShopToSchedule("AA1234", "General Store")); //shop not in terminal
+//        assertThrows(IllegalArgumentException.class, () -> noah.addShopToSchedule("AA1234", "General Store")); //shop not in terminal
 //    }
 
     @Test
