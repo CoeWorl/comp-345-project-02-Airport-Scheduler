@@ -24,6 +24,7 @@ public class UserTest {
         ArrayList<User> users = new ArrayList<>();
         Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         users.add(rebecca);
+        ac.addUser(rebecca);
         assertEquals(1, users.size());
         assertEquals("Rebecca", rebecca.getName());
         assertEquals("redson@ithaca.edu", rebecca.getEmail());
@@ -41,6 +42,7 @@ public class UserTest {
         assertEquals("Becca", rebecca.getName());
         Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
         users.add(noah);
+        ac.addUser(noah);
         assertEquals(users.size(), 2);
         assertEquals(noah.getName(), "Noah");
         assertEquals(noah.getUsername(), "noed");
@@ -49,6 +51,7 @@ public class UserTest {
         assertTrue(noah.checkCredentials("noed", "789"));
         Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
         users.add(lindsay);
+        ac.addUser(lindsay);
         assertEquals(users.size(), 3);
         assertEquals(lindsay.getName(), "Lindsay");
         assertEquals(lindsay.getUsername(), "linds");
