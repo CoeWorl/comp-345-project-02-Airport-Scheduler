@@ -1,5 +1,5 @@
 
-import com.google.gson.Gson;
+/**import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class FlightJson {
      * output- void
      * @throw IllegalArgumentException if file not found
      */
-    public void createFlights(){
+   /** public void createFlights(){
         try (FileReader reader = new FileReader(filePath)) {
             Type flightListType = new TypeToken<List<RawFlight>>() {}.getType();
             List<RawFlight> rawFlights = new Gson().fromJson(reader, flightListType);
@@ -56,5 +56,5 @@ public class FlightJson {
         }
     }
 
-}
+}*/
 
