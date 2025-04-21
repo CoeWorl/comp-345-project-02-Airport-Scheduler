@@ -94,7 +94,7 @@ public class UserTest {
         assertEquals(rebecca.getFlightPlans().size(), 2);
         rebecca.createSchedule("AA1234");
         Schedule schedule = rebecca.getSchedule("AA1234");
-        assertEquals(schedule.getAirport().getName(), "JFK");
+        assertEquals(schedule.getAirport().getName(), "John F. Kennedy International Airport");
         assertEquals(schedule.getTerminal().getName(), "Terminal 1");
         rebecca.randomSchedule("AA5678", 3);
         Schedule randSchedule = rebecca.getSchedule("AA5678");
