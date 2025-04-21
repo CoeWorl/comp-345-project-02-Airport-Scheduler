@@ -126,8 +126,8 @@ public class Terminal {
         ArrayList<POI> shops = new ArrayList<>();
         for (POI p : poi.values()) {
             if (p instanceof Business) {
-                if(p.getType().lowerCase().equals("shop")|| p.getType().lowerCase().equals("store")){
-                    shope.add(p);
+                if(((Business) p).getType().equalsIgnoreCase("shop")|| ((Business) p).getType().equalsIgnoreCase("store")){
+                    shops.add(p);
                 }
             }
         }
@@ -142,7 +142,7 @@ public class Terminal {
         ArrayList<POI> restaurants = new ArrayList<>();
         for (POI p : poi.values()) {
             if (p instanceof Business) {
-                if(p.getType().lowerCase().equals("restaurant")){
+                if(((Business) p).getType().equalsIgnoreCase("restaurant")){
                     restaurants.add(p);
                 }
             }
