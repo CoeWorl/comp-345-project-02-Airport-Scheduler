@@ -63,6 +63,8 @@ public class UserTest {
         AirportController ac = new AirportController();
         Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
         Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        ac.addAirport("JFK", jfk);
+        ac.addAirport("LAX", lax);
         Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
         Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
         Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", 1, false));
