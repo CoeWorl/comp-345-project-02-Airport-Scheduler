@@ -149,4 +149,18 @@ public class Terminal {
         }
         return restaurants;
     }
+
+    /*returns all gates in terminal
+     * input - none
+     * output - hashmap of all gates in terminal
+     */
+    public HashMap<String, POI> getGates(){
+        HashMap<String, POI> gates = new HashMap<>();
+        for (POI p : poi.values()) {
+            if (p instanceof Gate) {
+                gates.put(p.getName(), p);
+            }
+        }
+        return gates;
+    }
 }
