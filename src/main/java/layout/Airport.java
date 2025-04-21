@@ -22,6 +22,7 @@ public class Airport {
         this.uuid = UUID.randomUUID();
         this.terminals = new HashMap<>();
         this.entranceConnections = new HashMap<>();
+        AirportController.getInstance().addAirport(this);
     }
 
     @JsonCreator
@@ -34,6 +35,7 @@ public class Airport {
         this.name = name;
         this.uuid = uuid;
         this.terminals = new HashMap<>();
+        AirportController.getInstance().addAirport(this);
         for (Integer t: terminals) {
             Terminal terminal = Json.fromJsonFile("src/test/resources/" + this.code + "/" + t + ".json", Terminal.class);
             this.terminals.put(t, terminal);
