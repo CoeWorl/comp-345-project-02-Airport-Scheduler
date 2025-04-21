@@ -3,9 +3,12 @@ package layout;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class POI {
+    static HashMap<UUID,POI> POI_MAP = new HashMap<>();
     final String name;
     final UUID uuid;
     final int terminal;
@@ -19,9 +22,18 @@ public abstract class POI {
     @JsonCreator
     public POI(@JsonProperty("name") String name, @JsonProperty("uuid") UUID uuid,
                @JsonProperty("terminal") int terminal) {
-        this.name = name;
-        this.uuid = uuid;
-        this.terminal = terminal;
+        if(!POI_MAP.containsKey(uuid)) {
+            POI_MAP.put(uuid, this);
+            this.name = name;
+            this.uuid = uuid;
+            this.terminal = terminal;
+        }
+        else {
+            POI poi = POI_MAP.get(uuid);
+            this.name = poi.getName();
+            this.uuid = poi.getUuid();
+            this.terminal = poi.getTerminal();
+        }
     }
 
     @Override
@@ -38,5 +50,17 @@ public abstract class POI {
 
     public int getTerminal() {
         return terminal;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(!(o instanceof POI poi)) return false;
+        return Objects.equals(uuid, poi.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
     }
 }

@@ -97,10 +97,20 @@ public class Terminal {
         return entrances;
     }
 
+    /**
+     * Updated to search both the poi map and connections for the given UUID.
+     */
     public POI getPOI(UUID uuid) {
-        for (UUID id : poi_connections.keySet()) {
-            if (id.equals(uuid)) {
-                return this.poi.get(id);
+        // Check if the poi map contains the key.
+        if (this.poi.containsKey(uuid)) {
+            return this.poi.get(uuid);
+        }
+        // Otherwise, search through each connection's destination.
+        for (List<Connection> connectionList : poi_connections.values()) {
+            for (Connection connection : connectionList) {
+                if (connection.getDest().getUuid().equals(uuid)) {
+                    return connection.getDest();
+                }
             }
         }
         return null;
@@ -148,6 +158,72 @@ public class Terminal {
             }
         }
         return restaurants;
+    }
+
+    public LinkedList<POI> findShortestRoute(POI start, POI end) {
+        Map<POI, Integer> distances = new HashMap<>();
+        PriorityQueue<POI> queue = new PriorityQueue<>((p1, p2) -> {
+            Integer dist1 = distances.get(p1);
+            Integer dist2 = distances.get(p2);
+            return Integer.compare(dist1 != null ? dist1 : Integer.MAX_VALUE, dist2 != null ? dist2 : Integer.MAX_VALUE);
+        });
+        Map<POI, POI> predecessors = new HashMap<>();
+        Set<POI> visited = new HashSet<>();
+
+        // Initialize distances
+        for (POI poi : poi.values()) {
+            distances.put(poi, Integer.MAX_VALUE);
+        }
+        distances.put(start, 0);
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+            POI current = queue.poll();
+            if (visited.contains(current)) continue;
+            visited.add(current);
+
+            // Debug: Log current POI and distances
+            System.out.println("Visiting: " + current.getName() + ", Distance: " + distances.get(current));
+
+            // Stop if we reach the destination
+            if (current.equals(end)) break;
+
+            // Update distances to neighbors
+            List<Connection> connections = poi_connections.get(current.getUuid());
+            if (connections != null) {
+                for (Connection connection : connections) {
+                    POI neighbor = connection.getDest();
+                    if (visited.contains(neighbor)) continue;
+
+                    int newDist = distances.get(current) + connection.getWeight();
+                    if (newDist < distances.getOrDefault(neighbor, Integer.MAX_VALUE)) {
+                        distances.put(neighbor, newDist);
+                        predecessors.put(neighbor, current);
+                        queue.add(neighbor);
+
+                        // Debug: Log updated distance
+                        System.out.println("Updated distance for " + neighbor.getName() + ": " + newDist);
+                    }
+                }
+            }
+        }
+
+        // Reconstruct the shortest path
+        LinkedList<POI> path = new LinkedList<>();
+        for (POI at = end; at != null; at = predecessors.get(at)) {
+            path.addFirst(at);
+        }
+
+        // Debug: Log the reconstructed path
+        System.out.println("Reconstructed path: " + path);
+
+        // If the start is not in the path, no path exists
+        if (path.isEmpty() || !path.getFirst().equals(start)) {
+            System.out.println("No valid path found from " + start.getName() + " to " + end.getName());
+            return null;
+        }
+
+        return path;
     }
 
     /*returns all gates in terminal
