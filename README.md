@@ -20,3 +20,4 @@ UML Diagrams: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/
 
 Sprint Goal: Create a recommendation system that works with the frontend to allow passengers to add activities to their schedule in the time before the flight.
 
+Sprint Review: https://docs.google.com/document/d/18qgCdzA0Tx0_c2lfAaS_Z-oRlL55Sx0hdEEMgHFiqxU/edit?usp=sharing
