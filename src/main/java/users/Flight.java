@@ -1,3 +1,4 @@
+package users;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -72,13 +73,13 @@ public class Flight {
 
     @JsonValue
     public String toJsonKey() {
-        // Serialize the Flight object as its flightNumber when used as a key
+        // Serialize the activity.Flight object as its flightNumber when used as a key
         return flightNumber;
     }
 
     @JsonCreator
     public static Flight fromJsonKey(String flightNumber) {
-        // Deserialize the Flight object from its flightNumber
+        // Deserialize the activity.Flight object from its flightNumber
         return new Flight(flightNumber, null, null, 0, 0, null, null, null);
     }
 

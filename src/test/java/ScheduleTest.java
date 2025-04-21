@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import users.Schedule;
 import org.junit.Test;
 
 import layout.POI;
@@ -33,7 +34,7 @@ public class ScheduleTest {
         Terminal terminal = new Terminal("B", 2, null, "JFK");
         Schedule schedule = new Schedule(1744799400, airport, terminal);
         schedule.getDeptTime(); //April 16, 2025 @ 10:30:00 (UTC)
-        String expected = "Flight has already departed"; //as of April 15, 2025 @ 14:34:00 (UTC)
+        String expected = "activity.Flight has already departed"; //as of April 15, 2025 @ 14:34:00 (UTC)
         assertEquals(expected, schedule.timeUntilDeparture());
         schedule.timeToArriveAtAirport(); //April 16, 2025 @ 7:30:00 (UTC)
     }

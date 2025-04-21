@@ -1,3 +1,5 @@
+package users;
+
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -126,7 +128,7 @@ public class Schedule {
         long currentTime = System.currentTimeMillis() / 1000L; // Convert to seconds
         long secondsRemaining = deptTime - currentTime;
         if(secondsRemaining <= 0){
-            return "Flight has already departed";
+            return "activity.Flight has already departed";
         }
         long totalMinutes = secondsRemaining / 60;
         long hours = totalMinutes / 60;

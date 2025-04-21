@@ -1,0 +1,194 @@
+"C:\Program Files\Java\jdk-22\bin\java.exe" -ea --enable-preview -Didea.test.cyclic.buffer.size=1048576 "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2024.3.3\lib\idea_rt.jar=56692:C:\Program Files\JetBrains\IntelliJ IDEA 2024.3.3\bin" -javaagent:C:\Users\oscar\AppData\Local\JetBrains\IntelliJIdea2024.3\captureAgent\debugger-agent.jar -Dkotlinx.coroutines.debug.enable.creation.stack.trace=false -Ddebugger.agent.enable.coroutines=true -Dkotlinx.coroutines.debug.enable.flows.stack.trace=true -Dkotlinx.coroutines.debug.enable.mutable.state.flows.stack.trace=true -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath "C:\Program Files\JetBrains\IntelliJ IDEA 2024.3.3\lib\idea_rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2024.3.3\plugins\junit\lib\junit5-rt.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2024.3.3\plugins\junit\lib\junit-rt.jar;C:\Users\oscar\Desktop\Ithaca\Software Engineering\Airport Scheduler\target\test-classes;C:\Users\oscar\Desktop\Ithaca\Software Engineering\Airport Scheduler\target\classes;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\3.2.3\spring-boot-starter-actuator-3.2.3.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-starter\3.2.3\spring-boot-starter-3.2.3.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot\3.2.3\spring-boot-3.2.3.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.2.3\spring-boot-autoconfigure-3.2.3.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.2.3\spring-boot-starter-logging-3.2.3.jar;C:\Users\oscar\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\oscar\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\oscar\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.21.1\log4j-to-slf4j-2.21.1.jar;C:\Users\oscar\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\oscar\.m2\repository\org\slf4j\jul-to-slf4j\2.0.12\jul-to-slf4j-2.0.12.jar;C:\Users\oscar\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\oscar\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\3.2.3\spring-boot-actuator-autoconfigure-3.2.3.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-actuator\3.2.3\spring-boot-actuator-3.2.3.jar;C:\Users\oscar\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.4\jackson-datatype-jsr310-2.15.4.jar;C:\Users\oscar\.m2\repository\io\micrometer\micrometer-observation\1.12.3\micrometer-observation-1.12.3.jar;C:\Users\oscar\.m2\repository\io\micrometer\micrometer-commons\1.12.3\micrometer-commons-1.12.3.jar;C:\Users\oscar\.m2\repository\io\micrometer\micrometer-jakarta9\1.12.3\micrometer-jakarta9-1.12.3.jar;C:\Users\oscar\.m2\repository\io\micrometer\micrometer-core\1.12.3\micrometer-core-1.12.3.jar;C:\Users\oscar\.m2\repository\org\hdrhistogram\HdrHistogram\2.1.12\HdrHistogram-2.1.12.jar;C:\Users\oscar\.m2\repository\org\latencyutils\LatencyUtils\2.0.3\LatencyUtils-2.0.3.jar;C:\Users\oscar\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.4\jackson-core-2.9.4.jar;C:\Users\oscar\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.4\jackson-annotations-2.9.4.jar;C:\Users\oscar\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.4\jackson-databind-2.9.4.jar;C:\Users\oscar\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\oscar\.m2\repository\org\hamcrest\hamcrest-core\2.2\hamcrest-core-2.2.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.2.3\spring-boot-starter-web-3.2.3.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.2.3\spring-boot-starter-json-3.2.3.jar;C:\Users\oscar\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.4\jackson-datatype-jdk8-2.15.4.jar;C:\Users\oscar\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.4\jackson-module-parameter-names-2.15.4.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.2.3\spring-boot-starter-tomcat-3.2.3.jar;C:\Users\oscar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.19\tomcat-embed-core-10.1.19.jar;C:\Users\oscar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.19\tomcat-embed-el-10.1.19.jar;C:\Users\oscar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.19\tomcat-embed-websocket-10.1.19.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-web\6.1.4\spring-web-6.1.4.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-beans\6.1.4\spring-beans-6.1.4.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-webmvc\6.1.4\spring-webmvc-6.1.4.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-aop\6.1.4\spring-aop-6.1.4.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-context\6.1.4\spring-context-6.1.4.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-expression\6.1.4\spring-expression-6.1.4.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.2.3\spring-boot-starter-test-3.2.3.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-test\3.2.3\spring-boot-test-3.2.3.jar;C:\Users\oscar\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.2.3\spring-boot-test-autoconfigure-3.2.3.jar;C:\Users\oscar\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\oscar\.m2\repository\org\slf4j\slf4j-api\2.0.12\slf4j-api-2.0.12.jar;C:\Users\oscar\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.1\jakarta.xml.bind-api-4.0.1.jar;C:\Users\oscar\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.2\jakarta.activation-api-2.1.2.jar;C:\Users\oscar\.m2\repository\net\minidev\json-smart\2.5.0\json-smart-2.5.0.jar;C:\Users\oscar\.m2\repository\net\minidev\accessors-smart\2.5.0\accessors-smart-2.5.0.jar;C:\Users\oscar\.m2\repository\org\ow2\asm\asm\9.3\asm-9.3.jar;C:\Users\oscar\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\oscar\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\oscar\.m2\repository\org\awaitility\awaitility\4.2.0\awaitility-4.2.0.jar;C:\Users\oscar\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\oscar\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\oscar\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\oscar\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\oscar\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\oscar\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\oscar\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\oscar\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\oscar\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\oscar\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\oscar\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.12\byte-buddy-agent-1.14.12.jar;C:\Users\oscar\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\oscar\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;C:\Users\oscar\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\oscar\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-core\6.1.4\spring-core-6.1.4.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-jcl\6.1.4\spring-jcl-6.1.4.jar;C:\Users\oscar\.m2\repository\org\springframework\spring-test\6.1.4\spring-test-6.1.4.jar;C:\Users\oscar\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\oscar\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar" com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 LLMTest,testLLM
+[TEA, COFFEE, SODA, JUICE, ALCOHOL]
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:05.9325879Z","message":{"role":"assistant","content":"[\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:06.1499443Z","message":{"role":"assistant","content":"Pizza"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:06.3347471Z","message":{"role":"assistant","content":" "},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:06.5320452Z","message":{"role":"assistant","content":"50"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:06.7180497Z","message":{"role":"assistant","content":"%"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:06.9059579Z","message":{"role":"assistant","content":" Off"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:07.1024143Z","message":{"role":"assistant","content":"\","},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:07.2884028Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:07.4876204Z","message":{"role":"assistant","content":"Food"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:07.6859024Z","message":{"role":"assistant","content":"\","},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:07.8786038Z","message":{"role":"assistant","content":" {\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:08.0649959Z","message":{"role":"assistant","content":"name"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:08.258445Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:08.4382406Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:08.6446414Z","message":{"role":"assistant","content":"Joe"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:08.8415549Z","message":{"role":"assistant","content":" Pizza"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:09.0378761Z","message":{"role":"assistant","content":"\",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:09.236147Z","message":{"role":"assistant","content":"terminal"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:09.434952Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:09.6767939Z","message":{"role":"assistant","content":" "},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:09.8956712Z","message":{"role":"assistant","content":"1"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:10.0745301Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:10.2694371Z","message":{"role":"assistant","content":"uuid"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:10.4527479Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:10.6495297Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:10.8387071Z","message":{"role":"assistant","content":"b"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:11.0286547Z","message":{"role":"assistant","content":"624"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:11.2203452Z","message":{"role":"assistant","content":"702"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:11.4218709Z","message":{"role":"assistant","content":"e"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:11.6105034Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:11.8157716Z","message":{"role":"assistant","content":"eb"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:12.0063103Z","message":{"role":"assistant","content":"27"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:12.2101172Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:12.4036758Z","message":{"role":"assistant","content":"439"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:12.6088628Z","message":{"role":"assistant","content":"2"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:12.8125316Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:13.0098704Z","message":{"role":"assistant","content":"817"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:13.2010146Z","message":{"role":"assistant","content":"a"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:13.3860235Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:13.5673635Z","message":{"role":"assistant","content":"2"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:13.7650557Z","message":{"role":"assistant","content":"e"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:13.9542061Z","message":{"role":"assistant","content":"0"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:14.1530891Z","message":{"role":"assistant","content":"cc"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:14.3435737Z","message":{"role":"assistant","content":"01"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:14.5382756Z","message":{"role":"assistant","content":"c"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:14.734508Z","message":{"role":"assistant","content":"28"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:14.9311025Z","message":{"role":"assistant","content":"e"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:15.1145518Z","message":{"role":"assistant","content":"1"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:15.3329743Z","message":{"role":"assistant","content":"\",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:15.5246609Z","message":{"role":"assistant","content":"activity"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:15.7144332Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:15.9041333Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:16.0979169Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:16.3045856Z","message":{"role":"assistant","content":"type"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:16.5027656Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:16.688809Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:16.8759511Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:17.0667311Z","message":{"role":"assistant","content":"hours"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:17.2773036Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:17.4818388Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:17.7016986Z","message":{"role":"assistant","content":"}],\n"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:17.9078334Z","message":{"role":"assistant","content":"[\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:18.1051166Z","message":{"role":"assistant","content":"Te"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:18.3023757Z","message":{"role":"assistant","content":"a"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:18.4950257Z","message":{"role":"assistant","content":" at"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:18.6954083Z","message":{"role":"assistant","content":" Joe"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:18.8803072Z","message":{"role":"assistant","content":" Pizza"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:19.074644Z","message":{"role":"assistant","content":"\","},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:19.2762248Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:19.4769422Z","message":{"role":"assistant","content":"BE"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:19.6821007Z","message":{"role":"assistant","content":"VER"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:19.8678171Z","message":{"role":"assistant","content":"AGES"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:20.0667734Z","message":{"role":"assistant","content":"\","},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:20.26762Z","message":{"role":"assistant","content":" {\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:20.4670324Z","message":{"role":"assistant","content":"name"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:20.6518754Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:20.8494219Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:21.0479006Z","message":{"role":"assistant","content":"Joe"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:21.2340185Z","message":{"role":"assistant","content":" Pizza"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:21.433147Z","message":{"role":"assistant","content":"\",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:21.6130307Z","message":{"role":"assistant","content":"terminal"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:21.8207199Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:22.0138727Z","message":{"role":"assistant","content":" "},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:22.2173517Z","message":{"role":"assistant","content":"1"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:22.417907Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:22.6132335Z","message":{"role":"assistant","content":"uuid"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:22.8022538Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:22.9942213Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:23.1962764Z","message":{"role":"assistant","content":"b"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:23.3744298Z","message":{"role":"assistant","content":"624"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:23.5693904Z","message":{"role":"assistant","content":"702"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:23.7591135Z","message":{"role":"assistant","content":"e"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:23.9576637Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:24.1549986Z","message":{"role":"assistant","content":"eb"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:24.3387477Z","message":{"role":"assistant","content":"27"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:24.5243246Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:24.7173649Z","message":{"role":"assistant","content":"439"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:24.9050935Z","message":{"role":"assistant","content":"2"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:25.0923462Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:25.301556Z","message":{"role":"assistant","content":"817"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:25.5288592Z","message":{"role":"assistant","content":"a"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:25.73176Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:25.9256065Z","message":{"role":"assistant","content":"2"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:26.1326508Z","message":{"role":"assistant","content":"e"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:26.3281559Z","message":{"role":"assistant","content":"0"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:26.5290607Z","message":{"role":"assistant","content":"cc"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:26.7201662Z","message":{"role":"assistant","content":"01"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:26.9144728Z","message":{"role":"assistant","content":"c"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:27.1096495Z","message":{"role":"assistant","content":"28"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:27.2972225Z","message":{"role":"assistant","content":"e"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:27.4876982Z","message":{"role":"assistant","content":"1"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:27.6804665Z","message":{"role":"assistant","content":"\",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:27.8677645Z","message":{"role":"assistant","content":"activity"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:28.0698751Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:28.262923Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:28.4566006Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:28.6557612Z","message":{"role":"assistant","content":"type"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:29.1059963Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:29.2696204Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:29.4738685Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:29.6469534Z","message":{"role":"assistant","content":"hours"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:29.8186217Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:29.9827554Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:30.1541768Z","message":{"role":"assistant","content":"}],\n"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:30.3195145Z","message":{"role":"assistant","content":"[\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:30.5035062Z","message":{"role":"assistant","content":"D"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:30.677602Z","message":{"role":"assistant","content":"uty"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:30.8433962Z","message":{"role":"assistant","content":" Free"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:31.0102661Z","message":{"role":"assistant","content":" Shopping"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:31.1847473Z","message":{"role":"assistant","content":" at"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:31.359862Z","message":{"role":"assistant","content":" Geek"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:31.5301509Z","message":{"role":"assistant","content":" Duty"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:31.7047754Z","message":{"role":"assistant","content":" Free"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:31.8884303Z","message":{"role":"assistant","content":"\","},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:32.064912Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:32.2312207Z","message":{"role":"assistant","content":"Shopping"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:32.3964596Z","message":{"role":"assistant","content":"\","},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:32.5789347Z","message":{"role":"assistant","content":" {\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:32.744244Z","message":{"role":"assistant","content":"name"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:32.9074241Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:33.0753362Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:33.2396409Z","message":{"role":"assistant","content":"Ge"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:33.4151302Z","message":{"role":"assistant","content":"ek"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:33.6020537Z","message":{"role":"assistant","content":" Duty"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:33.7807408Z","message":{"role":"assistant","content":" Free"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:33.9473441Z","message":{"role":"assistant","content":"\",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:34.1167003Z","message":{"role":"assistant","content":"terminal"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:34.2846492Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:34.4581734Z","message":{"role":"assistant","content":" "},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:34.6310207Z","message":{"role":"assistant","content":"1"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:34.7978077Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:34.9641961Z","message":{"role":"assistant","content":"uuid"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:35.1323876Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:35.2957376Z","message":{"role":"assistant","content":" \""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:35.4685788Z","message":{"role":"assistant","content":"ba"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:35.6828786Z","message":{"role":"assistant","content":"05"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:35.8507551Z","message":{"role":"assistant","content":"ec"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:36.0180324Z","message":{"role":"assistant","content":"b"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:36.1864963Z","message":{"role":"assistant","content":"7"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:36.3578372Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:36.5300508Z","message":{"role":"assistant","content":"879"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:36.7018179Z","message":{"role":"assistant","content":"b"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:36.8695234Z","message":{"role":"assistant","content":"-"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:37.043444Z","message":{"role":"assistant","content":"44"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:37.2106185Z","message":{"role":"assistant","content":"dc"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:37.3747309Z","message":{"role":"assistant","content":"-b"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:37.5491456Z","message":{"role":"assistant","content":"aab"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:37.7260503Z","message":{"role":"assistant","content":"-e"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:37.9024274Z","message":{"role":"assistant","content":"476"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:38.0680066Z","message":{"role":"assistant","content":"bc"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:38.2318135Z","message":{"role":"assistant","content":"30"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:38.4009687Z","message":{"role":"assistant","content":"b"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:38.5658895Z","message":{"role":"assistant","content":"ca"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:38.7450694Z","message":{"role":"assistant","content":"0"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:38.9157181Z","message":{"role":"assistant","content":"\",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:39.0887751Z","message":{"role":"assistant","content":"activity"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:39.2542014Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:39.4244532Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:39.5957801Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:39.7679554Z","message":{"role":"assistant","content":"type"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:39.936026Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:40.1006956Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:40.2738244Z","message":{"role":"assistant","content":",\""},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:40.4447385Z","message":{"role":"assistant","content":"hours"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:40.6149332Z","message":{"role":"assistant","content":"\":"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:40.7914396Z","message":{"role":"assistant","content":" null"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:40.9696146Z","message":{"role":"assistant","content":"}]"},"done":false}
+{"model":"llama3.1:8b","created_at":"2025-04-19T21:16:41.1399236Z","message":{"role":"assistant","content":""},"done_reason":"stop","done":true,"total_duration":219066918200,"load_duration":8187789200,"prompt_eval_count":1932,"prompt_eval_duration":175660361100,"eval_count":188,"eval_duration":35208601100}
+
+[\Pizza 50% Off\ \Food\ {\name\ \Joe Pizza\terminal\ 1,\uuid\ \b624702e-eb27-4392-817a-2e0cc01c28e1\activity\ null,\type\ null,\hours\ null}],\n[\Tea at Joe Pizza\ \BEVERAGES\ {\name\ \Joe Pizza\terminal\ 1,\uuid\ \b624702e-eb27-4392-817a-2e0cc01c28e1\activity\ null,\type\ null,\hours\ null}],\n[\Duty Free Shopping at Geek Duty Free\ \Shopping\ {\name\ \Geek Duty Free\terminal\ 1,\uuid\ \ba05ecb7-879b-44dc-baab-e476bc30bca0\activity\ null,\type\ null,\hours\ null}]
+
+Process finished with exit code 0

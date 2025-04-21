@@ -1,10 +1,11 @@
+package users;
 
 import java.util.HashSet;
-import layout.Business;
 
 import layout.Business;
+
 //test comment
-public class Owner extends User{
+public class Owner extends User {
 
     private HashSet<Business> businesses;
     private HashSet<Business> restaurants;

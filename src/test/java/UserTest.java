@@ -6,13 +6,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
+import users.*;
 import layout.*;
 import org.junit.Test;
 //test
@@ -234,8 +232,11 @@ public class UserTest {
         beverage_preferences.add(User.Beverage_Preferences.JUICE);
         beverage_preferences.add(User.Beverage_Preferences.ALCOHOL);
 
-        rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
-        String filePath = "src/test/resources/rebecca.json";
+        ArrayList<User.Food_Preferences> food_preferences = new ArrayList<>();
+        food_preferences.add(User.Food_Preferences.DESSERTS);
+
+        rebecca.setPreferences(overall_preferences, food_preferences, beverage_preferences, null, null);
+        String filePath = "src/test/resources/rebeccaNoFlights.json";
         Json.toJsonFile(filePath, rebecca);
 
         Passenger deserializedRebecca = Json.fromJsonFile(filePath, Passenger.class);

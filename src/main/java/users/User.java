@@ -1,3 +1,4 @@
+package users;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -55,7 +56,7 @@ public abstract class User {
     private String email;
 
     @JsonCreator
-    /**Constructor for User
+    /**Constructor for activity.User
      * input - name, username, password, email
      * output - none
      */

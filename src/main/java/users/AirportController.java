@@ -44,7 +44,7 @@ public class AirportController {
     */
     public void addFlight(Flight flight){
         if(flights.containsKey(flight.getFlightNumber())){
-            throw new IllegalArgumentException("Flight already exists");
+            throw new IllegalArgumentException("activity.Flight already exists");
         }else{
             flights.put(flight.getFlightNumber(), flight);
         }
@@ -70,7 +70,7 @@ public class AirportController {
      */
     public void addUser(User user){
         if(users.contains(user)){
-            throw new IllegalArgumentException("User already exists");
+            throw new IllegalArgumentException("activity.User already exists");
         }else{
             users.add(user);
         }
