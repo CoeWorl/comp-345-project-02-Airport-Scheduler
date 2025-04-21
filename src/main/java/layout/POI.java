@@ -14,7 +14,6 @@ public abstract class POI {
         this.name = name;
         this.uuid = id;
         this.terminal = terminal;
-        terminal.addPOI(this);
     }
 
     @JsonCreator
