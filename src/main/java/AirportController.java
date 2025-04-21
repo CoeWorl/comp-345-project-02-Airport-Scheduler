@@ -12,7 +12,7 @@ public class AirportController {
     private HashMap<String, Airport> airports;
     private HashSet<User> users;
 
-    private AirportController(){
+    AirportController(){
         flights = new HashMap<>();
         airports = new HashMap<>();
         users = new HashSet<>();
