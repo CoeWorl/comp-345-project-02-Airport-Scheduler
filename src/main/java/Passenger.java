@@ -79,10 +79,10 @@ public class Passenger extends User{
                 Airport src = controller.getAirports().get(srcCode);
                 Airport dest = controller.getAirports().get(destCode);
                 Terminal term = src.getTerminals().get(terminal);
-                Gate gate = term.getGates().get(gate);
+                Gate gate1 = term.getGates().get(gate);
                 Long deptTimeLong = Long.parseLong(deptTime);
                 Long arrTimeLong = Long.parseLong(arrTime);
-                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate);
+                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate1);
                 flightPlans.put(flight, new Schedule(deptTimeLong, src, term));
             }else{
                 throw new IllegalArgumentException("Airport does not exiist");
@@ -225,7 +225,7 @@ public class Passenger extends User{
             Flight flight = getFlight(flightnum);
             Terminal terminal = flight.getTerminal();
             ArrayList<POI> restaurants = terminal.getRestaurants();
-            if(restaurants.size() > 0){
+            if(restaurants.isEmpty()){
                 Random rand = new Random();
                 int index = rand.nextInt(restaurants.size());
                 POI restaurant = restaurants.get(index);
@@ -250,7 +250,7 @@ public class Passenger extends User{
             Flight flight = getFlight(flightnum);
             Terminal terminal = flight.getTerminal();
             ArrayList<POI> shops = terminal.getShops();
-            if(shops.size() > 0){
+            if(shops.isEmpty()){
                 Random rand = new Random();
                 int index = rand.nextInt(shops.size());
                 POI shop = shops.get(index);
@@ -276,7 +276,7 @@ public class Passenger extends User{
             Flight flight = getFlight(flightNum);
             Terminal terminal = flight.getTerminal();
             ArrayList<POI> restaurants = terminal.getRestaurants();
-            if(restaurants.size() > 0){
+            if(!restaurants.isEmpty()){
                 Random rand = new Random();
                 int index = rand.nextInt(restaurants.size());
                 POI restaurant = restaurants.get(index);
@@ -301,7 +301,7 @@ public class Passenger extends User{
             Flight flight = getFlight(flightNum);
             Terminal terminal = flight.getTerminal();
             ArrayList<POI> shops = terminal.getShops();
-            if(shops.size() > 0){
+            if(!shops.isEmpty()){
                 Random rand = new Random();
                 int index = rand.nextInt(shops.size());
                 POI shop = shops.get(index);
