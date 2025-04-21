@@ -149,4 +149,18 @@ public class Terminal {
         }
         return restaurants;
     }
+
+    /*returns all gates in terminal
+     * input - none
+     * output - list of all gates in terminal
+     */
+    public ArrayList<POI> getGates(){
+        ArrayList<POI> gates = new ArrayList<>();
+        for (POI p : poi.values()) {
+            if (p instanceof Gate) {
+                gates.add(p);
+            }
+        }
+        return gates;
+    }
 }
