@@ -5,6 +5,8 @@ import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import layout.Airport;
+import layout.Gate;
 import layout.POI;
 import layout.Terminal;
 //test
@@ -270,8 +272,8 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if no restaurants in terminal
      */
     public String randomRestaurantRecommendation(String flightNum){
-        if(checkFlight(flightnum)){
-            Flight flight = getFlight(flightnum);
+        if(checkFlight(flightNum)){
+            Flight flight = getFlight(flightNum);
             Terminal terminal = flight.getTerminal();
             ArrayList<POI> restaurants = terminal.getRestaurants();
             if(restaurants.size() > 0){
@@ -295,8 +297,8 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if no shops in terminal
      */
     public String randomShopRecommendation(String flightNum){
-        if(checkFlight(flightnum)){
-            Flight flight = getFlight(flightnum);
+        if(checkFlight(flightNum)){
+            Flight flight = getFlight(flightNum);
             Terminal terminal = flight.getTerminal();
             ArrayList<POI> shops = terminal.getShops();
             if(shops.size() > 0){

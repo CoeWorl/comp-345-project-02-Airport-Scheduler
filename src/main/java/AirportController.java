@@ -6,7 +6,7 @@ import layout.Airport;
 //creates one instance of AirportController to manage all flights, airports, and users
 public class AirportController {
 
-    private Static AirportController instance;
+    private static AirportController instance;
 
     private HashMap<String, Flight> flights;
     private HashMap<String, Airport> airports;
