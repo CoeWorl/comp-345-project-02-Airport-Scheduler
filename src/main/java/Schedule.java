@@ -104,7 +104,7 @@ public class Schedule {
 
     public void randomSchedule(int numPOIS){
         ArrayList<POI> possPOIs = (ArrayList<POI>) terminal.getPOIs();
-        if (possPOIs.isEmpty()) {
+        if (possPOIs.isEmpty() && numPOIS > 0){ {
             throw new IllegalArgumentException("No POIs in terminal");
         }
         if (numPOIS > possPOIs.size()){
