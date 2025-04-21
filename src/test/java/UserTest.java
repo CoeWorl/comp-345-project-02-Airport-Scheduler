@@ -68,6 +68,8 @@ public class UserTest {
         Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
         Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
         Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", 1, false));
+        ac.addFlight(f1);
+        ac.addFlight(f2);
         assertEquals(ac.getAirports().size(), 2);
         assertEquals(ac.getFlights().size(), 2);
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
@@ -365,6 +367,11 @@ public class UserTest {
         Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com");
         Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
         Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        ac.addAirport("JFK", jfk);
+        ac.addAirport("LAX", lax);
+        Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
+        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
+        ac.addFlight(f1);
         rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1");
         assertEquals(rebecca.getFlightPlans().size(), 1);
         assertEquals(ac.getFlights().size(), 1);
