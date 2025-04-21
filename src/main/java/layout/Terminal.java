@@ -152,13 +152,13 @@ public class Terminal {
 
     /*returns all gates in terminal
      * input - none
-     * output - list of all gates in terminal
+     * output - hashmap of all gates in terminal
      */
-    public ArrayList<POI> getGates(){
-        ArrayList<POI> gates = new ArrayList<>();
+    public HashMap<String, POI> getGates(){
+        HashMap<String, POI> gates = new HashMap<>();
         for (POI p : poi.values()) {
             if (p instanceof Gate) {
-                gates.add(p);
+                gates.put(p.getName(), p);
             }
         }
         return gates;
