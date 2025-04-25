@@ -60,7 +60,7 @@ public class UserTest {
 //    }
 
     @Test
-    public void passengerTest(){ //inetgration test between passenger, airport controller, and schedule
+    public void passengerTest(){ //integration test between passenger, airport controller, and schedule
         AirportController ac = new AirportController();
         Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
         Airport lax = new Airport("LAX", "Los Angeles International Airport");
