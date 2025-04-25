@@ -58,8 +58,12 @@ public class Airport {
         return uuid;
     }
 
-    public Map<Integer, Terminal> getTerminals() {
+    public Map<Integer, Terminal> getTerminalsMap() {
         return new HashMap<>(terminals);
+    }
+
+    public List<Integer> getTerminals() {
+        return new ArrayList<>(terminals.keySet());
     }
 
     public Map<UUID, List<Connection>> getEntranceConnections() {

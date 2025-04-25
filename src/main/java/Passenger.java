@@ -82,7 +82,7 @@ public class Passenger extends User{
             if(controller.getAirports().containsKey(srcCode) && controller.getAirports().containsKey(destCode)){
                 Airport src = controller.getAirports().get(srcCode);
                 Airport dest = controller.getAirports().get(destCode);
-                Terminal term = src.getTerminals().get(terminal);
+                Terminal term = src.getTerminalsMap().get(terminal);
                 Gate gate1 = (Gate) term.getGates().get(gate);
                 Long deptTimeLong = Long.parseLong(deptTime);
                 Long arrTimeLong = Long.parseLong(arrTime);

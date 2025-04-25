@@ -16,7 +16,7 @@ public class AirportTest {
         assertEquals("John F. Kennedy International Airport", airport.getName());
         assertEquals("JFK", airport.getCode());
 
-        Terminal terminal1 = airport.getTerminals().get(1);
+        Terminal terminal1 = airport.getTerminalsMap().get(1);
         assertEquals(1, terminal1.getTerminalNumber());
         assertEquals("Terminal 1", terminal1.getName());
 
@@ -35,8 +35,8 @@ public class AirportTest {
     public void testInterTerminalPathFromJson() throws IOException {
         Airport airport = Json.fromJsonFile("src/test/resources/JFK/airport.json", Airport.class);
 
-        Terminal terminal1 = airport.getTerminals().get(1);
-        Terminal terminal2 = airport.getTerminals().get(2);
+        Terminal terminal1 = airport.getTerminalsMap().get(1);
+        Terminal terminal2 = airport.getTerminalsMap().get(2);
         assertNotNull("Terminal 1 should not be null", terminal1);
         assertNotNull("Terminal 2 should not be null", terminal2);
 
