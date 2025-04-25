@@ -19,9 +19,9 @@ public class Schedule {
     private final Terminal terminal;
     // Constructor
     @JsonCreator
-    public Schedule(@JsonProperty long deptTime,
-                    @JsonProperty Airport airport,
-                    @JsonProperty Terminal terminal) {
+    public Schedule(@JsonProperty("deptTime")  long deptTime,
+                    @JsonProperty("airport") Airport airport,
+                    @JsonProperty("terminal") Terminal terminal) {
         this.deptTime = deptTime; 
         this.poi = new ArrayList<POI>();
         this.airport = airport;

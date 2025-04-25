@@ -13,25 +13,25 @@
       "airport" : {
         "code" : "JFK",
         "name" : "New York Airport",
-        "uuid" : "5baaa4bc-263e-4b54-ae8e-1be5fd681e75",
+        "uuid" : "4216d9de-1464-4026-a92f-a4ce4b47d94b",
         "terminals" : { },
         "entranceConnections" : { }
       },
       "terminal" : {
         "name" : "Terminal 1",
-        "uuid" : "b266da4a-898b-4cc5-a0f5-9c347319ecf4",
+        "uuid" : "84d5d772-2d66-4ecc-8ad0-4de50de92f0f",
         "entrances" : [ {
           "name" : "A1",
           "terminal" : 1,
-          "uuid" : "a4cf1ef3-a106-4f25-950d-623a2edc7190",
+          "uuid" : "ab2fa148-1f02-4b1a-ba2d-33c35efd9db9",
           "entranceToTerminal" : false
         } ],
-        "pois" : [ ],
         "poiMap" : { },
+        "pois" : [ ],
         "terminalNumber" : 1,
         "restaurants" : [ ],
-        "gates" : { },
-        "shops" : [ ]
+        "shops" : [ ],
+        "gates" : { }
       },
       "pois" : [ ],
       "departureTime" : 1743528600
