@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 public class AirportTest {
     @Test
-    public void testAirport() throws IOException {
+    public void testAirport() throws IOException { //Unit tests
         Airport airport = Json.fromJsonFile("src/test/resources/JFK/airport.json", Airport.class);
         assertEquals("John F. Kennedy International Airport", airport.getName());
         assertEquals("JFK", airport.getCode());
@@ -32,7 +32,7 @@ public class AirportTest {
     }
 
     @Test
-    public void testInterTerminalPathFromJson() throws IOException {
+    public void testInterTerminalPathFromJson() throws IOException { //Integration tests between airport, terminal, and POI classes
         Airport airport = Json.fromJsonFile("src/test/resources/JFK/airport.json", Airport.class);
 
         Terminal terminal1 = airport.getTerminals().get(1);

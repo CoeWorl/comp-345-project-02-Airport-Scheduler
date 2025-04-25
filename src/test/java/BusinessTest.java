@@ -11,7 +11,7 @@ import layout.Terminal;
 public class BusinessTest {
 
     @Test
-    public void businessConstructorTest(){
+    public void businessConstructorTest(){ //Unit tests
         Business business = new Business("business", new Terminal("Terminal 1", 1, null, "New York Airport"), "restaurant", "9am-3pm");
         assertEquals(business.getName(), "business");
         assertEquals(business.getType(), "restaurant");

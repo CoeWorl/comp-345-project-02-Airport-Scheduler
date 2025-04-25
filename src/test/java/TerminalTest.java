@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class TerminalTest {
     @Test
-    public void testTerminal() throws IOException {
+    public void testTerminal() throws IOException { //unit tests
         //Terminal terminal = new Terminal("Terminal 1", 1, new Gate("North Entrance", 1, true), "JFK");
         Terminal terminal1;
         terminal1 = Json.fromJsonFile("src/test/resources/JFK/1.json", Terminal.class);
@@ -44,7 +44,7 @@ public class TerminalTest {
     }*/
 
     @Test
-    public void testFindShortestRoute() throws IOException {
+    public void testFindShortestRoute() throws IOException { //Integration between terminal and poi
         Terminal terminal = Json.fromJsonFile("src/test/resources/JFK/1.json", Terminal.class);
 
         // Equivalence: Direct connection

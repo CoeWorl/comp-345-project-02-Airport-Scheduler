@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class POITest {
     @Test
-    public void createPOITest() throws IOException {
+    public void createPOITest() throws IOException { //Unit tests
         POI poi1, poi2, poi3, poi4, poi5;
 
         poi1 = Json.fromJsonFile("src/test/resources/JFK/POI/Gate/aeebc26c-96cd-40a6-9055-9b2a164db481.json", Gate.class);

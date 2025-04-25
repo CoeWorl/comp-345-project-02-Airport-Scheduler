@@ -15,7 +15,7 @@ public class ScheduleTest {
     private Schedule schedule;
     private List<POI> poiList;
     @Test
-    public void addPOITest() {
+    public void addPOITest() { //Integration test between airport, terminal, schedule, and POI
         Airport airport = new Airport("JFK", "John F. Kennedy International Airport");
         Terminal terminal = new Terminal("A", 1, null, "JFK");
         schedule = new Schedule(1617225600, airport, terminal);
@@ -29,7 +29,7 @@ public class ScheduleTest {
     }
 
     @Test
-    public void timeTest(){
+    public void timeTest(){ //Integration test between schedule, airport, and terminal
         Airport airport = new Airport("JFK", "John F. Kennedy International Airport");
         Terminal terminal = new Terminal("B", 2, null, "JFK");
         Schedule schedule = new Schedule(1744799400, airport, terminal);
