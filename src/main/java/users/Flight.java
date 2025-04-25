@@ -36,7 +36,7 @@ public class Flight {
         this.status = status;
         this.terminal = terminal;
         this.gate = gate;
-        AirportController.getInstance().getFlights().put(flightNumber, this);
+        AirportController.getInstance().addFlight(this);
     }
 
     public String getFlightNumber() {
