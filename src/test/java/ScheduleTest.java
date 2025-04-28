@@ -21,11 +21,11 @@ public class ScheduleTest {
         schedule = new Schedule(1617225600, airport, terminal);
         POI poi = new Business("Starbucks", 1);
         schedule.addPOI(poi);
-        assertEquals(schedule.getPOI(0), poi);
-        assertEquals(airport, schedule.getAirport());
-        assertEquals(terminal, schedule.getTerminal());
-        assertEquals(schedule.getPOIs().size(), 1);
-        assertEquals(schedule.getDepartureTime(), 1617225600);
+        assertEquals(schedule.getPOI(0), poi); //Equivalence class: valid POI, border case: no
+        assertEquals(airport, schedule.getAirport()); //Equivalence class: valid airport, border case: no
+        assertEquals(terminal, schedule.getTerminal()); //Equivalence class: valid terminal, border case: no
+        assertEquals(schedule.getPOIs().size(), 1); 
+        assertEquals(schedule.getDepartureTime(), 1617225600); 
     }
 
     @Test

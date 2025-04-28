@@ -71,8 +71,8 @@ public class UserTest {
         Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", 1, false));
         ac.addFlight(f1);
         ac.addFlight(f2);
-        assertEquals(ac.getAirports().size(), 2);
-        assertEquals(ac.getFlights().size(), 2);
+        assertEquals(ac.getAirports().size(), 2); //Equivalence class: airports added, Border case: No
+        assertEquals(ac.getFlights().size(), 2); //Equivalence class: flights added, Border case: No
         Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
         assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23")); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23")); //Equivalence class: invalid flight, Border case: No
@@ -80,38 +80,38 @@ public class UserTest {
         assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23", 1)); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.getSchedule("ab23")); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule(rebecca.getFlight("ab23").getDeptTime(), jfk, terminal))); //Equivalence class: invalid flight, Border case: No
-        assertFalse(rebecca.checkFlight("ab23"));
+        assertFalse(rebecca.checkFlight("ab23")); //Equivalence class: invalid flight, Border case: No
         HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
-        assertTrue(flightPlans.isEmpty());
+        assertTrue(flightPlans.isEmpty()); //Equivalence class: no flights, Border case: No
         rebecca.addFlight("AA1234"); //Equivalence class: valid flight, Border case: No
-        assertEquals(rebecca.getFlightPlans().size(), 1);
+        assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight added, Border case: No
         rebecca.removeFlight("AA1234");
-        assertFalse(rebecca.checkFlight("AA1234"));
+        assertFalse(rebecca.checkFlight("AA1234")); //Equivalence class: flight removed, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("AA1234")); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("AA1234")); //Equivalence class: invalid flight, Border case: No
-        assertTrue(rebecca.getFlightPlans().isEmpty());
+        assertTrue(rebecca.getFlightPlans().isEmpty()); //Equivalence class: no flights, Border case: No
         rebecca.addFlight("AA5678");
         rebecca.addFlight("AA1234");
-        assertEquals(rebecca.getFlightPlans().size(), 2);
+        assertEquals(rebecca.getFlightPlans().size(), 2); //Equivalence class: flights added, Border case: No
         rebecca.createSchedule("AA1234");
         Schedule schedule = rebecca.getSchedule("AA1234");
-        assertEquals(schedule.getAirport().getName(), "John F. Kennedy International Airport");
+        assertEquals(schedule.getAirport().getName(), "John F. Kennedy International Airport"); //Equivalence Class: valid schedule, Border case: no
         assertEquals(schedule.getTerminal().getName(), "Terminal 1");
         rebecca.randomSchedule("AA5678", 0);
         Schedule randSchedule = rebecca.getSchedule("AA5678");
-        assertEquals(randSchedule.getAirport().getName(), "Los Angeles International Airport");
+        assertEquals(randSchedule.getAirport().getName(), "Los Angeles International Airport"); //Equivalence Class: random schedule, Border case: no
         assertEquals(randSchedule.getTerminal().getName(), "Terminal 1");
         Flight flight = rebecca.getFlight("AA1234");
         Schedule newSched =  new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
         rebecca.updateSchedule("AA1234", newSched);
         Schedule updatedSched = rebecca.getSchedule("AA1234");
-        assertEquals(newSched, updatedSched);
+        assertEquals(newSched, updatedSched); //Equivalence Class: schedule updated, Border case: no
         assertEquals(updatedSched.getAirport().getName(), "John F. Kennedy International Airport");
         assertEquals(updatedSched.getTerminal().getName(), "Terminal 1");
         rebecca.removeFlight("AA1234");
-        assertEquals(rebecca.getFlightPlans().size(), 1);
+        assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight removed, Border case: No
         rebecca.removeFlight("AA5678");
-        assertTrue(rebecca.getFlightPlans().isEmpty());
+        assertTrue(rebecca.getFlightPlans().isEmpty()); //Equivalence class: no flights, Border case: No
     }
 
 //    @Test
@@ -174,7 +174,7 @@ public class UserTest {
 
         rebecca.setPreferences(overall_preferences, null, beverage_preferences, null, null);
         assertEquals(4, rebecca.getOverall_preferences().size());
-        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.BEVERAGES));
+        assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.BEVERAGES)); //Equivalence class: valid preferences, Border case: No
         assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.FOOD));
         assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.RECREATION));
         assertTrue(rebecca.getOverall_preferences().contains(User.Overall_Preferences.SHOPPING));
@@ -197,7 +197,7 @@ public class UserTest {
 
         assertThrows(IllegalArgumentException.class, () ->
                 rebecca.setPreferences(invalidOverallPreferences, null, null, null, null)
-        );
+        ); // Equivalence class: invalid overall preferences size, Border case: No
 
         // Invalid food preferences size
         ArrayList<User.Overall_Preferences> validOverallPreferences = new ArrayList<>();
@@ -211,7 +211,7 @@ public class UserTest {
 
         assertThrows(IllegalArgumentException.class, () ->
                 rebecca.setPreferences(validOverallPreferences, invalidFoodPreferences, null, null, null)
-        );
+        ); 
     }
 
     @Test
@@ -258,79 +258,79 @@ public class UserTest {
 //        ac.addFlight(f1);
 //        ac.addFlight(f2);
 //        Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
-//        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23"));
-//        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23"));
-//        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23"));
-//        assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23"));
-//        assertThrows(IllegalArgumentException.class, () -> rebecca.getSchedule("ab23"));
-//        assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule(rebecca.getFlight("ab23").getDeptTime(), new ArrayList<POI>())));
-//        assertFalse(rebecca.checkFlight("ab23"));
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23")); //Equivalence class: invalid flight, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23")); //Equivalence class: flight not in plans, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23")); //Equivalence class: invalid flight, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23")); //Equivalence class: invalid flight, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.getSchedule("ab23")); //Equivalence class: invalid flight, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.updateSchedule("ab23", new Schedule(rebecca.getFlight("ab23").getDeptTime(), new ArrayList<POI>()))); //Equivalence class: invalid flight, Border case: No
+//        assertFalse(rebecca.checkFlight("ab23")); //Equivalence class: flight not in plans, Border case: No
 //        HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
-//        assertTrue(flightPlans.isEmpty());
+//        assertTrue(flightPlans.isEmpty()); //Equivalence class: no flights, Border case: No
 //        rebecca.addFlight("AA1234");
-//        assertEquals(rebecca.getFlightPlans().size(), 1);
+//        assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight added, Border case: No
 //        rebecca.removeFlight("AA1234");
-//        assertFalse(rebecca.checkFlight("AA1234"));
-//        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("AA1234"));
-//        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("AA1234"));
-//        assertTrue(rebecca.getFlightPlans().isEmpty());
+//        assertFalse(rebecca.checkFlight("AA1234")); //Equivalence class: flight removed, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("AA1234")); //Equivalence class: flight not in plans, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("AA1234")); //Equivalence class: flight not in plans, Border case: No
+//        assertTrue(rebecca.getFlightPlans().isEmpty()); //Equivalence class: no flights, Border case: No
 //        rebecca.addFlight("AA5678");
 //        rebecca.addFlight("AA1234");
-//        assertEquals(rebecca.getFlightPlans().size(), 2);
+//        assertEquals(rebecca.getFlightPlans().size(), 2); //Equivalence class: flights added, Border case: No
 //        rebecca.createSchedule("AA1234");
 //        Schedule schedule = rebecca.getSchedule("AA1234");
-//        assertEquals(schedule.getAirport().getName(), "JFK");
+//        assertEquals(schedule.getAirport().getName(), "John F. Kennedy International Airport"); //Equivalence Class: valid schedule, Border case: no
 //        assertEquals(schedule.getTerminal().getName(), "Terminal 1");
 //        rebecca.randomSchedule("AA5678", 3);
 //        Schedule randSchedule = rebecca.getSchedule("AA5678");
-//        assertEquals(randSchedule.getAirport().getName(), "LAX");
+//        assertEquals(randSchedule.getAirport().getName(), "Los Angeles International Airport"); //Equivalence Class: random schedule, Border case: no
 //        assertEquals(randSchedule.getTerminal().getName(), "Terminal 2");
 //        Flight flight = rebecca.getFlight("AA1234");
 //        Schedule newSched =  new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
 //        rebecca.updateSchedule("AA1234", newSched);
 //        Schedule updatedSched = rebecca.getSchedule("AA1234");
-//        assertEquals(newSched, updatedSched);
-//        assertEquals(updatedSched.getAirport().getName(), "JFK");
+//        assertEquals(newSched, updatedSched); //Equivalence Class: schedule updated, Border case: no
+//        assertEquals(updatedSched.getAirport().getName(), "John F. Kennedy International Airport");
 //        assertEquals(updatedSched.getTerminal().getName(), "Terminal 1");
 //        rebecca.removeFlight("AA1234");
-//        assertEquals(rebecca.getFlightPlans().size(), 1);
+//        assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight removed, Border case: No
 //        rebecca.removeFlight("AA5678");
-//        assertTrue(rebecca.getFlightPlans().isEmpty());
+//        assertTrue(rebecca.getFlightPlans().isEmpty()); //Equivalence class: no flights, Border case: No
 //    }
 //
 //    @Test
 //    public void ownerTest(){
 //        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
 //        HashSet<Business> businesses = noah.getBusinesses();
-//        assertTrue(businesses.isEmpty());
+//        assertTrue(businesses.isEmpty()); //Equivalence class: no businesses, Border case: No
 //        Business business = new Business("restaurant", new Terminal("terminal 1"), "restaurant", "9am-3pm");
-//        assertThrows(IllegalArgumentException.class, () -> noah.removeBusiness(business));
-//        assertFalse(noah.checkBusiness(business));
+//        assertThrows(IllegalArgumentException.class, () -> noah.removeBusiness(business)); //Equivalence class: business not in list, Border case: No
+//        assertFalse(noah.checkBusiness(business));    //Equivalence class: business not in list, Border case: No
 //        noah.addBusiness(business);
-//        assertTrue(noah.checkBusiness(business));
-//        assertEquals(noah.getBusinesses().size(), 1);
-//        assertEquals(noah.getRestaurants().size(), 1);
-//        assertTrue(noah.getShops().isEmpty());
+//        assertTrue(noah.checkBusiness(business));    //Equivalence class: business in list, Border case: No
+//        assertEquals(noah.getBusinesses().size(), 1); //Equivalence class: business added, Border case: No
+//        assertEquals(noah.getRestaurants().size(), 1); //Equivalence class: restaurant added, Border case: No
+//        assertTrue(noah.getShops().isEmpty());  //Equivalence class: no shops, Border case: No
 //        Business business2 = new Business("shop", new Terminal("terminal 1"), "shop", "9am-6pm");
-//        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "sale", "sale"));
+//        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "sale", "sale")); //Equivalence class: business not in list, Border case: No
 //        noah.addBusiness(business2);
-//        assertEquals(noah.getBusinesses().size(), 2);
-//        assertEquals(noah.getShops().size(), 1);
-//        assertThrows(IllegalArgumentException.class, () -> noah.addBusiness(business));
-//        noah.addActivity(business2, "sale", "sale");
-//        assertTrue(business2.hasActivity());
-//        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "super sale", "sale"));
+//        assertEquals(noah.getBusinesses().size(), 2); //Equivalence class: business added, Border case: No
+//        assertEquals(noah.getShops().size(), 1); //Equivalence class: shop added, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> noah.addBusiness(business)); //Equivalence class: business already in list, Border case: No
+//        noah.addActivity(business2, "sale", "sale"); 
+//        assertTrue(business2.hasActivity()); //Equivalence class: activity added, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "super sale", "sale")); //Equivalence class: business already has activity, Border case: No
 //        noah.removeActivity(business2);
-//        assertFalse(business2.hasActivity());
-//        assertThrows(IllegalArgumentException.class, () -> noah.removeActivity(business));
+//        assertFalse(business2.hasActivity()); //Equivalence class: activity removed, Border case: No
+//        assertThrows(IllegalArgumentException.class, () -> noah.removeActivity(business));    //Equivalence class: business has no activity, Border case: No
 //        noah.removeBusiness(business);
-//        assertEquals(noah.getBusinesses().size(), 1);
-//        assertTrue(noah.getRestaurants().isEmpty());
-//        assertEquals(noah.getShops().size(), 1);
+//        assertEquals(noah.getBusinesses().size(), 1); //Equivalence class: business removed, Border case: No
+//        assertTrue(noah.getRestaurants().isEmpty()); //Equivalence class: no restaurants, Border case: No
+//        assertEquals(noah.getShops().size(), 1); //Equivalence class: shop not removed, Border case: No
 //        noah.removeBusiness(business2);
-//        assertTrue(noah.getBusinesses().isEmpty());
-//        assertTrue(noah.getShops().isEmpty());
-//        assertTrue(noah.getRestaurants().isEmpty());
+//        assertTrue(noah.getBusinesses().isEmpty()); //Equivalence class: no businesses, Border case: No
+//        assertTrue(noah.getShops().isEmpty()); //Equivalence class: no shops, Border case: No
+//        assertTrue(noah.getRestaurants().isEmpty()); //Equivalence class: no restaurants, Border case: No
 //    }
 
     @Test
@@ -377,9 +377,9 @@ public class UserTest {
         Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
         ac.addFlight(f1);
         rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1"); //Equivalence class: valid flight, Border case: No
-        assertEquals(rebecca.getFlightPlans().size(), 1);
-        assertEquals(ac.getFlights().size(), 1);
-        assertEquals(ac.getAirports().size(), 2);
+        assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight added, Border case: No
+        assertEquals(ac.getFlights().size(), 1); //Equivalence class: flight added, Border case: No
+        assertEquals(ac.getAirports().size(), 2); //Equivalence class: airports added, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1"));//Equivalence class: flight already exists, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA4567", "ELM", "ORL", "8:00", "10:30", "Terminal 1", "Gate A2"));//Equivalence class: invalid airport, Border case: No
     }
