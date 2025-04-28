@@ -17,7 +17,7 @@ public class Passenger extends User{
     private AirportController controller;
 
     public Passenger(String name, String username, String password, String email, AirportController controller) {
-        super(name, username, password, email, controller);
+        super(name, username, password, email);
         this.controller = controller;
         flightPlans = new HashMap<>();
     }
