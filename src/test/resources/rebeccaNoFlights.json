@@ -12,26 +12,112 @@
     "AA1234" : {
       "airport" : {
         "code" : "JFK",
-        "name" : "New York Airport",
-        "uuid" : "a94dd119-9a8a-4b8c-8f4e-fe7b9e9828f2",
-        "terminals" : [ ],
-        "entranceConnections" : { },
-        "terminalsMap" : { }
-      },
-      "terminal" : {
-        "name" : "Terminal 1",
-        "uuid" : "085015fc-7c87-4f14-95b8-c7f62839fd91",
-        "entrances" : [ "aeb31ea1-4189-4b9f-9825-d01ffc6c58b0" ],
-        "airport" : "JFK",
-        "terminalNumber" : 1,
-        "poiMap" : { },
-        "pois" : [ ],
-        "restaurants" : [ ],
-        "gates" : { },
-        "shops" : [ ]
-      },
-      "departureTime" : 1743528600,
-      "pois" : [ ]
-    }
-  }
-}
+        "name" : "John F. Kennedy International Airport",
+        "uuid" : null,
+        "terminals" : [ 1, 2 ],
+        "entranceConnections" : {
+          "aa189ff2-5a5b-481f-9fb8-1937333e0dc9" : [ {
+            "weight" : 15,
+            "dest" : "aeebc26c-96cd-40a6-9055-9b2a164db481"
+          } ],
+          "aeebc26c-96cd-40a6-9055-9b2a164db481" : [ {
+            "weight" : 15,
+            "dest" : "aa189ff2-5a5b-481f-9fb8-1937333e0dc9"
+          } ]
+        },
+        "terminalsMap" : {
+          "1" : {
+            "name" : "Terminal 1",
+            "uuid" : "efc59d7c-849b-446f-adb1-0702682237c3",
+            "entrances" : [ "aeebc26c-96cd-40a6-9055-9b2a164db481" ],
+            "airport" : "JFK",
+            "pois" : [ {
+              "name" : "Joe Pizza",
+              "terminal" : 1,
+              "uuid" : "b624702e-eb27-4392-817a-2e0cc01c28e1",
+              "activity" : null,
+              "type" : null,
+              "hours" : null
+            }, {
+              "name" : "Geek Duty Free",
+              "terminal" : 1,
+              "uuid" : "ba05ecb7-879b-44dc-baab-e476bc30bca0",
+              "activity" : null,
+              "type" : null,
+              "hours" : null
+            }, "acace207-152a-4042-85f6-b43234da2417", {
+              "terminal" : 1,
+              "uuid" : "cdd47120-b971-41bd-8baa-b7c861377d11",
+              "name" : "Restroom"
+            }, "aeebc26c-96cd-40a6-9055-9b2a164db481" ],
+            "poiMap" : {
+              "ba05ecb7-879b-44dc-baab-e476bc30bca0" : [ {
+                "weight" : 7,
+                "dest" : "aeebc26c-96cd-40a6-9055-9b2a164db481"
+              }, {
+                "weight" : 2,
+                "dest" : "acace207-152a-4042-85f6-b43234da2417"
+              }, {
+                "weight" : 1,
+                "dest" : {
+                  "terminal" : 1,
+                  "uuid" : "cdd47120-b971-41bd-8baa-b7c861377d11",
+                  "name" : "Restroom"
+                }
+              } ],
+              "acace207-152a-4042-85f6-b43234da2417" : [ {
+                "weight" : 5,
+                "dest" : {
+                  "name" : "Joe Pizza",
+                  "terminal" : 1,
+                  "uuid" : "b624702e-eb27-4392-817a-2e0cc01c28e1",
+                  "activity" : null,
+                  "type" : null,
+                  "hours" : null
+                }
+              } ],
+              "b624702e-eb27-4392-817a-2e0cc01c28e1" : [ {
+                "weight" : 5,
+                "dest" : "aeebc26c-96cd-40a6-9055-9b2a164db481"
+              }, {
+                "weight" : 5,
+                "dest" : "acace207-152a-4042-85f6-b43234da2417"
+              } ],
+              "cdd47120-b971-41bd-8baa-b7c861377d11" : [ {
+                "weight" : 1,
+                "dest" : {
+                  "name" : "Geek Duty Free",
+                  "terminal" : 1,
+                  "uuid" : "ba05ecb7-879b-44dc-baab-e476bc30bca0",
+                  "activity" : null,
+                  "type" : null,
+                  "hours" : null
+                }
+              } ],
+              "aeebc26c-96cd-40a6-9055-9b2a164db481" : [ {
+                "weight" : 5,
+                "dest" : {
+                  "name" : "Joe Pizza",
+                  "terminal" : 1,
+                  "uuid" : "b624702e-eb27-4392-817a-2e0cc01c28e1",
+                  "activity" : null,
+                  "type" : null,
+                  "hours" : null
+                }
+              }, {
+                "weight" : 7,
+                "dest" : {
+                  "name" : "Geek Duty Free",
+                  "terminal" : 1,
+                  "uuid" : "ba05ecb7-879b-44dc-baab-e476bc30bca0",
+                  "activity" : null,
+                  "type" : null,
+                  "hours" : null
+                }
+              } ]
+            },
+            "terminalNumber" : 1,
+            "gates" : {
+              "Gate A1" : "acace207-152a-4042-85f6-b43234da2417",
+              "South Entrance" : "aeebc26c-96cd-40a6-9055-9b2a164db481"
+            }
