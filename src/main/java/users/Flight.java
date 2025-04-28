@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import layout.Airport;
 import layout.Gate;
 import layout.Terminal;
+import users.AirportController;
 
 import java.util.Objects;
 //test
@@ -36,7 +37,6 @@ public class Flight {
         this.status = status;
         this.terminal = terminal;
         this.gate = gate;
-        AirportController.getInstance().getFlights().put(flightNumber, this);
     }
 
     public String getFlightNumber() {
