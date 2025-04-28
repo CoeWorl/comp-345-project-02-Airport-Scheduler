@@ -20,7 +20,7 @@ public class UserTest {
      public void userConstructorTest() { //Integration test between user and airport controller
         AirportController ac = new AirportController();
         ArrayList<User> users = new ArrayList<>();
-        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu", ac);
         users.add(rebecca);
         ac.addUser(rebecca);
         assertEquals(1, users.size()); //Equivalence class: user added, Border case: No
@@ -38,7 +38,7 @@ public class UserTest {
         assertEquals("rje158", rebecca.getUsername()); //Equivalence class: username updated, Border case: No
         rebecca.updateName("Becca");
         assertEquals("Becca", rebecca.getName()); //Equivalence class: name updated, Border case: No
-        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
+        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com", ac);
         users.add(noah);
         ac.addUser(noah);
         assertEquals(users.size(), 2); //Equivalence class: user added, Border case: No
@@ -47,7 +47,7 @@ public class UserTest {
         assertEquals(noah.getEmail(), "no@gmail.com");
         assertTrue(ac.getUsers().contains(noah));
         assertTrue(noah.checkCredentials("noed", "789"));
-        Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
+        Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com", ac);
         users.add(lindsay);
         ac.addUser(lindsay);
         assertEquals(users.size(), 3); //Equivalence class: user added, Border case: No
@@ -64,8 +64,8 @@ public class UserTest {
         AirportController ac = new AirportController();
         Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
         Airport lax = new Airport("LAX", "Los Angeles International Airport");
-        ac.addAirport(jfk);
-        ac.addAirport(lax);
+        ac.addAirport("JFK",jfk);
+        ac.addAirport("LAX", lax);
         Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
         Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
         Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", 1, false));
@@ -73,7 +73,7 @@ public class UserTest {
         ac.addFlight(f2);
         assertEquals(ac.getAirports().size(), 2); //Equivalence class: airports added, Border case: No
         assertEquals(ac.getFlights().size(), 2); //Equivalence class: flights added, Border case: No
-        Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
+        Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu", ac);
         assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23")); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23")); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23")); //Equivalence class: invalid flight, Border case: No
@@ -117,11 +117,11 @@ public class UserTest {
 //    @Test
 //    public void updateScheduleTest(){
 //        AirportController ac = new AirportController();
-//        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com");
+//        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com", ac);
 //        Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
 //        Airport lax = new Airport("LAX", "Los Angeles International Airport");
-//        ac.addAirport(jfk);
-//        ac.addAirport(lax);
+//        ac.addAirport("JFK", jfk);
+//        ac.addAirport("LAX", lax);
 //        FlightJson flightJson = new FlightJson("src/test/resources/testFlights.json");
 //        flightJson.createFlights();
 //        rebecca.addFlight("AA1234");
@@ -139,7 +139,7 @@ public class UserTest {
 //        assertTrue(rebecca.getSchedule("AA1234").getShops().contains(bus3) | rebecca.getSchedule("AA1234").getShops().contains(bus4));
 //        rebecca.addRandomPOI("AA1234");
 //        assertEquals(rebecca.getSchedule("AA1234").getPOIs().size(), 3);
-//        Passenger noah = new Passenger("Noah", "noed", "123", "noed@gmail.com");
+//        Passenger noah = new Passenger("Noah", "noed", "123", "noed@gmail.com", ac);
 //        noah.addFlight("AA1234");
 //        String restaurantRec = noah.randomRestaurantRecommendation("AA1234");
 //        String restRecName = restaurantRec.split[": "][1];
@@ -161,7 +161,8 @@ public class UserTest {
 
     @Test
     public void userPreferencesTest(){ //Unit tests
-        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+        AirportController ac = new AirportController();
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu", ac);
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
         overall_preferences.add(User.Overall_Preferences.BEVERAGES);
         overall_preferences.add(User.Overall_Preferences.FOOD);
@@ -191,7 +192,8 @@ public class UserTest {
 
     @Test
     public void userSetPreferencesInvalidTest() { //Unit tests
-        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
+        AirportController ac = new AirportController();
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu", ac);
 
         // Invalid overall preferences size
         ArrayList<User.Overall_Preferences> invalidOverallPreferences = new ArrayList<>();
@@ -218,8 +220,8 @@ public class UserTest {
 
     @Test
     public void testUserSerialization() throws IOException { //Unit tests
-        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         AirportController airportController = new AirportController();
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu", airportController);
         airportController.addFlight(new Flight("AA1234", new Airport("JFK", "New York Airport"), new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK"), new Gate("A1", 1, false)));
         rebecca.addFlight("AA1234");
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
@@ -251,8 +253,9 @@ public class UserTest {
 
 
     @Test
-    public void ownerTest(){
-        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
+    public void ownerTest(){//Integration test between owner, business, and activity classes
+        AirportController ac = new AirportController();
+        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com", ac);
         HashSet<Business> businesses = noah.getBusinesses();
         assertTrue(businesses.isEmpty()); //Equivalence class: no businesses, Border case: No
         Business business = new Business("restaurant", new Terminal("terminal 1"), "restaurant", "9am-3pm");
@@ -320,7 +323,7 @@ public class UserTest {
     @Test
     public void addFlightManualTest(){ //integration tests between contoller and passenger
         AirportController ac = new AirportController();
-        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com");
+        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com", ac);
         Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
         Airport lax = new Airport("LAX", "Los Angeles International Airport");
         ac.addAirport("JFK", jfk);
