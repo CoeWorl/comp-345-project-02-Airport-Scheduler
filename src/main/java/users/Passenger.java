@@ -14,9 +14,11 @@ import layout.Terminal;
 public class Passenger extends User{
 
     private HashMap<Flight, Schedule> flightPlans;
+    private AirportController controller;
 
     public Passenger(String name, String username, String password, String email, AirportController controller) {
         super(name, username, password, email, controller);
+        this.controller = controller;
         flightPlans = new HashMap<>();
     }
 
