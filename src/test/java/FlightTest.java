@@ -27,11 +27,13 @@ public class FlightTest {
         AirportConroller ac = new AirportController();
         Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
         Airport lax = new Airport("LAX", "Los Angeles International Airport");
+        ac.addAirport(jfk);
+        ac.addAirport(lax);
         assertEquals(AirportContoller.getIntance().getAirports().size(), 2); //Equivalence class: airports added, border case: no
-        FlightJson flightJson = new FlightJson("/src/test/resources/flight.json");
+        FlightJson flightJson = new FlightJson("/src/test/resources/flight.json", ac);
         flightJson.createFlights();
-        assertEquals(AirportController.getInstance().getFlights().size(), 3); //Equivalence class: flights added, border case: no
-        Flight flight = AirportController.getInstance().getFlights().get("AA1234");
+        assertEquals(ac.getFlights().size(), 3); //Equivalence class: flights added, border case: no
+        Flight flight = ac.getFlights().get("AA1234");
         assertEquals(flight.getSrc(), jfk); //Equivalence class: valid source airport, border case: no
         assertEquals(flight.getDest(), lax); //Equivalence class: valid destination airport, border case: no
     }*/

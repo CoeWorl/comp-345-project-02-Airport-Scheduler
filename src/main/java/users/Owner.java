@@ -11,8 +11,8 @@ public class Owner extends User {
     private HashSet<Business> restaurants;
     private HashSet<Business> shops;
 
-    public Owner(String name, String username, String password, String email){
-        super(name, username, password, email);
+    public Owner(String name, String username, String password, String email, AirportController controller){
+        super(name, username, password, email, controller);
         businesses = new HashSet<>();
         restaurants = new HashSet<>();
         shops = new HashSet<>();

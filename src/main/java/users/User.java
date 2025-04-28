@@ -54,6 +54,7 @@ public abstract class User {
     private String username;
     private String password;
     private String email;
+    private AirportController controller;
 
     @JsonCreator
     /**Constructor for activity.User
@@ -84,13 +85,13 @@ public abstract class User {
         this.recreation_preferences = recreation_preferences;
     }
 
-    public User(String name, String username, String password, String email){
+    public User(String name, String username, String password, String email, AirportController controller){
         this.name = name;
         this.username = username;
         this.password = password;
         if(validEmail(email)){
             this.email = email;
-            AirportController.getInstance().addUser(this);
+            this.controller = controller;
         }else{
             throw new IllegalArgumentException("Invalid email");
         }

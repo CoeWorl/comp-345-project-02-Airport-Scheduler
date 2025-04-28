@@ -18,8 +18,8 @@ public class Passenger extends User{
 
     private HashMap<Flight, Schedule> flightPlans;
 
-    public Passenger(String name, String username, String password, String email){
-        super(name, username, password, email);
+    public Passenger(String name, String username, String password, String email, AirportController controller) {
+        super(name, username, password, email, controller);
         flightPlans = new HashMap<>();
     }
 
@@ -53,7 +53,7 @@ public class Passenger extends User{
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
         }else{
-            HashMap<String, Flight> flights = AirportController.getInstance().getFlights();
+            HashMap<String, Flight> flights = controller.getFlights();
             if(flights.containsKey(flightNum)){
                 Flight flight = flights.get(flightNum);
                 flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
@@ -72,7 +72,6 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if src or dest airport not in system
      */
     public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, String terminal, String gate){
-        AirportController controller = AirportController.getInstance();
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
         }else if(controller.getFlights().containsKey(flightNum)){

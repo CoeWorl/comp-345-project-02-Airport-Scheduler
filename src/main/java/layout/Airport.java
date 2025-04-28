@@ -20,7 +20,6 @@ public class Airport {
         this.uuid = UUID.randomUUID();
         this.terminals = new HashMap<>();
         this.entranceConnections = new HashMap<>();
-        AirportController.getInstance().addAirport(code, this);
     }
 
     @JsonCreator
