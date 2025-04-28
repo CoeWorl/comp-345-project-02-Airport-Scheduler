@@ -34,7 +34,7 @@ public class Passenger extends User{
             @JsonProperty("shopping_preferences") ArrayList<Shopping_Preferences> shoppingPreferences,
             @JsonProperty("recreation_preferences") ArrayList<Recreation_Preferences> recreationPreferences
     ) {
-        super(name, username, password, email, controller, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
+        super(name, username, password, email, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
     }
 
     public HashMap<Flight, Schedule> getFlightPlans(){
