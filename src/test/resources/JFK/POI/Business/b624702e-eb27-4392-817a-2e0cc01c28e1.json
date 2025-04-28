@@ -2,5 +2,7 @@
   "uuid" : "b624702e-eb27-4392-817a-2e0cc01c28e1",
   "name" : "Joe Pizza",
   "terminal" : 1,
-  "activities": ["ec3c5e8d-da73-46b3-bf7c-de20d87f810b"]
+  "activities": ["ec3c5e8d-da73-46b3-bf7c-de20d87f810b"],
+  "type" : "store",
+  "hours" : "9 am to 5 pm"
 }

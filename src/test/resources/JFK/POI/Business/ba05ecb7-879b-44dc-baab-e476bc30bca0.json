@@ -1,5 +1,7 @@
 {
   "uuid" : "ba05ecb7-879b-44dc-baab-e476bc30bca0",
   "name" : "Geek Duty Free",
-  "terminal" : 1
+  "terminal" : 1,
+  "type" : "store",
+  "hours" : "12 pm to 10:30 pm"
 }
