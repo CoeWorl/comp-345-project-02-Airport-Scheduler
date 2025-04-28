@@ -50,11 +50,11 @@ public abstract class User {
     private ArrayList<Beverage_Preferences> beverage_preferences;
     private ArrayList<Shopping_Preferences> shopping_preferences;
     private ArrayList<Recreation_Preferences> recreation_preferences;
-    private String name;
-    private String username;
-    private String password;
-    private String email;
-    private AirportController controller;
+    protected String name;
+    protected String username;
+    protected String password;
+    protected String email;
+    protected AirportController controller;
 
     @JsonCreator
     /**Constructor for activity.User

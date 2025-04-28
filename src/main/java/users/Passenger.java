@@ -9,9 +9,6 @@ import layout.Airport;
 import layout.Gate;
 import layout.POI;
 import layout.Terminal;
-import users.AirportController;
-import users.Flight;
-import users.*;
 
 //test
 public class Passenger extends User{
@@ -35,7 +32,7 @@ public class Passenger extends User{
             @JsonProperty("shopping_preferences") ArrayList<Shopping_Preferences> shoppingPreferences,
             @JsonProperty("recreation_preferences") ArrayList<Recreation_Preferences> recreationPreferences
     ) {
-        super(name, username, password, email, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
+        super(name, username, password, email, controller, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
     }
 
     public HashMap<Flight, Schedule> getFlightPlans(){
