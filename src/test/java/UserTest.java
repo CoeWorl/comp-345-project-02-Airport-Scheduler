@@ -38,7 +38,7 @@ public class UserTest {
         assertEquals("rje158", rebecca.getUsername()); //Equivalence class: username updated, Border case: No
         rebecca.updateName("Becca");
         assertEquals("Becca", rebecca.getName()); //Equivalence class: name updated, Border case: No
-        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com", ac);
+        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
         users.add(noah);
         ac.addUser(noah);
         assertEquals(users.size(), 2); //Equivalence class: user added, Border case: No
@@ -254,8 +254,7 @@ public class UserTest {
 
     @Test
     public void ownerTest(){//Integration test between owner, business, and activity classes
-        AirportController ac = new AirportController();
-        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com", ac);
+        Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
         HashSet<Business> businesses = noah.getBusinesses();
         assertTrue(businesses.isEmpty()); //Equivalence class: no businesses, Border case: No
         Business business = new Business("restaurant", new Terminal("terminal 1"), "restaurant", "9am-3pm");
