@@ -257,8 +257,9 @@ public class UserTest {
     public void ownerTest(){//Integration test between owner, business, and activity classes
         Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
         HashSet<Business> businesses = noah.getBusinesses();
+        Airport JFK = new Airport("JFK", "John F. Kennedy International Airport");
         assertTrue(businesses.isEmpty()); //Equivalence class: no businesses, Border case: No
-        Business business = new Business("restaurant", new Terminal("Terminal 1", 1, new Gate("A1", 1, false)), "restaurant", "9am-3pm");
+        Business business = new Business("restaurant", new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK"), "restaurant", "9am-3pm");
         assertThrows(IllegalArgumentException.class, () -> noah.removeBusiness(business)); //Equivalence class: business not in list, Border case: No
         assertFalse(noah.checkBusiness(business));    //Equivalence class: business not in list, Border case: No
         noah.addBusiness(business);
@@ -266,7 +267,7 @@ public class UserTest {
         assertEquals(noah.getBusinesses().size(), 1); //Equivalence class: business added, Border case: No
         assertEquals(noah.getRestaurants().size(), 1); //Equivalence class: restaurant added, Border case: No
         assertTrue(noah.getShops().isEmpty());  //Equivalence class: no shops, Border case: No
-        Business business2 = new Business("shop", new Terminal("Terminal 1", 1, new Gate("A1", 1, false)), "shop", "9am-6pm");
+        Business business2 = new Business("shop", new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK"), "shop", "9am-6pm");
         assertThrows(IllegalArgumentException.class, () -> noah.addActivity(business2, "sale", "sale")); //Equivalence class: business not in list, Border case: No
         noah.addBusiness(business2);
         assertEquals(noah.getBusinesses().size(), 2); //Equivalence class: business added, Border case: No
