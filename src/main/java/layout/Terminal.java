@@ -244,4 +244,8 @@ public class Terminal {
     public void addPOI(POI newPOI){
         poi.put(newPOI.getUuid(), newPOI);
     }
+
+    public String getAirport(){
+        return airport;
+    }
 }
