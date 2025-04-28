@@ -8,17 +8,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import layout.*;
 //test
-public class Passenger extends User {
+public class PassengerOld extends User {
 
     //private HashMap<Flight, Schedule> flightPlans;
     
-    public Passenger(String name, String username, String password, String email){
+    public PassengerOld(String name, String username, String password, String email){
         super(name, username, password, email);
         //flightPlans = new HashMap<>();
     }
 
     @JsonCreator
-    public Passenger(
+    public PassengerOld(
             @JsonProperty("name") String name,
             @JsonProperty("username") String username,
             @JsonProperty("password") String password,
