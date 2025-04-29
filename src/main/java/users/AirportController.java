@@ -5,10 +5,8 @@ import java.util.HashSet;
 
 import layout.Airport;
 
-//creates one instance of AirportController to manage all flights, airports, and users
-public class AirportController {
 
-    public static AirportController instance;
+public class AirportController {
 
     private HashMap<String, Flight> flights;
     private HashMap<String, Airport> airports;
@@ -20,12 +18,6 @@ public class AirportController {
         users = new HashSet<>();
     }
 
-    public static AirportController getInstance(){
-        if(instance == null){
-            instance = new AirportController();
-        }
-        return instance;
-    }
 
     public HashMap<String, Flight> getFlights(){
         return flights;
@@ -46,7 +38,7 @@ public class AirportController {
     */
     public void addFlight(Flight flight){
         if(flights.containsKey(flight.getFlightNumber())){
-            throw new IllegalArgumentException("activity.Flight already exists");
+            System.err.println("activity.Flight already exists");
         }else{
             flights.put(flight.getFlightNumber(), flight);
         }

@@ -3,6 +3,8 @@ Developers: Cole, Oscar, and Rebecca
 
 Narratives and Scenarios: https://docs.google.com/document/d/1wAeWk2ZYpFfu7lpZysnkQZ5uzEUBZlSq5EBcnq2sgNw/edit?usp=sharing
 
+Frontend Repository: https://github.com/CoeWorl/comp-345-project-02-Airport-Scheduler-Frontend
+
 # Sprint 1
 
 UML Diagrams: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
