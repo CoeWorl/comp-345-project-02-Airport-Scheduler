@@ -50,10 +50,11 @@ public abstract class User {
     private ArrayList<Beverage_Preferences> beverage_preferences;
     private ArrayList<Shopping_Preferences> shopping_preferences;
     private ArrayList<Recreation_Preferences> recreation_preferences;
-    private String name;
-    private String username;
-    private String password;
-    private String email;
+    protected String name;
+    protected String username;
+    protected String password;
+    protected String email;
+    
 
     @JsonCreator
     /**Constructor for activity.User
@@ -90,7 +91,6 @@ public abstract class User {
         this.password = password;
         if(validEmail(email)){
             this.email = email;
-            AirportController.getInstance().getUsers().add(this);
         }else{
             throw new IllegalArgumentException("Invalid email");
         }

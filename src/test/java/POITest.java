@@ -8,14 +8,14 @@ import static org.junit.Assert.*;
 
 public class POITest {
     @Test
-    public void createPOITest() throws IOException {
+    public void createPOITest() throws IOException { //Unit tests
         POI poi1, poi2, poi3, poi4, poi5;
 
         poi1 = Json.fromJsonFile("src/test/resources/JFK/POI/Gate/aeebc26c-96cd-40a6-9055-9b2a164db481.json", Gate.class);
         poi2 = Json.fromJsonFile("src/test/resources/JFK/POI/Gate/acace207-152a-4042-85f6-b43234da2417.json", Gate.class);
         poi3 = Json.fromJsonFile("src/test/resources/JFK/POI/Business/b624702e-eb27-4392-817a-2e0cc01c28e1.json", Business.class);
 
-        assert poi1 != null;
+        assert poi1 != null; //Equivalence class: valid POI, border case: no
         assertEquals("South Entrance", poi1.getName());
         assertTrue(((Gate) poi1).isEntranceToTerminal());
 
@@ -24,7 +24,7 @@ public class POITest {
 
         assertEquals("Joe Pizza", poi3.getName());
 
-        assertThrows(IOException.class, () -> Json.fromJsonFile("src/test/resources/JFK/POI/Gate/invalid.json", Gate.class));
+        assertThrows(IOException.class, () -> Json.fromJsonFile("src/test/resources/JFK/POI/Gate/invalid.json", Gate.class)); 
 
         // Shows that business could be created from Gate file
         Json.fromJsonFile("src/test/resources/JFK/POI/Gate/acace207-152a-4042-85f6-b43234da2417.json", Business.class);

@@ -10,9 +10,11 @@
 //public class FlightJson {
 //
 //    private String filePath;
+//    private AirportController airportController;
 //
-//    public FlightJson(String filePath){
+//    public FlightJson(String filePath, AirportController airportController) {
 //        this.filePath = filePath;
+//        this.airportController = airportController;
 //    }
 //
 //    /**creates flight objects for each flight in the json file
@@ -51,6 +53,8 @@
 //                    terminal,
 //                    gate
 //                );
+//
+//                ac.addFlight(flight);
 //            }
 //        } catch (IOException e) {
 //            throw new IllegalArgumentException("File Not Found");

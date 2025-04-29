@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import layout.Airport;
 import layout.Gate;
 import layout.Terminal;
+import users.AirportController;
 
 import java.util.Objects;
 //test
@@ -16,7 +17,7 @@ public class Flight {
     private final long deptTime; // Unix timestamp
     private final long arrTime; // Unix timestamp
     private String status;
-    private final Terminal terminal;
+    private final int terminal;
     private final Gate gate;
 
     @JsonCreator
@@ -26,7 +27,7 @@ public class Flight {
                   @JsonProperty("deptTime") long deptTime,
                   @JsonProperty("arrTime") long arrTime,
                   @JsonProperty("status") String status,
-                  @JsonProperty("terminal") Terminal terminal,
+                  @JsonProperty("terminal") int terminal,
                   @JsonProperty("gate") Gate gate) {
         this.flightNumber = flightNumber;
         this.src = src;
@@ -36,7 +37,6 @@ public class Flight {
         this.status = status;
         this.terminal = terminal;
         this.gate = gate;
-        AirportController.getInstance().getFlights().put(flightNumber, this);
     }
 
     public String getFlightNumber() {
@@ -63,7 +63,7 @@ public class Flight {
         return status;
     }
 
-    public Terminal getTerminal() {
+    public int getTerminal() {
         return terminal;
     }
 
@@ -75,12 +75,6 @@ public class Flight {
     public String toJsonKey() {
         // Serialize the activity.Flight object as its flightNumber when used as a key
         return flightNumber;
-    }
-
-    @JsonCreator
-    public static Flight fromJsonKey(String flightNumber) {
-        // Deserialize the activity.Flight object from its flightNumber
-        return new Flight(flightNumber, null, null, 0, 0, null, null, null);
     }
 
     @Override
