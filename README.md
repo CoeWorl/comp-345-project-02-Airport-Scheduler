@@ -25,3 +25,6 @@ Sprint Goal: Create a recommendation system that works with the frontend to allo
 Sprint Review: https://docs.google.com/document/d/18qgCdzA0Tx0_c2lfAaS_Z-oRlL55Sx0hdEEMgHFiqxU/edit?usp=sharing
 
 Sprint Retrospective: https://docs.google.com/document/d/1EnIPGaWxFflue8gIOFltIGXvVh60N9f4X1u7CRU7eP4/edit?usp=sharing
+
+# Final
+https://docs.google.com/presentation/d/1BfhipE8I4re4vlb2YMcofdf4gEn5VYsGqOZrGfu1QnM/edit?usp=sharing
