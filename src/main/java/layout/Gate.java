@@ -2,6 +2,7 @@ package layout;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.UUID;
 
@@ -20,6 +21,11 @@ public class Gate extends POI{
                 @JsonProperty("uuid") UUID uuid) {
         super(name, terminal, uuid);
         this.isEntranceToTerminal = isEntranceToTerminal;
+    }
+
+    @JsonValue
+    public String getUuidAsString() {
+        return uuid.toString();
     }
 
     public boolean isEntranceToTerminal() {

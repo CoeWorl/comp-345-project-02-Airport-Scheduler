@@ -29,6 +29,9 @@ public class Airport {
                    @JsonProperty("terminals") List<Integer> terminals,
                    @JsonProperty("entranceConnections") Map<UUID, List<Map<String, Object>>> entranceConnections) throws IOException {
         this.code = code;
+        if (name == null) {
+            throw new IllegalArgumentException("Airport name cannot be null.");
+        }
         this.name = name;
         this.uuid = uuid;
         this.terminals = new HashMap<>();
@@ -59,8 +62,12 @@ public class Airport {
         return uuid;
     }
 
-    public Map<Integer, Terminal> getTerminals() {
+    public Map<Integer, Terminal> getTerminalsMap() {
         return new HashMap<>(terminals);
+    }
+
+    public List<Integer> getTerminals() {
+        return new ArrayList<>(terminals.keySet());
     }
 
     public Map<UUID, List<Connection>> getEntranceConnections() {
