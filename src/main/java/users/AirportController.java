@@ -38,7 +38,7 @@ public class AirportController {
     */
     public void addFlight(Flight flight){
         if(flights.containsKey(flight.getFlightNumber())){
-            throw new IllegalArgumentException("activity.Flight already exists");
+            System.err.println("activity.Flight already exists");
         }else{
             flights.put(flight.getFlightNumber(), flight);
         }

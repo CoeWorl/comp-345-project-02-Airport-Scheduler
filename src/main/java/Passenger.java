@@ -86,7 +86,7 @@ public class Passenger extends User{
                 Gate gate1 = (Gate) term.getGates().get(gate);
                 Long deptTimeLong = Long.parseLong(deptTime);
                 Long arrTimeLong = Long.parseLong(arrTime);
-                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term, gate1);
+                Flight flight = new Flight(flightNum, src, dest, deptTimeLong, arrTimeLong, "on time", term.getTerminalNumber(), gate1);
                 flightPlans.put(flight, new Schedule(deptTimeLong, src, term));
             }else{
                 throw new IllegalArgumentException("Airport does not exiist");

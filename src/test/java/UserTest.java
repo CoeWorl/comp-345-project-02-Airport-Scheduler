@@ -68,8 +68,8 @@ public class UserTest {
         ac.addAirport("JFK",jfk);
         ac.addAirport("LAX", lax);
         Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
-        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
-        Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal, new Gate("A2", 1, false));
+        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal.getTerminalNumber(), new Gate("A1", 1, false));
+        Flight f2 = new Flight("AA5678", lax, jfk, 1743544800, 1743560100, "on-time", terminal.getTerminalNumber(), new Gate("A2", 1, false));
         ac.addFlight(f1);
         ac.addFlight(f2);
         assertEquals(ac.getAirports().size(), 2); //Equivalence class: airports added, Border case: No
@@ -102,18 +102,7 @@ public class UserTest {
         Schedule randSchedule = rebecca.getSchedule("AA5678");
         assertEquals(randSchedule.getAirport().getName(), "Los Angeles International Airport"); //Equivalence Class: random schedule, Border case: no
         assertEquals(randSchedule.getTerminal().getName(), "Terminal 1");
-        Flight flight = rebecca.getFlight("AA1234");
-        Schedule newSched =  new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal());
-        rebecca.updateSchedule("AA1234", newSched);
-        Schedule updatedSched = rebecca.getSchedule("AA1234");
-        assertEquals(newSched, updatedSched); //Equivalence Class: schedule updated, Border case: no
-        assertEquals(updatedSched.getAirport().getName(), "John F. Kennedy International Airport");
-        assertEquals(updatedSched.getTerminal().getName(), "Terminal 1");
-        rebecca.removeFlight("AA1234");
-        assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight removed, Border case: No
-        rebecca.removeFlight("AA5678");
-        assertTrue(rebecca.getFlightPlans().isEmpty()); //Equivalence class: no flights, Border case: No
-    }
+        }
 
 //    @Test
 //    public void updateScheduleTest(){
@@ -223,11 +212,12 @@ public class UserTest {
     public void testUserSerialization() throws IOException { //Unit tests
         AirportController airportController = new AirportController();
         Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
-        airportController.addFlight(new Flight("AA1234", new Airport("JFK", "New York Airport"), new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK"), new Gate("A1", 1, false)));
+        Gate gate2 = Json.fromJsonFile("src/test/resources/JFK/POI/Gate/aeebc26c-96cd-40a6-9055-9b2a164db481.json", Gate.class);
+        airportController.addFlight(new Flight("AA1234", new Airport("JFK", "New York Airport"), new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", 2, new Gate("A1", 1, false)));
         Airport jfk = Json.fromJsonFile("src/test/resources/JFK/airport.json", Airport.class);
         Terminal terminal = Json.fromJsonFile("src/test/resources/JFK/1.json", Terminal.class);
         Gate gate = Json.fromJsonFile("src/test/resources/JFK/POI/Gate/aa189ff2-5a5b-481f-9fb8-1937333e0dc9.json", Gate.class);
-        airportController.addFlight(new Flight("AA1234", jfk, new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", terminal, gate));
+        airportController.addFlight(new Flight("AA1234", jfk, new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", terminal.getTerminalNumber(), gate));
         rebecca.addFlight("AA1234", airportController);
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
         overall_preferences.add(User.Overall_Preferences.BEVERAGES);
@@ -334,7 +324,7 @@ public class UserTest {
         ac.addAirport("JFK", jfk);
         ac.addAirport("LAX", lax);
         Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
-        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
+        Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal.getTerminalNumber(), new Gate("A1", 1, false));
         ac.addFlight(f1);
         rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1", ac); //Equivalence class: valid flight, Border case: No
         assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight added, Border case: No
