@@ -31,6 +31,25 @@
             "uuid" : "efc59d7c-849b-446f-adb1-0702682237c3",
             "entrances" : [ "aeebc26c-96cd-40a6-9055-9b2a164db481" ],
             "airport" : "JFK",
+            "pois" : [ {
+              "name" : "Joe Pizza",
+              "terminal" : 1,
+              "uuid" : "b624702e-eb27-4392-817a-2e0cc01c28e1",
+              "activity" : null,
+              "type" : "store",
+              "hours" : "9 am to 5 pm"
+            }, {
+              "name" : "Geek Duty Free",
+              "terminal" : 1,
+              "uuid" : "ba05ecb7-879b-44dc-baab-e476bc30bca0",
+              "activity" : null,
+              "type" : "store",
+              "hours" : "12 pm to 10:30 pm"
+            }, "acace207-152a-4042-85f6-b43234da2417", {
+              "terminal" : 1,
+              "uuid" : "cdd47120-b971-41bd-8baa-b7c861377d11",
+              "name" : "Restroom"
+            }, "aeebc26c-96cd-40a6-9055-9b2a164db481" ],
             "terminalNumber" : 1,
             "poiMap" : {
               "ba05ecb7-879b-44dc-baab-e476bc30bca0" : [ {
@@ -98,25 +117,10 @@
                 }
               } ]
             },
-            "pois" : [ {
-              "name" : "Joe Pizza",
-              "terminal" : 1,
-              "uuid" : "b624702e-eb27-4392-817a-2e0cc01c28e1",
-              "activity" : null,
-              "type" : "store",
-              "hours" : "9 am to 5 pm"
-            }, {
-              "name" : "Geek Duty Free",
-              "terminal" : 1,
-              "uuid" : "ba05ecb7-879b-44dc-baab-e476bc30bca0",
-              "activity" : null,
-              "type" : "store",
-              "hours" : "12 pm to 10:30 pm"
-            }, "acace207-152a-4042-85f6-b43234da2417", {
-              "terminal" : 1,
-              "uuid" : "cdd47120-b971-41bd-8baa-b7c861377d11",
-              "name" : "Restroom"
-            }, "aeebc26c-96cd-40a6-9055-9b2a164db481" ],
+            "gates" : {
+              "Gate A1" : "acace207-152a-4042-85f6-b43234da2417",
+              "South Entrance" : "aeebc26c-96cd-40a6-9055-9b2a164db481"
+            },
             "shops" : [ {
               "name" : "Joe Pizza",
               "terminal" : 1,
@@ -132,10 +136,6 @@
               "type" : "store",
               "hours" : "12 pm to 10:30 pm"
             } ],
-            "gates" : {
-              "Gate A1" : "acace207-152a-4042-85f6-b43234da2417",
-              "South Entrance" : "aeebc26c-96cd-40a6-9055-9b2a164db481"
-            },
             "restaurants" : [ ]
           },
           "2" : {
@@ -143,6 +143,7 @@
             "uuid" : "d1a8a2ec-13bf-44de-bd69-b3b67b7e84be",
             "entrances" : [ "aa189ff2-5a5b-481f-9fb8-1937333e0dc9" ],
             "airport" : "JFK",
+            "pois" : [ "aa189ff2-5a5b-481f-9fb8-1937333e0dc9" ],
             "terminalNumber" : 2,
             "poiMap" : {
               "aa189ff2-5a5b-481f-9fb8-1937333e0dc9" : [ {
@@ -154,11 +155,10 @@
                 }
               } ]
             },
-            "pois" : [ "aa189ff2-5a5b-481f-9fb8-1937333e0dc9" ],
-            "shops" : [ ],
             "gates" : {
               "North Entrance" : "aa189ff2-5a5b-481f-9fb8-1937333e0dc9"
             },
+            "shops" : [ ],
             "restaurants" : [ ]
           }
         }
@@ -168,6 +168,25 @@
         "uuid" : "efc59d7c-849b-446f-adb1-0702682237c3",
         "entrances" : [ "aeebc26c-96cd-40a6-9055-9b2a164db481" ],
         "airport" : "JFK",
+        "pois" : [ {
+          "name" : "Joe Pizza",
+          "terminal" : 1,
+          "uuid" : "b624702e-eb27-4392-817a-2e0cc01c28e1",
+          "activity" : null,
+          "type" : "store",
+          "hours" : "9 am to 5 pm"
+        }, {
+          "name" : "Geek Duty Free",
+          "terminal" : 1,
+          "uuid" : "ba05ecb7-879b-44dc-baab-e476bc30bca0",
+          "activity" : null,
+          "type" : "store",
+          "hours" : "12 pm to 10:30 pm"
+        }, "acace207-152a-4042-85f6-b43234da2417", {
+          "terminal" : 1,
+          "uuid" : "cdd47120-b971-41bd-8baa-b7c861377d11",
+          "name" : "Restroom"
+        }, "aeebc26c-96cd-40a6-9055-9b2a164db481" ],
         "terminalNumber" : 1,
         "poiMap" : {
           "ba05ecb7-879b-44dc-baab-e476bc30bca0" : [ {
@@ -235,25 +254,10 @@
             }
           } ]
         },
-        "pois" : [ {
-          "name" : "Joe Pizza",
-          "terminal" : 1,
-          "uuid" : "b624702e-eb27-4392-817a-2e0cc01c28e1",
-          "activity" : null,
-          "type" : "store",
-          "hours" : "9 am to 5 pm"
-        }, {
-          "name" : "Geek Duty Free",
-          "terminal" : 1,
-          "uuid" : "ba05ecb7-879b-44dc-baab-e476bc30bca0",
-          "activity" : null,
-          "type" : "store",
-          "hours" : "12 pm to 10:30 pm"
-        }, "acace207-152a-4042-85f6-b43234da2417", {
-          "terminal" : 1,
-          "uuid" : "cdd47120-b971-41bd-8baa-b7c861377d11",
-          "name" : "Restroom"
-        }, "aeebc26c-96cd-40a6-9055-9b2a164db481" ],
+        "gates" : {
+          "Gate A1" : "acace207-152a-4042-85f6-b43234da2417",
+          "South Entrance" : "aeebc26c-96cd-40a6-9055-9b2a164db481"
+        },
         "shops" : [ {
           "name" : "Joe Pizza",
           "terminal" : 1,
@@ -269,14 +273,10 @@
           "type" : "store",
           "hours" : "12 pm to 10:30 pm"
         } ],
-        "gates" : {
-          "Gate A1" : "acace207-152a-4042-85f6-b43234da2417",
-          "South Entrance" : "aeebc26c-96cd-40a6-9055-9b2a164db481"
-        },
         "restaurants" : [ ]
       },
-      "departureTime" : 1743528600,
-      "pois" : [ ]
+      "pois" : [ ],
+      "departureTime" : 1743528600
     }
   }
 }
