@@ -21,7 +21,7 @@ public class UserTest {
      public void userConstructorTest() { //Integration test between user and airport controller
         AirportController ac = new AirportController();
         ArrayList<User> users = new ArrayList<>();
-        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu", ac);
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         users.add(rebecca);
         ac.addUser(rebecca);
         assertEquals(1, users.size()); //Equivalence class: user added, Border case: No
@@ -48,7 +48,7 @@ public class UserTest {
         assertEquals(noah.getEmail(), "no@gmail.com");
         assertTrue(ac.getUsers().contains(noah));
         assertTrue(noah.checkCredentials("noed", "789"));
-        Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com", ac);
+        Passenger lindsay = new Passenger("Lindsay", "linds", "900", "linds@gmail.com");
         users.add(lindsay);
         ac.addUser(lindsay);
         assertEquals(users.size(), 3); //Equivalence class: user added, Border case: No
@@ -74,8 +74,8 @@ public class UserTest {
         ac.addFlight(f2);
         assertEquals(ac.getAirports().size(), 2); //Equivalence class: airports added, Border case: No
         assertEquals(ac.getFlights().size(), 2); //Equivalence class: flights added, Border case: No
-        Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu", ac);
-        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23")); //Equivalence class: invalid flight, Border case: No
+        Passenger rebecca = new Passenger("Rebecca", "redson", "123", "redson@ithaca.edu");
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlight("ab23", ac)); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("ab23")); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("ab23")); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.randomSchedule("ab23", 1)); //Equivalence class: invalid flight, Border case: No
@@ -84,15 +84,15 @@ public class UserTest {
         assertFalse(rebecca.checkFlight("ab23")); //Equivalence class: invalid flight, Border case: No
         HashMap<Flight, Schedule> flightPlans = rebecca.getFlightPlans();
         assertTrue(flightPlans.isEmpty()); //Equivalence class: no flights, Border case: No
-        rebecca.addFlight("AA1234"); //Equivalence class: valid flight, Border case: No
+        rebecca.addFlight("AA1234", ac); //Equivalence class: valid flight, Border case: No
         assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight added, Border case: No
         rebecca.removeFlight("AA1234");
         assertFalse(rebecca.checkFlight("AA1234")); //Equivalence class: flight removed, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.removeFlight("AA1234")); //Equivalence class: invalid flight, Border case: No
         assertThrows(IllegalArgumentException.class, () -> rebecca.createSchedule("AA1234")); //Equivalence class: invalid flight, Border case: No
         assertTrue(rebecca.getFlightPlans().isEmpty()); //Equivalence class: no flights, Border case: No
-        rebecca.addFlight("AA5678");
-        rebecca.addFlight("AA1234");
+        rebecca.addFlight("AA5678", ac);
+        rebecca.addFlight("AA1234", ac);
         assertEquals(rebecca.getFlightPlans().size(), 2); //Equivalence class: flights added, Border case: No
         rebecca.createSchedule("AA1234");
         Schedule schedule = rebecca.getSchedule("AA1234");
@@ -163,7 +163,7 @@ public class UserTest {
     @Test
     public void userPreferencesTest(){ //Unit tests
         AirportController ac = new AirportController();
-        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu", ac);
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
         overall_preferences.add(User.Overall_Preferences.BEVERAGES);
         overall_preferences.add(User.Overall_Preferences.FOOD);
@@ -194,7 +194,7 @@ public class UserTest {
     @Test
     public void userSetPreferencesInvalidTest() { //Unit tests
         AirportController ac = new AirportController();
-        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu", ac);
+        Passenger rebecca = new Passenger("Rebecca", "rje158", "123", "redson@ithaca.edu");
 
         // Invalid overall preferences size
         ArrayList<User.Overall_Preferences> invalidOverallPreferences = new ArrayList<>();
@@ -228,7 +228,7 @@ public class UserTest {
         Terminal terminal = Json.fromJsonFile("src/test/resources/JFK/1.json", Terminal.class);
         Gate gate = Json.fromJsonFile("src/test/resources/JFK/POI/Gate/aa189ff2-5a5b-481f-9fb8-1937333e0dc9.json", Gate.class);
         airportController.addFlight(new Flight("AA1234", jfk, new Airport("LAX", "Los Angeles Airport"), 1743528600, 1743543000, "on-time", terminal, gate));
-        rebecca.addFlight("AA1234");
+        rebecca.addFlight("AA1234", airportController);
         ArrayList<User.Overall_Preferences> overall_preferences = new ArrayList<>();
         overall_preferences.add(User.Overall_Preferences.BEVERAGES);
         overall_preferences.add(User.Overall_Preferences.FOOD);
@@ -328,7 +328,7 @@ public class UserTest {
     @Test
     public void addFlightManualTest(){ //integration tests between contoller and passenger
         AirportController ac = new AirportController();
-        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com", ac);
+        Passenger rebecca = new Passenger("Rebecca", "redson", "abc", "redson@gmail.com");
         Airport jfk = new Airport("JFK", "John F. Kennedy International Airport");
         Airport lax = new Airport("LAX", "Los Angeles International Airport");
         ac.addAirport("JFK", jfk);
@@ -336,12 +336,12 @@ public class UserTest {
         Terminal terminal = new Terminal("Terminal 1", 1, new Gate("A1", 1, false), "JFK");
         Flight f1 = new Flight("AA1234", jfk, lax, 1743528600, 	1743543000, "on-time", terminal, new Gate("A1", 1, false));
         ac.addFlight(f1);
-        rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1"); //Equivalence class: valid flight, Border case: No
+        rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1", ac); //Equivalence class: valid flight, Border case: No
         assertEquals(rebecca.getFlightPlans().size(), 1); //Equivalence class: flight added, Border case: No
         assertEquals(ac.getFlights().size(), 1); //Equivalence class: flight added, Border case: No
         assertEquals(ac.getAirports().size(), 2); //Equivalence class: airports added, Border case: No
-        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1"));//Equivalence class: flight already exists, Border case: No
-        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA4567", "ELM", "ORL", "8:00", "10:30", "Terminal 1", "Gate A2"));//Equivalence class: invalid airport, Border case: No
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1", ac));//Equivalence class: flight already exists, Border case: No
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA4567", "ELM", "ORL", "8:00", "10:30", "Terminal 1", "Gate A2", ac));//Equivalence class: invalid airport, Border case: No
     }
 }
 

@@ -49,11 +49,11 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if flight does not exist
      */
-    public void addFlight(String flightNum){
+    public void addFlight(String flightNum, AirportController ac){
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
         }else{
-            HashMap<String, Flight> flights = AirportController.getInstance().getFlights();
+            HashMap<String, Flight> flights = ac.getFlights();
             if(flights.containsKey(flightNum)){
                 Flight flight = flights.get(flightNum);
                 flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
@@ -71,8 +71,8 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if src or dest airport not in system
      */
-    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, String terminal, String gate){
-        AirportController controller = AirportController.getInstance();
+    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, String terminal, String gate, AirportController ac){
+        AirportController controller = ac;
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
         }else if(controller.getFlights().containsKey(flightNum)){
