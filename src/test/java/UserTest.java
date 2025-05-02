@@ -383,8 +383,8 @@ public class UserTest {
         assertEquals(rebecca.getFlightPlans().size(), 1);
         assertEquals(ac.getFlights().size(), 1);
         assertEquals(ac.getAirports().size(), 2);
-        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", "Terminal 1", "Gate A1"));//flight already added
-        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA4567", "ELM", "ORL", "8:00", "10:30", "Terminal 1", "Gate A2"));//airports not in system
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA1234", "JFK", "LAX", "12:30", "16:00", 1, "Gate A1"));//flight already added
+        assertThrows(IllegalArgumentException.class, () -> rebecca.addFlightManual("AA4567", "ELM", "ORL", "8:00", "10:30", 1, "Gate A2"));//airports not in system
     }
 }
 

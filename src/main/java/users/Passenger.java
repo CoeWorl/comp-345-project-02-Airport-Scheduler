@@ -37,6 +37,10 @@ public class Passenger extends User{
         super(name, username, password, email, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
     }
 
+    public Passenger(String name, String username, String password, String email) {
+        super(name, username, password, email);
+    }
+
     public HashMap<Flight, Schedule> getFlightPlans(){
         return flightPlans;
     }
@@ -70,7 +74,7 @@ public class Passenger extends User{
      * @throws IllegalArgumentException if flight already in plans
      * @throws IllegalArgumentException if src or dest airport not in system
      */
-    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, Int terminalNum, String gate){
+    public void addFlightManual(String flightNum, String srcCode, String destCode, String deptTime, String arrTime, Integer terminalNum, String gate){
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
         }else if(controller.getFlights().containsKey(flightNum)){
@@ -80,7 +84,7 @@ public class Passenger extends User{
             if(controller.getAirports().containsKey(srcCode) && controller.getAirports().containsKey(destCode)){
                 Airport src = controller.getAirports().get(srcCode);
                 Airport dest = controller.getAirports().get(destCode);
-                HashMap<Integer, Terminal> terminals = src.getTerminalsMap();
+                HashMap<Integer, Terminal> terminals = (HashMap<Integer, Terminal>) src.getTerminalsMap();
                 Terminal term = terminals.get(terminalNum);
                 Gate gate1 = (Gate) term.getGates().get(gate);
                 Long deptTimeLong = Long.parseLong(deptTime);
