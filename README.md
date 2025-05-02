@@ -5,6 +5,9 @@ Narratives and Scenarios: https://docs.google.com/document/d/1wAeWk2ZYpFfu7lpZys
 
 Frontend Repository: https://github.com/CoeWorl/comp-345-project-02-Airport-Scheduler-Frontend
 
+# Quick Start Guide
+
+
 # Sprint 1
 
 UML Diagrams: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
@@ -27,4 +30,13 @@ Sprint Review: https://docs.google.com/document/d/18qgCdzA0Tx0_c2lfAaS_Z-oRlL55S
 Sprint Retrospective: https://docs.google.com/document/d/1EnIPGaWxFflue8gIOFltIGXvVh60N9f4X1u7CRU7eP4/edit?usp=sharing
 
 # Final
-https://docs.google.com/presentation/d/1BfhipE8I4re4vlb2YMcofdf4gEn5VYsGqOZrGfu1QnM/edit?usp=sharing
+Presentation: https://docs.google.com/presentation/d/1BfhipE8I4re4vlb2YMcofdf4gEn5VYsGqOZrGfu1QnM/edit?usp=sharing
+
+UML Class Diagram: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
+
+Sequence Diagrams:
+    Cole:
+    Oscar:
+    Rebecca: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
+
+State Diagram:
