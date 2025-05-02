@@ -35,10 +35,12 @@ public class Passenger extends User{
             @JsonProperty("recreation_preferences") ArrayList<Recreation_Preferences> recreationPreferences
     ) {
         super(name, username, password, email, overallPreferences, foodPreferences, beveragePreferences, shoppingPreferences, recreationPreferences);
+        this.flightPlans = new HashMap<>();
     }
 
     public Passenger(String name, String username, String password, String email) {
         super(name, username, password, email);
+        this.flightPlans = new HashMap<>();
     }
 
     public HashMap<Flight, Schedule> getFlightPlans(){
