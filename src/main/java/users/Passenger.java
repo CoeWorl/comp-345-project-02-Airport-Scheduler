@@ -52,7 +52,7 @@ public class Passenger extends User{
         if(checkFlight(flightNum)){
             throw new IllegalArgumentException("Flight already in plans");
         }else{
-            HashMap<String, Flight> flights = controller.getFlights();
+            HashMap<String, Flight> flights = controller.getFlights();;
             if(flights.containsKey(flightNum)){
                 Flight flight = flights.get(flightNum);
                 flightPlans.put(flight, new Schedule(flight.getDepartureTime(), flight.getSrc(), flight.getTerminal()));
