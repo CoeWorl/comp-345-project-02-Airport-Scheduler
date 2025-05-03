@@ -32,14 +32,5 @@ Sprint Retrospective: https://docs.google.com/document/d/1EnIPGaWxFflue8gIOFltIG
 # Final
 Presentation: https://docs.google.com/presentation/d/1BfhipE8I4re4vlb2YMcofdf4gEn5VYsGqOZrGfu1QnM/edit?usp=sharing
 
-UML Class Diagram: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
+UML Class, Sequence, and State Diagrams: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
 
-Sequence Diagrams:
-
-Cole:
-    
-Oscar:
-    
-Rebecca: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
-
-State Diagram: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
