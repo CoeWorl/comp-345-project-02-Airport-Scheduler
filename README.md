@@ -36,10 +36,10 @@ UML Class Diagram: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bj
 
 Sequence Diagrams:
 
-    Cole:
+Cole:
     
-    Oscar:
+Oscar:
     
-    Rebecca: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
+Rebecca: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
 
 State Diagram: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
