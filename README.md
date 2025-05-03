@@ -35,8 +35,11 @@ Presentation: https://docs.google.com/presentation/d/1BfhipE8I4re4vlb2YMcofdf4gE
 UML Class Diagram: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
 
 Sequence Diagrams:
+
     Cole:
+    
     Oscar:
+    
     Rebecca: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
 
-State Diagram:
+State Diagram: https://drive.google.com/file/d/1DoBqD91MTrRsI3OCdAkZSRn2o-bjFKn9/view?usp=sharing
