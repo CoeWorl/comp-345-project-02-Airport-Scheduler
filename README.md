@@ -6,7 +6,7 @@ Narratives and Scenarios: https://docs.google.com/document/d/1wAeWk2ZYpFfu7lpZys
 Frontend Repository: https://github.com/CoeWorl/comp-345-project-02-Airport-Scheduler-Frontend
 
 # Quick Start Guide
-
+To start our project. Use the Frontend repository and go to localhost:8080/layout to get the airport layout once the project is running. If you want to access the preferences form, go to localhost:8080/api/preferences.
 
 # Sprint 1
 
