@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.*;
 import users.AirportController;
 
+/**
+ * Represents an airport containing multiple terminals and inter-terminal entrance connections.
+ */
 public class Airport {
     private final String code;
     private final String name;
@@ -14,6 +17,12 @@ public class Airport {
     private final Map<Integer, Terminal> terminals;
     private final Map<UUID, List<Connection>> entranceConnections;
 
+    /**
+     * Constructs an Airport with the specified code and name.
+     *
+     * @param code the airport code
+     * @param name the airport name
+     */
     public Airport(String code, String name) {
         this.code = code;
         this.name = name;
@@ -22,6 +31,16 @@ public class Airport {
         this.entranceConnections = new HashMap<>();
     }
 
+    /**
+     * Constructs an Airport from JSON properties.
+     *
+     * @param code the airport code
+     * @param name the airport name
+     * @param uuid the unique identifier for the airport
+     * @param terminals a list of terminal numbers
+     * @param entranceConnections a map of entrance connections
+     * @throws IOException if an error occurs while reading a Terminal from file
+     */
     @JsonCreator
     public Airport(@JsonProperty("code") String code,
                    @JsonProperty("name") String name,
@@ -54,26 +73,58 @@ public class Airport {
         }
     }
 
+    /**
+     * Returns the name of the airport.
+     *
+     * @return the airport name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns the unique identifier of the airport.
+     *
+     * @return the airport UUID
+     */
     public UUID getUuid() {
         return uuid;
     }
 
+    /**
+     * Returns a copy of the terminal mapping.
+     *
+     * @return a map of terminal numbers to Terminal objects
+     */
     public Map<Integer, Terminal> getTerminalsMap() {
         return new HashMap<>(terminals);
     }
 
+    /**
+     * Returns a list of terminal numbers available in the airport.
+     *
+     * @return a list of terminal numbers
+     */
     public List<Integer> getTerminals() {
         return new ArrayList<>(terminals.keySet());
     }
 
+    /**
+     * Returns a copy of the entrance connections map.
+     *
+     * @return a map with entrance UUID keys and lists of Connection objects as values
+     */
     public Map<UUID, List<Connection>> getEntranceConnections() {
         return new HashMap<>(entranceConnections);
     }
 
+    /**
+     * Returns the distance (weight) of the connection between two gate POIs.
+     *
+     * @param start the starting gate
+     * @param end the destination gate
+     * @return the weight of the connection if present; -1 otherwise
+     */
     public int getDistance(Gate start, Gate end) {
         if (entranceConnections.containsKey(start.getUuid())) {
             for (Connection connection : entranceConnections.get(start.getUuid())) {
@@ -86,13 +137,32 @@ public class Airport {
         return -1;
     }
 
+    /**
+     * Returns the airport code.
+     *
+     * @return the airport code
+     */
     public String getCode() {
         return code;
     }
 
     /**
-     * Finds the inter-terminal path from start to end POI.
+     * Finds the inter-terminal path from a start POI to an end POI.
+     * <p>
+     * The method follows these steps:
+     * <ol>
+     *   <li>If both POIs are in the same terminal, compute the route using the terminal&apos;s shortest route.</li>
+     *   <li>Otherwise, identify the start and destination terminals and obtain their first entrances.</li>
+     *   <li>Compute the shortest route from the start POI to the start terminal&apos;s entrance.</li>
+     *   <li>Find the inter-terminal connection between the two entrances.</li>
+     *   <li>Compute the shortest route from the destination terminal&apos;s entrance to the destination POI.</li>
+     *   <li>Merge the segments to form the full path.</li>
+     * </ol>
      * Debug statements trace each step of the computation.
+     *
+     * @param start the starting POI
+     * @param end the destination POI
+     * @return a LinkedList of POIs representing the complete path; null if any segment fails
      */
     public LinkedList<POI> findInterTerminalPath(POI start, POI end) {
         System.out.println("Starting findInterTerminalPath from " + start.getName() + " to " + end.getName());
@@ -158,7 +228,6 @@ public class Airport {
         LinkedList<POI> fullPath = new LinkedList<>();
         fullPath.addAll(pathToEntrance);
         if (!fullPath.getLast().equals(destEntrance)) {
-            // Ensure destination entrance is included.
             fullPath.add(destEntrance);
         }
         if (!pathFromEntrance.isEmpty() && pathFromEntrance.getFirst().equals(destEntrance)) {
